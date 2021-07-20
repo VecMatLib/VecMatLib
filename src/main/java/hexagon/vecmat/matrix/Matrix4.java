@@ -1,6 +1,5 @@
 package hexagon.vecmat.matrix;
 
-import hexagon.vecmat.vector.Float3;
 import hexagon.vecmat.vector.Float4;
 import hexagon.vecmat.vector.Int4;
 
@@ -193,57 +192,11 @@ public class Matrix4 implements IMatrix<Matrix4, Float4> {
         return false;
     }
     
-    public static Matrix4 translationMatrix(Float3 vector) {
-        return new Matrix4(
-                1.0f, 0.0f, 0.0f, vector.x,
-                0.0f, 1.0f, 0.0f, vector.y,
-                0.0f, 0.0f, 1.0f, vector.z,
-                0.0f, 0.0f, 0.0f, 1.0f
-        );
-    }
-    
-    public static Matrix4 rotationMatrixX(float angle) {
-        double rad = Math.toRadians(angle);
-        float sin = (float) Math.sin(-rad);
-        float cos = (float) Math.cos(-rad);
-        return new Matrix4(
-                1.0f, 0.0f, 0.0f, 0.0f,
-                0.0f,  cos, -sin, 0.0f,
-                0.0f,  sin,  cos, 0.0f,
-                0.0f, 0.0f, 0.0f, 1.0f
-        );
-    }
-    
-    public static Matrix4 rotationMatrixY(float angle) {
-        double rad = Math.toRadians(angle);
-        float sin = (float) Math.sin(-rad);
-        float cos = (float) Math.cos(-rad);
-        return new Matrix4(
-                 cos, 0.0f,  sin, 0.0f,
-                0.0f, 1.0f, 0.0f, 0.0f,
-                -sin, 0.0f,  cos, 0.0f,
-                0.0f, 0.0f, 0.0f, 1.0f
-        );
-    }
-    
-    public static Matrix4 rotationMatrixZ(float angle) {
-        double rad = Math.toRadians(angle);
-        float sin = (float) Math.sin(-rad);
-        float cos = (float) Math.cos(-rad);
-        return new Matrix4(
-                 cos, -sin, 0.0f, 0.0f,
-                 sin,  cos, 0.0f, 0.0f,
-                0.0f, 0.0f, 1.0f, 0.0f,
-                0.0f, 0.0f, 0.0f, 1.0f
-        );
-    }
-    
-    public static Matrix4 scalingMatrix(Float3 vector) {
-        return new Matrix4(
-                vector.x, 0.0f, 0.0f, 0.0f,
-                0.0f, vector.y, 0.0f, 0.0f,
-                0.0f, 0.0f, vector.z, 0.0f,
-                0.0f, 0.0f, 0.0f, 1.0f
-        );
+    @Override
+    public String toString() {
+        return "[" + this.m00 + " " + this.m01 + " " + this.m02 + " " + this.m03 + "]\n" +
+                "[" + this.m10 + " " + this.m11 + " " + this.m12 + " " + this.m13 + "]\n" +
+                "[" + this.m20 + " " + this.m21 + " " + this.m22 + " " + this.m23 + "]\n" +
+                "[" + this.m30 + " " + this.m31 + " " + this.m32 + " " + this.m33 + "]\n";
     }
 }
