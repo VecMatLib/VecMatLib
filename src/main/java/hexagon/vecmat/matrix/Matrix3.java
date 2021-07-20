@@ -37,7 +37,7 @@ public class Matrix3 implements IMatrix<Matrix3, Float3> {
     public final float m10, m11, m12;
     public final float m20, m21, m22;
     
-    public Matrix3(float m00, float m01, float m02, float m10, float m11, float m12, float m20, float m21, float m22) {
+    private Matrix3(float m00, float m01, float m02, float m10, float m11, float m12, float m20, float m21, float m22) {
         this.m00 = m00; this.m01 = m01; this.m02 = m02;
         this.m10 = m10; this.m11 = m11; this.m12 = m12;
         this.m20 = m20; this.m21 = m21; this.m22 = m22;
@@ -58,6 +58,15 @@ public class Matrix3 implements IMatrix<Matrix3, Float3> {
                 this.m00 - matrix.m00, this.m01 - matrix.m01, this.m02 - matrix.m02,
                 this.m10 - matrix.m10, this.m11 - matrix.m11, this.m12 - matrix.m12,
                 this.m20 - matrix.m20, this.m21 - matrix.m21, this.m22 - matrix.m22
+        );
+    }
+    
+    @Override
+    public Matrix3 negative() {
+        return new Matrix3(
+                -this.m00, -this.m01, -this.m02,
+                -this.m10, -this.m11, -this.m12,
+                -this.m20, -this.m21, -this.m22
         );
     }
     

@@ -8,6 +8,8 @@ public interface IMatrix<M extends IMatrix<M, V>, V extends FloatVector<V, ?>> {
     
     M minus(M matrix);
     
+    M negative();
+    
     M multiply(float constant);
     
     default M dividedBy(float constant) {

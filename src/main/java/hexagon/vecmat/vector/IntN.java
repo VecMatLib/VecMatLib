@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class IntN implements IntVector<IntN, FloatN> {
     
@@ -110,6 +111,10 @@ public class IntN implements IntVector<IntN, FloatN> {
     
     public int element(int i) {
         return this.values.get(i);
+    }
+    
+    public Stream<Integer> stream() {
+        return this.values.stream();
     }
     
     @Override
