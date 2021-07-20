@@ -73,12 +73,20 @@ public class Int2 implements IntVector<Int2, Float2> {
     
     @Override
     public boolean equals(Int2 value) {
-        return this.a == value.a && this.b == value.b;
+        return this.equals(value.a, value.b);
+    }
+    
+    public boolean equals(int a, int b) {
+        return this.a == a && this.b == b;
     }
     
     @Override
     public boolean equals(Float2 value) {
-        return this.a == value.x && this.b == value.y;
+        return this.equals(value.x, value.y);
+    }
+    
+    public boolean equals(float x, float y) {
+        return this.a == x && this.b == y;
     }
     
     @Override

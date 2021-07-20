@@ -60,12 +60,16 @@ public class Float2 implements FloatVector<Float2, Int2> {
     
     @Override
     public boolean equals(Float2 value) {
-        return this.x == value.x && this.y == value.y;
+        return this.equals(value.x, value.y);
     }
     
     @Override
     public boolean equals(Int2 value) {
-        return this.x == value.a && this.y == value.b;
+        return this.equals(value.a, value.b);
+    }
+    
+    public boolean equals(float x, float y) {
+        return this.x == x && this.y == y;
     }
     
     @Override

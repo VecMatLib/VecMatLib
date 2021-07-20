@@ -70,12 +70,16 @@ public class Float3 implements FloatVector<Float3, Int3> {
     
     @Override
     public boolean equals(Float3 value) {
-        return this.x == value.x && this.y == value.y && this.z == value.z;
+        return this.equals(value.x, value.y, value.z);
     }
     
     @Override
     public boolean equals(Int3 value) {
-        return this.x == value.a && this.y == value.b && this.z == value.c;
+        return this.equals(value.a, value.b, value.c);
+    }
+    
+    public boolean equals(float x, float y, float z) {
+        return this.x == x && this.y == y && this.z == z;
     }
     
     @Override

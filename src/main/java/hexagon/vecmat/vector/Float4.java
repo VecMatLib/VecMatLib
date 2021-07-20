@@ -64,12 +64,16 @@ public class Float4 implements FloatVector<Float4, Int4> {
     
     @Override
     public boolean equals(Float4 value) {
-        return this.x == value.x && this.y == value.y && this.z == value.z && this.w == value.w;
+        return this.equals(value.x, value.y, value.z, value.w);
     }
     
     @Override
     public boolean equals(Int4 value) {
-        return this.x == value.a && this.y == value.b && this.z == value.c && this.w == value.d;
+        return this.equals(value.a, value.b, value.c, value.d);
+    }
+    
+    public boolean equals(float x, float y, float z, float w) {
+        return this.x == x && this.y == y && this.z == z && this.w == w;
     }
     
     @Override

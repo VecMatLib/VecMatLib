@@ -77,12 +77,20 @@ public class Int4 implements IntVector<Int4, Float4> {
     
     @Override
     public boolean equals(Int4 value) {
-        return this.a == value.a && this.b == value.b && this.c == value.c && this.d == value.d;
+        return this.equals(value.a, value.b, value.c, value.d);
+    }
+    
+    public boolean equals(int a, int b, int c, int d) {
+        return this.a == a && this.b == b && this.c == c && this.d == d;
     }
     
     @Override
     public boolean equals(Float4 value) {
-        return this.a == value.x && this.b == value.y && this.c == value.z && this.d == value.w;
+        return this.equals(value.x, value.y, value.z, value.w);
+    }
+    
+    public boolean equals(float x, float y, float z, float w) {
+        return this.a == x && this.b == y && this.c == z && this.d == w;
     }
     
     @Override

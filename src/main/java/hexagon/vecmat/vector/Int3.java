@@ -83,12 +83,20 @@ public class Int3 implements IntVector<Int3, Float3> {
     
     @Override
     public boolean equals(Int3 value) {
-        return this.a == value.a && this.b == value.b && this.c == value.c;
+        return this.equals(value.a, value.b, value.c);
+    }
+    
+    public boolean equals(int a, int b, int c) {
+        return this.a == a && this.b == b && this.c == c;
     }
     
     @Override
     public boolean equals(Float3 value) {
-        return this.a == value.x && this.b == value.y && this.c == value.z;
+        return this.equals(value.x, value.y, value.z);
+    }
+    
+    public boolean equals(float x, float y, float z) {
+        return this.a == x && this.b == y && this.c == z;
     }
     
     @Override
