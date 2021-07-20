@@ -1,5 +1,8 @@
 package hexagon.vecmat.matrix;
 
+import hexagon.vecmat.exceptions.UnconformableMatrixException;
+import hexagon.vecmat.exceptions.UndefinedOperationException;
+import hexagon.vecmat.exceptions.VectorSizeException;
 import hexagon.vecmat.vector.FloatN;
 
 import java.util.Arrays;
@@ -27,6 +30,14 @@ public class Matrix implements IMatrix<Matrix, FloatN> {
     }
     
     public static Matrix fromRows(FloatN... rows) {
+        if(rows.length == 0)
+            throw new VectorSizeException("Matrix cannot have zero rows");
+        
+        Arrays.stream(rows).forEach(v -> {
+            if(v.size() != rows[0].size())
+                throw new VectorSizeException("All rows must have the same size");
+        });
+        
         return new Matrix(
                 rows.length, rows[0].size(),
                 Arrays.stream(rows)
@@ -56,6 +67,9 @@ public class Matrix implements IMatrix<Matrix, FloatN> {
     
     @Override
     public Matrix plus(Matrix matrix) {
+        if(this.rows != matrix.rows || this.columns != matrix.columns)
+            throw new UndefinedOperationException("Matrices can only be summed if they have the same form");
+        
         return new Matrix(this.rows, this.columns,
                 IntStream.range(0, this.values.size())
                         .mapToObj(i -> this.values.get(i) + matrix.values.get(i))
@@ -65,6 +79,9 @@ public class Matrix implements IMatrix<Matrix, FloatN> {
     
     @Override
     public Matrix minus(Matrix matrix) {
+        if(this.rows != matrix.rows || this.columns != matrix.columns)
+            throw new UndefinedOperationException("Matrices can only be summed if they have the same form");
+    
         return new Matrix(this.rows, this.columns,
                 IntStream.range(0, this.values.size())
                         .mapToObj(i -> this.values.get(i) - matrix.values.get(i))
@@ -92,6 +109,9 @@ public class Matrix implements IMatrix<Matrix, FloatN> {
     
     @Override
     public FloatN multiply(FloatN vector) {
+        if(vector.size() != this.columns)
+            throw new UnconformableMatrixException(this, vector);
+    
         return new FloatN(
                 IntStream.range(0, this.rows)
                         .mapToObj(i -> this.getRow(i).dotProduct(vector))
@@ -106,6 +126,9 @@ public class Matrix implements IMatrix<Matrix, FloatN> {
     
     @Override
     public FloatN getRow(int row) {
+        if(row >= this.rows || row < 0)
+            throw new IllegalArgumentException("Matrix only has " + this.rows + " rows");
+        
         return new FloatN(
                 IntStream.range(0, this.columns)
                         .mapToObj(i -> this.element(row, i))
@@ -115,6 +138,9 @@ public class Matrix implements IMatrix<Matrix, FloatN> {
     
     @Override
     public FloatN getColumn(int column) {
+        if(column >= this.columns || column < 0)
+            throw new IllegalArgumentException("Matrix only has " + this.columns + " columns");
+    
         return new FloatN(
                 IntStream.range(0, this.rows)
                         .mapToObj(i -> this.element(i, column))
@@ -145,6 +171,9 @@ public class Matrix implements IMatrix<Matrix, FloatN> {
     
     @Override
     public Matrix multiply(Matrix matrix) {
+        if(this.columns != matrix.rows)
+            throw new UnconformableMatrixException(this, matrix);
+    
         return new Matrix(this.rows, this.columns,
                 IntStream.range(0, this.rows * matrix.columns)
                         .mapToObj(i -> this.getRow(i / matrix.columns).dotProduct(matrix.getColumn(i % matrix.columns)))
@@ -154,6 +183,9 @@ public class Matrix implements IMatrix<Matrix, FloatN> {
     
     @Override
     public Matrix power(int exp) {
+        if(!this.isSquare())
+            throw new UnconformableMatrixException("Power of a matrix is only defined for square matrices");
+        
         if(exp < 0) {
             return this.transposed().power(-exp);
         } else if(exp == 0) {
@@ -166,4 +198,17 @@ public class Matrix implements IMatrix<Matrix, FloatN> {
             return result;
         }
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Matrix && this.rows == ((Matrix) obj).rows && this.columns == ((Matrix) obj).columns) {
+            for(int i = 0; i < this.values.size(); i++) {
+                if(this.values.get(i).floatValue() != ((Matrix) obj).values.get(i).floatValue())
+                    return false;
+            }
+            return true;
+        }
+        return false;
+    }
+    
 }

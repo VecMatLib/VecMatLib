@@ -1,5 +1,8 @@
 package hexagon.vecmat.vector;
 
+import hexagon.vecmat.exceptions.UndefinedOperationException;
+import hexagon.vecmat.exceptions.VectorSizeException;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,16 +11,20 @@ import java.util.stream.Stream;
 
 public class FloatN implements FloatVector<FloatN, IntN> {
     
-    //TODO - Check not empty and sizes
-    
     private final List<Float> values;
     
     public FloatN(Float... values) {
+        if(values.length == 0)
+            throw new VectorSizeException("Vector cannot be empty");
+        
         this.values = Arrays.asList(values);
     }
     
     @Override
     public FloatN plus(FloatN operand) {
+        if(this.size() != operand.size())
+            throw new UndefinedOperationException("Vectors can only be summed if they have the same size");
+        
         return new FloatN(
                 IntStream.range(0, this.size())
                         .mapToObj(i -> this.element(i) + operand.element(i))
@@ -27,6 +34,9 @@ public class FloatN implements FloatVector<FloatN, IntN> {
     
     @Override
     public FloatN plus(IntN operand) {
+        if(this.size() != operand.size())
+            throw new UndefinedOperationException("Vectors can only be summed if they have the same size");
+    
         return new FloatN(
                 IntStream.range(0, this.size())
                         .mapToObj(i -> this.element(i) + operand.element(i))
@@ -45,6 +55,9 @@ public class FloatN implements FloatVector<FloatN, IntN> {
     
     @Override
     public FloatN minus(FloatN operand) {
+        if(this.size() != operand.size())
+            throw new UndefinedOperationException("Vectors can only be summed if they have the same size");
+    
         return new FloatN(
                 IntStream.range(0, this.size())
                         .mapToObj(i -> this.element(i) - operand.element(i))
@@ -54,6 +67,9 @@ public class FloatN implements FloatVector<FloatN, IntN> {
     
     @Override
     public FloatN minus(IntN operand) {
+        if(this.size() != operand.size())
+            throw new UndefinedOperationException("Vectors can only be summed if they have the same size");
+    
         return new FloatN(
                 IntStream.range(0, this.size())
                         .mapToObj(i -> this.element(i) - operand.element(i))
@@ -72,6 +88,9 @@ public class FloatN implements FloatVector<FloatN, IntN> {
     
     @Override
     public float dotProduct(FloatN vector) {
+        if(this.size() != vector.size())
+            throw new UndefinedOperationException("Dot product is only defined for vectors of the same size");
+    
         return (float) IntStream.range(0, this.size())
                 .mapToDouble(i -> this.element(i) * vector.element(i))
                 .sum();
@@ -79,6 +98,9 @@ public class FloatN implements FloatVector<FloatN, IntN> {
     
     @Override
     public float dotProduct(IntN vector) {
+        if(this.size() != vector.size())
+            throw new UndefinedOperationException("Dot product is only defined for vectors of the same size");
+    
         return (float) IntStream.range(0, this.size())
                 .mapToDouble(i -> this.element(i) * vector.element(i))
                 .sum();
