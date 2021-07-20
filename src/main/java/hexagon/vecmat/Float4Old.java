@@ -3,7 +3,7 @@ package hexagon.vecmat;
 /**
  * A class to represent an immutable float quadruple
  */
-public class Float4 implements BaseOperations<Float4, Float> {
+public class Float4Old implements BaseOperations<Float4Old, Float> {
 
     public final float x;
     public final float y;
@@ -18,7 +18,7 @@ public class Float4 implements BaseOperations<Float4, Float> {
      * @param z Third value of the quadruple
      * @param w Fourth value of the quadruple
      */
-    public Float4(float x, float y, float z, float w) {
+    public Float4Old(float x, float y, float z, float w) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -28,12 +28,12 @@ public class Float4 implements BaseOperations<Float4, Float> {
     /**
      * Initializes this quadruple with value {@code (0.0; 0.0; 0.0; 0.0)}
      */
-    public Float4() {
+    public Float4Old() {
         this(0.0f, 0.0f, 0.0f, 0.0f);
     }
 
     @Override
-    public Float4 plus(Float4 operand) {
+    public Float4Old plus(Float4Old operand) {
         return this.plus(operand.x, operand.y, operand.z, operand.w);
     }
 
@@ -49,8 +49,8 @@ public class Float4 implements BaseOperations<Float4, Float> {
      * @param w Fourth value of the operand.
      * @return The sum of this object and the values passed as a parameter.
      */
-    public Float4 plus(float x, float y, float z, float w) {
-        return new Float4(this.x + x, this.y + y, this.z + z, this.w + w);
+    public Float4Old plus(float x, float y, float z, float w) {
+        return new Float4Old(this.x + x, this.y + y, this.z + z, this.w + w);
     }
 
     /**
@@ -65,28 +65,28 @@ public class Float4 implements BaseOperations<Float4, Float> {
      * @param w Fourth value of the operand.
      * @return The subtraction of this object and the values passed as a parameter.
      */
-    public Float4 minus(float x, float y, float z, float w) {
+    public Float4Old minus(float x, float y, float z, float w) {
         return this.plus(-x, -y, -z, -w);
     }
 
     @Override
-    public Float4 negated() {
-        return new Float4(-this.x, -this.y, -this.z, -this.w);
+    public Float4Old negated() {
+        return new Float4Old(-this.x, -this.y, -this.z, -this.w);
     }
 
     @Override
-    public Float4 times(Float k) {
-        return new Float4(this.x * k, this.y * k, this.z * k, this.w * k);
+    public Float4Old times(Float k) {
+        return new Float4Old(this.x * k, this.y * k, this.z * k, this.w * k);
     }
 
     @Override
-    public Float4 dividedBy(Float k) {
+    public Float4Old dividedBy(Float k) {
         return this.times(1.0f / k);
     }
 
     @Override
-    public Float4 reciprocal() {
-        return new Float4(1.0f / this.x, 1.0f / this.y, 1.0f / this.z, 1.0f / this.w);
+    public Float4Old reciprocal() {
+        return new Float4Old(1.0f / this.x, 1.0f / this.y, 1.0f / this.z, 1.0f / this.w);
     }
 
     /**
@@ -94,8 +94,8 @@ public class Float4 implements BaseOperations<Float4, Float> {
      *
      * @return A new int quadruple with the int value of this quadruple
      */
-    public Int4 castToInt() {
-        return new Int4((int) this.x, (int) this.y, (int) this.z, (int) this.w);
+    public Int4Old castToInt() {
+        return new Int4Old((int) this.x, (int) this.y, (int) this.z, (int) this.w);
     }
 
     @Override
@@ -105,8 +105,8 @@ public class Float4 implements BaseOperations<Float4, Float> {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof Float4)
-            return this.x == ((Float4) obj).x && this.y == ((Float4) obj).y && this.z == ((Float4) obj).z && this.w == ((Float4) obj).w;
+        if(obj instanceof Float4Old)
+            return this.x == ((Float4Old) obj).x && this.y == ((Float4Old) obj).y && this.z == ((Float4Old) obj).z && this.w == ((Float4Old) obj).w;
         return false;
     }
 }

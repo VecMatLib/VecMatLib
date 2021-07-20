@@ -1,12 +1,12 @@
-package hexagon.vecmat.vector;
+package hexagon.vecmat.vector_old;
 
-import hexagon.vecmat.Float4;
+import hexagon.vecmat.Float4Old;
 
 /**
  * A class that represents a four-dimensional vector,
  * a quadruplet of floats that represents a direction and a magnitude in a 4D space.
  */
-public class Vector4 extends Float4 implements VectorOperations<Vector4> {
+public class Vector4 extends Float4Old implements VectorOperations<Vector4> {
 
     /**
      * Initializes a vector
@@ -28,7 +28,7 @@ public class Vector4 extends Float4 implements VectorOperations<Vector4> {
     }
 
     @Override
-    public Vector4 plus(Float4 operand) {
+    public Vector4 plus(Float4Old operand) {
         return this.plus(operand.x, operand.y, operand.z, operand.w);
     }
 
@@ -38,7 +38,7 @@ public class Vector4 extends Float4 implements VectorOperations<Vector4> {
     }
 
     @Override
-    public Vector4 minus(Float4 operand) {
+    public Vector4 minus(Float4Old operand) {
         return this.minus(operand.x, operand.y, operand.z, operand.w);
     }
 

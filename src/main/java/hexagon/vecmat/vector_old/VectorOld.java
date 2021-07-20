@@ -1,27 +1,27 @@
-package hexagon.vecmat.vector;
+package hexagon.vecmat.vector_old;
 
 import hexagon.vecmat.exceptions.UndefinedOperationException;
 import hexagon.vecmat.tuple.FloatTuple;
 
 import java.util.stream.IntStream;
 
-public class Vector extends FloatTuple implements VectorOperations<Vector> {
+public class VectorOld extends FloatTuple implements VectorOperations<VectorOld> {
 
     /**
      * Initializes a vector with the given values
      *
      * @param values Elements of the vector
      */
-    public Vector(Float... values) {
+    public VectorOld(Float... values) {
         super(values);
     }
 
     @Override
-    public Vector plus(FloatTuple operand) {
+    public VectorOld plus(FloatTuple operand) {
         if(this.dimensions() != operand.dimensions())
             throw new UndefinedOperationException("Vector sum", "vectors of different dimensions");
 
-        return new Vector(
+        return new VectorOld(
                 IntStream.range(0, this.dimensions())
                         .mapToObj(i -> this.element(i) + operand.element(i))
                         .toArray(Float[]::new)
@@ -29,11 +29,11 @@ public class Vector extends FloatTuple implements VectorOperations<Vector> {
     }
 
     @Override
-    public Vector minus(FloatTuple operand) {
+    public VectorOld minus(FloatTuple operand) {
         if(this.dimensions() != operand.dimensions())
             throw new UndefinedOperationException("Vector subtraction", "vectors of different dimensions");
 
-        return new Vector(
+        return new VectorOld(
                 IntStream.range(0, this.dimensions())
                         .mapToObj(i -> this.element(i) - operand.element(i))
                         .toArray(Float[]::new)
@@ -41,8 +41,8 @@ public class Vector extends FloatTuple implements VectorOperations<Vector> {
     }
 
     @Override
-    public Vector negated() {
-        return new Vector(
+    public VectorOld negated() {
+        return new VectorOld(
                 this.tuple.stream()
                         .map(f -> -f)
                         .toArray(Float[]::new)
@@ -50,8 +50,8 @@ public class Vector extends FloatTuple implements VectorOperations<Vector> {
     }
 
     @Override
-    public Vector times(Float k) {
-        return new Vector(
+    public VectorOld times(Float k) {
+        return new VectorOld(
                 this.tuple.stream()
                         .map(f -> f * k)
                         .toArray(Float[]::new)
@@ -59,13 +59,13 @@ public class Vector extends FloatTuple implements VectorOperations<Vector> {
     }
 
     @Override
-    public Vector dividedBy(Float k) {
+    public VectorOld dividedBy(Float k) {
         return this.times(1.0f / k);
     }
 
     @Override
-    public Vector reciprocal() {
-        return new Vector(
+    public VectorOld reciprocal() {
+        return new VectorOld(
                 this.tuple.stream()
                         .map(i -> 1.0f / i)
                         .toArray(Float[]::new)
@@ -73,7 +73,7 @@ public class Vector extends FloatTuple implements VectorOperations<Vector> {
     }
 
     @Override
-    public float dotProduct(Vector vector) {
+    public float dotProduct(VectorOld vector) {
         if(this.dimensions() != vector.dimensions())
             throw new UndefinedOperationException("Dot product", "vectors of different dimensions");
 
@@ -93,7 +93,7 @@ public class Vector extends FloatTuple implements VectorOperations<Vector> {
     }
 
     @Override
-    public Vector normalized() {
+    public VectorOld normalized() {
         return this.dividedBy((float) this.length());
     }
 }

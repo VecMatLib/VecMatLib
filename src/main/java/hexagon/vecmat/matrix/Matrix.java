@@ -3,7 +3,7 @@ package hexagon.vecmat.matrix;
 import hexagon.vecmat.exceptions.UnconformableMatrixException;
 import hexagon.vecmat.exceptions.UndefinedOperationException;
 import hexagon.vecmat.exceptions.VectorSizeException;
-import hexagon.vecmat.vector.Vector;
+import hexagon.vecmat.vector_old.VectorOld;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 /**
  * A class that represents a matrix of user-specified form
  */
-public class Matrix implements MatrixOperations<Matrix, Vector> {
+public class Matrix implements MatrixOperations<Matrix, VectorOld> {
 
     /**
      * Creates a matrix where every element is zero
@@ -54,7 +54,7 @@ public class Matrix implements MatrixOperations<Matrix, Vector> {
      * or if the given rows have different sizes.
      * @return A matrix whose rows are the rows passed as parameters
      */
-    public static Matrix fromRows(Vector... rows) {
+    public static Matrix fromRows(VectorOld... rows) {
         if(rows.length == 0)
             throw new VectorSizeException("Matrix must have at least one row");
 
@@ -66,7 +66,7 @@ public class Matrix implements MatrixOperations<Matrix, Vector> {
         return new Matrix(
                 rows.length, rows[0].dimensions(),
                 Arrays.stream(rows)
-                        .flatMap(Vector::stream)
+                        .flatMap(VectorOld::stream)
                         .toArray(Float[]::new)
         );
     }
@@ -79,7 +79,7 @@ public class Matrix implements MatrixOperations<Matrix, Vector> {
      * or if the given rows have different sizes.
      * @return A matrix whose columns are the rows passed as parameters
      */
-    public static Matrix fromColumns(Vector... columns) {
+    public static Matrix fromColumns(VectorOld... columns) {
         return fromRows(columns).transposed();
     }
 
@@ -105,11 +105,11 @@ public class Matrix implements MatrixOperations<Matrix, Vector> {
     }
 
     @Override
-    public Vector multiply(Vector vector) {
+    public VectorOld multiply(VectorOld vector) {
         if(vector.dimensions() != this.columns)
             throw new UnconformableMatrixException(this, vector);
 
-        return new Vector(
+        return new VectorOld(
                 IntStream.range(0, this.rows)
                         .mapToObj(i -> this.getRow(i).dotProduct(vector))
                         .toArray(Float[]::new)
@@ -183,8 +183,8 @@ public class Matrix implements MatrixOperations<Matrix, Vector> {
     }
 
     @Override
-    public Vector getRow(int row) {
-        return new Vector(
+    public VectorOld getRow(int row) {
+        return new VectorOld(
                 IntStream.range(0, this.columns)
                         .mapToObj(i -> this.element(row, i))
                         .toArray(Float[]::new)
@@ -192,8 +192,8 @@ public class Matrix implements MatrixOperations<Matrix, Vector> {
     }
 
     @Override
-    public Vector getColumn(int column) {
-        return new Vector(
+    public VectorOld getColumn(int column) {
+        return new VectorOld(
                 IntStream.range(0, this.rows)
                         .mapToObj(i -> this.element(i, column))
                         .toArray(Float[]::new)

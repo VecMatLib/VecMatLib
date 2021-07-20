@@ -1,7 +1,7 @@
 package hexagon.vecmat.exceptions;
 
 import hexagon.vecmat.matrix.Matrix;
-import hexagon.vecmat.vector.Vector;
+import hexagon.vecmat.vector_old.VectorOld;
 
 /**
  * Thrown when multiplying two matrices that are not conformable.
@@ -28,7 +28,7 @@ public class UnconformableMatrixException extends RuntimeException {
      * @param matrix Matrix
      * @param vector Vector
      */
-    public UnconformableMatrixException(Matrix matrix, Vector vector) {
+    public UnconformableMatrixException(Matrix matrix, VectorOld vector) {
         super("Matrix " + matrix.rows + "x" + matrix.columns + " and vector 1x" + vector.dimensions() + " cannot be multiplied");
     }
 

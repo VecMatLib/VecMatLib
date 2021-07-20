@@ -1,12 +1,12 @@
-package hexagon.vecmat.vector;
+package hexagon.vecmat.vector_old;
 
-import hexagon.vecmat.Float2;
+import hexagon.vecmat.Float2Old;
 
 /**
  * A class that represents a two-dimensional vector,
  * a pair of floats that represents a direction and a magnitude in a 2D space.
  */
-public class Vector2 extends Float2 implements VectorOperations<Vector2> {
+public class Vector2 extends Float2Old implements VectorOperations<Vector2> {
 
     /**
      * Initializes a vector
@@ -26,7 +26,7 @@ public class Vector2 extends Float2 implements VectorOperations<Vector2> {
     }
 
     @Override
-    public Vector2 plus(Float2 operand) {
+    public Vector2 plus(Float2Old operand) {
         return this.plus(operand.x, operand.y);
     }
 
@@ -36,7 +36,7 @@ public class Vector2 extends Float2 implements VectorOperations<Vector2> {
     }
 
     @Override
-    public Vector2 minus(Float2 operand) {
+    public Vector2 minus(Float2Old operand) {
         return this.minus(operand.x, operand.y);
     }
 

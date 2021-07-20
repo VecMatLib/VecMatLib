@@ -1,12 +1,12 @@
-package hexagon.vecmat.vector;
+package hexagon.vecmat.vector_old;
 
-import hexagon.vecmat.Float3;
+import hexagon.vecmat.Float3Old;
 
 /**
  * A class that represents a three-dimensional vector,
  * a triplet of floats that represents a direction and a magnitude in a 3D space.
  */
-public class Vector3 extends Float3 implements VectorOperations<Vector3> {
+public class Vector3 extends Float3Old implements VectorOperations<Vector3> {
 
     /**
      * Initializes a vector
@@ -27,7 +27,7 @@ public class Vector3 extends Float3 implements VectorOperations<Vector3> {
     }
 
     @Override
-    public Vector3 plus(Float3 operand) {
+    public Vector3 plus(Float3Old operand) {
         return this.plus(operand.x, operand.y, operand.z);
     }
 
@@ -37,7 +37,7 @@ public class Vector3 extends Float3 implements VectorOperations<Vector3> {
     }
 
     @Override
-    public Vector3 minus(Float3 operand) {
+    public Vector3 minus(Float3Old operand) {
         return this.minus(operand.x, operand.y, operand.z);
     }
 

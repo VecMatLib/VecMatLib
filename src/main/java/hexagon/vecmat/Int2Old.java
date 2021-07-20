@@ -3,7 +3,7 @@ package hexagon.vecmat;
 /**
  * A class to represent an immutable pair of integers
  */
-public class Int2 implements BaseOperations<Int2, Integer> {
+public class Int2Old implements BaseOperations<Int2Old, Integer> {
 
     public final int a;
     public final int b;
@@ -14,7 +14,7 @@ public class Int2 implements BaseOperations<Int2, Integer> {
      * @param a First value of the pair
      * @param b Second value of the pair
      */
-    public Int2(int a, int b) {
+    public Int2Old(int a, int b) {
         this.a = a;
         this.b = b;
     }
@@ -22,12 +22,12 @@ public class Int2 implements BaseOperations<Int2, Integer> {
     /**
      * Initializes this pair with value {@code (0; 0)}
      */
-    public Int2() {
+    public Int2Old() {
         this(0, 0);
     }
 
     @Override
-    public Int2 plus(Int2 operand) {
+    public Int2Old plus(Int2Old operand) {
         return this.plus(operand.a, operand.b);
     }
 
@@ -41,8 +41,8 @@ public class Int2 implements BaseOperations<Int2, Integer> {
      * @param b Second value of the operand.
      * @return The sum of this object and the values passed as a parameter.
      */
-    public Int2 plus(int a, int b) {
-        return new Int2(this.a + a, this.b + b);
+    public Int2Old plus(int a, int b) {
+        return new Int2Old(this.a + a, this.b + b);
     }
 
     /**
@@ -55,18 +55,18 @@ public class Int2 implements BaseOperations<Int2, Integer> {
      * @param b Second value of the operand.
      * @return The subtraction of this object and the values passed as a parameter.
      */
-    public Int2 minus(int a, int b) {
+    public Int2Old minus(int a, int b) {
         return this.plus(-a, -b);
     }
 
     @Override
-    public Int2 negated() {
-        return new Int2(-this.a, -this.b);
+    public Int2Old negated() {
+        return new Int2Old(-this.a, -this.b);
     }
 
     @Override
-    public Int2 times(Integer k) {
-        return new Int2(this.a * k, this.b * k);
+    public Int2Old times(Integer k) {
+        return new Int2Old(this.a * k, this.b * k);
     }
 
     /**
@@ -78,13 +78,13 @@ public class Int2 implements BaseOperations<Int2, Integer> {
      * @param k The constant to which the object is multiplied.
      * @return The result of the multiplication of this object and the constant passed.
      */
-    public Float2 times(Float k) {
-        return new Float2(this.a * k, this.b * k);
+    public Float2Old times(Float k) {
+        return new Float2Old(this.a * k, this.b * k);
     }
 
     @Override
-    public Int2 dividedBy(Integer k) {
-        return new Int2(this.a / k, this.b / k);
+    public Int2Old dividedBy(Integer k) {
+        return new Int2Old(this.a / k, this.b / k);
     }
 
     /**
@@ -96,13 +96,13 @@ public class Int2 implements BaseOperations<Int2, Integer> {
      * @param k The constant to which the object is divided.
      * @return The result of the division of this object and the constant passed.
      */
-    public Float2 dividedBy(Float k) {
+    public Float2Old dividedBy(Float k) {
         return this.times(1.0f / k);
     }
 
     @Override
-    public Float2 reciprocal() {
-        return new Float2(1.0f / this.a, 1.0f / this.b);
+    public Float2Old reciprocal() {
+        return new Float2Old(1.0f / this.a, 1.0f / this.b);
     }
 
     @Override
@@ -112,8 +112,8 @@ public class Int2 implements BaseOperations<Int2, Integer> {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof Int2)
-            return this.a == ((Int2) obj).a && this.b == ((Int2) obj).b;
+        if(obj instanceof Int2Old)
+            return this.a == ((Int2Old) obj).a && this.b == ((Int2Old) obj).b;
         return false;
     }
 }

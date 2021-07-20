@@ -1,6 +1,6 @@
 package hexagon.vecmat.matrix;
 
-import hexagon.vecmat.vector.Vector4;
+import hexagon.vecmat.vector_old.Vector4;
 
 /**
  * A class that represents a {@code 4x4} matrix. <br>

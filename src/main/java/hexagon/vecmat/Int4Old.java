@@ -3,7 +3,7 @@ package hexagon.vecmat;
 /**
  * A class to represent an immutable quadruple of integers
  */
-public class Int4 implements BaseOperations<Int4, Integer> {
+public class Int4Old implements BaseOperations<Int4Old, Integer> {
 
     public final int a;
     public final int b;
@@ -18,7 +18,7 @@ public class Int4 implements BaseOperations<Int4, Integer> {
      * @param c Third value of the quadruple
      * @param d Fourth value of the quadruple
      */
-    public Int4(int a, int b, int c, int d) {
+    public Int4Old(int a, int b, int c, int d) {
         this.a = a;
         this.b = b;
         this.c = c;
@@ -28,12 +28,12 @@ public class Int4 implements BaseOperations<Int4, Integer> {
     /**
      * Initializes this quadruple with value {@code (0; 0; 0; 0)}
      */
-    public Int4() {
+    public Int4Old() {
         this(0, 0, 0, 0);
     }
 
     @Override
-    public Int4 plus(Int4 operand) {
+    public Int4Old plus(Int4Old operand) {
         return this.plus(operand.a, operand.b, operand.c, operand.d);
     }
 
@@ -49,8 +49,8 @@ public class Int4 implements BaseOperations<Int4, Integer> {
      * @param d Fourth value of the operand.
      * @return The sum of this object and the values passed as a parameter.
      */
-    public Int4 plus(int a, int b, int c, int d) {
-        return new Int4(this.a + a, this.b + b, this.c + c, this.d + d);
+    public Int4Old plus(int a, int b, int c, int d) {
+        return new Int4Old(this.a + a, this.b + b, this.c + c, this.d + d);
     }
 
     /**
@@ -65,18 +65,18 @@ public class Int4 implements BaseOperations<Int4, Integer> {
      * @param d Fourth value of the operand.
      * @return The subtraction of this object and the values passed as a parameter.
      */
-    public Int4 minus(int a, int b, int c, int d) {
+    public Int4Old minus(int a, int b, int c, int d) {
         return this.plus(-a, -b, -c, -d);
     }
 
     @Override
-    public Int4 negated() {
-        return new Int4(-this.a, -this.b, -this.c, -this.d);
+    public Int4Old negated() {
+        return new Int4Old(-this.a, -this.b, -this.c, -this.d);
     }
 
     @Override
-    public Int4 times(Integer k) {
-        return new Int4(this.a * k, this.b * k, this.c * k, this.d * k);
+    public Int4Old times(Integer k) {
+        return new Int4Old(this.a * k, this.b * k, this.c * k, this.d * k);
     }
 
     /**
@@ -88,13 +88,13 @@ public class Int4 implements BaseOperations<Int4, Integer> {
      * @param k The constant to which the object is multiplied.
      * @return The result of the multiplication of this object and the constant passed.
      */
-    public Float4 times(Float k) {
-        return new Float4(this.a * k, this.b * k, this.c * k, this.d * k);
+    public Float4Old times(Float k) {
+        return new Float4Old(this.a * k, this.b * k, this.c * k, this.d * k);
     }
 
     @Override
-    public Int4 dividedBy(Integer k) {
-        return new Int4(this.a / k, this.b / k, this.c / k, this.d / k);
+    public Int4Old dividedBy(Integer k) {
+        return new Int4Old(this.a / k, this.b / k, this.c / k, this.d / k);
     }
 
     /**
@@ -106,13 +106,13 @@ public class Int4 implements BaseOperations<Int4, Integer> {
      * @param k The constant to which the object is divided.
      * @return The result of the division of this object and the constant passed.
      */
-    public Float4 dividedBy(Float k) {
+    public Float4Old dividedBy(Float k) {
         return this.times(1.0f / k);
     }
 
     @Override
-    public Float4 reciprocal() {
-        return new Float4(1.0f / this.a, 1.0f / this.b, 1.0f / this.c, 1.0f / this.d);
+    public Float4Old reciprocal() {
+        return new Float4Old(1.0f / this.a, 1.0f / this.b, 1.0f / this.c, 1.0f / this.d);
     }
 
     @Override
@@ -122,8 +122,8 @@ public class Int4 implements BaseOperations<Int4, Integer> {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof Int4)
-            return this.a == ((Int4) obj).a && this.b == ((Int4) obj).b && this.c == ((Int4) obj).c && this.d == ((Int4) obj).d;
+        if(obj instanceof Int4Old)
+            return this.a == ((Int4Old) obj).a && this.b == ((Int4Old) obj).b && this.c == ((Int4Old) obj).c && this.d == ((Int4Old) obj).d;
         return false;
     }
 }

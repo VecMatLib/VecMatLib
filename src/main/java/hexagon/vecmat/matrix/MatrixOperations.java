@@ -2,7 +2,7 @@ package hexagon.vecmat.matrix;
 
 import hexagon.vecmat.BaseOperations;
 import hexagon.vecmat.exceptions.UnconformableMatrixException;
-import hexagon.vecmat.vector.VectorOperations;
+import hexagon.vecmat.vector_old.VectorOperations;
 
 public interface MatrixOperations<M extends BaseOperations<M, Float>, V extends VectorOperations<V>> extends BaseOperations<M, Float> {
 

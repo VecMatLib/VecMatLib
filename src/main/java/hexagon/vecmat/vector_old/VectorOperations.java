@@ -1,4 +1,4 @@
-package hexagon.vecmat.vector;
+package hexagon.vecmat.vector_old;
 
 /**
  * This interface allows a vector object to implement vector operations:
