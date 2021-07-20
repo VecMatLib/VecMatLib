@@ -19,6 +19,7 @@ public class Matrix4 implements IMatrix<Matrix4, Float4> {
             0.0f, 0.0f, 1.0f, 0.0f,
             0.0f, 0.0f, 0.0f, 1.0f
     );
+    
     public static Matrix4 fromRows(Float4 row0, Float4 row1, Float4 row2, Float4 row3) {
         return new Matrix4(
                 row0.x, row0.y, row0.z, row0.w,
