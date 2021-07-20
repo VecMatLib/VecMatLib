@@ -1,6 +1,6 @@
 package hexagon.vecmat.exceptions;
 
-import hexagon.vecmat.matrix.Matrix;
+import hexagon.vecmat.matrix_old.Matrix;
 import hexagon.vecmat.vector_old.VectorOld;
 
 /**

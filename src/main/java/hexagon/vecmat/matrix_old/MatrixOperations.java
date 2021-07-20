@@ -1,4 +1,4 @@
-package hexagon.vecmat.matrix;
+package hexagon.vecmat.matrix_old;
 
 import hexagon.vecmat.BaseOperations;
 import hexagon.vecmat.exceptions.UnconformableMatrixException;
