@@ -9,43 +9,67 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
+/** A class representing an NxM matrix
+ *
+ * @author Nico
+ *
+ * @see IMatrix
+ * @see FloatN
+ */
 public class Matrix implements IMatrix<Matrix, FloatN> {
     
+    /** Creates a matrix of the specified size where every element is 0
+     * @param rows Number of rows
+     * @param columns Number of columns
+     * @return A new NxM matrix where every element is zero
+     */
     public static Matrix zero(int rows, int columns) {
-        return new Matrix(
-                rows, columns,
+        return new Matrix(rows, columns,
                 IntStream.range(0, rows * columns)
                         .mapToObj(i -> 0.0f)
                         .toArray(Float[]::new)
         );
     }
     
+    /** Creates a square matrix of the specified size where every
+     * element on the diagonal is 1 and every other element is 0
+     * @param size Number of rows and columns
+     * @return A new identity matrix
+     */
     public static Matrix identity(int size) {
-        return new Matrix(
-                size, size,
+        return new Matrix(size, size,
                 IntStream.range(0, size * size)
                         .mapToObj(i -> i % size == i / size ? 1.0f : 0.0f)
                         .toArray(Float[]::new)
         );
     }
     
+    /** Creates a matrix from the given rows
+     * @param rows Rows of the matrix
+     * @return A new matrix whose rows are the given vectors
+     * @throws VectorSizeException if the given rows are empty or they have different sizes
+     */
     public static Matrix fromRows(FloatN... rows) {
         if(rows.length == 0)
-            throw new VectorSizeException("Matrix cannot have zero rows");
+            throw new VectorSizeException("Matrix cannot be empty");
         
         Arrays.stream(rows).forEach(v -> {
             if(v.size() != rows[0].size())
                 throw new VectorSizeException("All rows must have the same size");
         });
         
-        return new Matrix(
-                rows.length, rows[0].size(),
+        return new Matrix(rows.length, rows[0].size(),
                 Arrays.stream(rows)
                         .flatMap(FloatN::stream)
                         .toArray(Float[]::new)
         );
     }
     
+    /** Creates a matrix from the given columns
+     * @param columns Rows of the matrix
+     * @return A new matrix whose columns are the given vectors
+     * @throws VectorSizeException if the given columns are empty or they have different sizes
+     */
     public static Matrix fromColumns(FloatN... columns) {
         return fromRows(columns).transposed();
     }
@@ -59,12 +83,23 @@ public class Matrix implements IMatrix<Matrix, FloatN> {
         this.values = Arrays.asList(values);
     }
     
+    /** Gets an element in the matrix
+     * @param row Row index of the element
+     * @param column Column index of the element
+     * @return The element at the specified row and column
+     * @throws IndexOutOfBoundsException if row < 0 or column < 0 or row >= rows or column >= columns
+     */
     public float element(int row, int column) {
         if(row >= this.rows) throw new IndexOutOfBoundsException("Tried to get row " + row + " but matrix only has " + this.rows);
         if(column >= this.columns) throw new IndexOutOfBoundsException("Tried to get column " + column + " but matrix only has " + this.columns);
         return this.values.get(row * this.columns + column);
     }
     
+    /** {@inheritDoc}
+     * @param matrix Right-hand operand of the sum.
+     * @return The sum of this matrix and {@code operand}
+     * @throws UndefinedOperationException if the two matrices have a different form
+     */
     @Override
     public Matrix plus(Matrix matrix) {
         if(this.rows != matrix.rows || this.columns != matrix.columns)
@@ -77,6 +112,11 @@ public class Matrix implements IMatrix<Matrix, FloatN> {
         );
     }
     
+    /** {@inheritDoc}
+     * @param matrix Right-hand operand of the subtraction.
+     * @return The difference of this matrix and {@code operand}
+     * @throws UndefinedOperationException if the two matrices have a different form
+     */
     @Override
     public Matrix minus(Matrix matrix) {
         if(this.rows != matrix.rows || this.columns != matrix.columns)
@@ -107,6 +147,11 @@ public class Matrix implements IMatrix<Matrix, FloatN> {
         );
     }
     
+    /** {@inheritDoc}
+     * @param vector The vector to multiply
+     * @return A vector that is the product of this matrix and the given vector
+     * @throws UnconformableMatrixException if the given vector's size is different from the matrix's columns
+     */
     @Override
     public FloatN multiply(FloatN vector) {
         if(vector.size() != this.columns)
@@ -127,7 +172,7 @@ public class Matrix implements IMatrix<Matrix, FloatN> {
     @Override
     public FloatN getRow(int row) {
         if(row >= this.rows || row < 0)
-            throw new IllegalArgumentException("Matrix only has " + this.rows + " rows");
+            throw new IndexOutOfBoundsException("Matrix only has " + this.rows + " rows");
         
         return new FloatN(
                 IntStream.range(0, this.columns)
@@ -139,7 +184,7 @@ public class Matrix implements IMatrix<Matrix, FloatN> {
     @Override
     public FloatN getColumn(int column) {
         if(column >= this.columns || column < 0)
-            throw new IllegalArgumentException("Matrix only has " + this.columns + " columns");
+            throw new IndexOutOfBoundsException("Matrix only has " + this.columns + " columns");
     
         return new FloatN(
                 IntStream.range(0, this.rows)
@@ -169,6 +214,11 @@ public class Matrix implements IMatrix<Matrix, FloatN> {
         else return false;
     }
     
+    /** {@inheritDoc}
+     * @param matrix The second operand of the multiplication
+     * @return The product of the two matrices
+     * @throws UnconformableMatrixException If the two matrices cannot be multiplied
+     */
     @Override
     public Matrix multiply(Matrix matrix) {
         if(this.columns != matrix.rows)
@@ -181,6 +231,11 @@ public class Matrix implements IMatrix<Matrix, FloatN> {
         );
     }
     
+    /** {@inheritDoc}
+     * @param exp Exponent
+     * @return The {@code n}-th power of this matrix
+     * @throws UnconformableMatrixException if this matrix is not a square matrix
+     */
     @Override
     public Matrix power(int exp) {
         if(!this.isSquare())
@@ -210,5 +265,4 @@ public class Matrix implements IMatrix<Matrix, FloatN> {
         }
         return false;
     }
-    
 }
