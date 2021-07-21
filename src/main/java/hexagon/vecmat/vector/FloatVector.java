@@ -38,7 +38,7 @@ public interface FloatVector<F extends FloatVector<F, I>, I extends IntVector<I,
     
     /** Computes the additive inverse of this vector,
      * a vector {@code -v} such that {@code v + (-v) = v0}, where {@code v0} is the zero vector. <p>
-     * This method does not change the object on which it is called.
+     * This method does not change the object on which it is called, it returns a new one instead.
      * @return The negative of this vector
      */
     F negated();

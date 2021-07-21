@@ -3,20 +3,35 @@ package hexagon.vecmat.matrix;
 import hexagon.vecmat.vector.Float3;
 import hexagon.vecmat.vector.Int3;
 
+/** A class representing a 3x3 matrix
+ *
+ * @author Nico
+ *
+ * @see IMatrix
+ * @see Float3
+ */
 public class Matrix3 implements IMatrix<Matrix3, Float3> {
     
+    /**A 3x3 matrix where every element is 0*/
     public static final Matrix3 ZERO = new Matrix3(
             0.0f, 0.0f, 0.0f,
             0.0f, 0.0f, 0.0f,
             0.0f, 0.0f, 0.0f
     );
     
+    /**A 3x3 matrix where every element on the diagonal is 1 and every other element is 0*/
     public static final Matrix3 IDENTITY = new Matrix3(
             1.0f, 0.0f, 0.0f,
             0.0f, 1.0f, 0.0f,
             0.0f, 0.0f, 1.0f
     );
     
+    /** Creates a 3x3 matrix from the given rows
+     * @param row0 First row
+     * @param row1 Second row
+     * @param row2 Third row
+     * @return A new matrix created from the given rows
+     */
     public static Matrix3 fromRows(Float3 row0, Float3 row1, Float3 row2) {
         return new Matrix3(
                 row0.x, row0.y, row0.z,
@@ -25,6 +40,12 @@ public class Matrix3 implements IMatrix<Matrix3, Float3> {
         );
     }
     
+    /** Creates a 3x3 matrix from the given columns
+     * @param column0 First column
+     * @param column1 Second column
+     * @param column2 Third column
+     * @return A new matrix created from the given columns
+     */
     public static Matrix3 fromColumns(Float3 column0, Float3 column1, Float3 column2) {
         return new Matrix3(
                 column0.x, column1.x, column2.x,
@@ -87,6 +108,12 @@ public class Matrix3 implements IMatrix<Matrix3, Float3> {
         return new Float3(x, y, z);
     }
     
+    /** Multiplies thi matrix by the given vector. <p>
+     * The product of a matrix and a vector is the a vector that is
+     * the sum of all the matrix's columns multiplied by every element of the vector.
+     * @param vector The vector to multiply
+     * @return A vector that is the product of this matrix and the given vector
+     */
     public Float3 multiply(Int3 vector) {
         float x = this.getRow(0).dotProduct(vector);
         float y = this.getRow(1).dotProduct(vector);
@@ -181,8 +208,8 @@ public class Matrix3 implements IMatrix<Matrix3, Float3> {
     
     @Override
     public String toString() {
-        return '[' + this.m00 + ' ' + this.m01 + ' ' + this.m02 + "]\n" +
-                '[' + this.m10 + ' ' + this.m11 + ' ' + this.m12 + "]\n" +
-                '[' + this.m20 + ' ' + this.m21 + ' ' + this.m22 + "]\n";
+        return "[" + this.m00 + " " + this.m01 + " " + this.m02 + "]\n" +
+                "[" + this.m10 + " " + this.m11 + " " + this.m12 + "]\n" +
+                "[" + this.m20 + " " + this.m21 + " " + this.m22 + "]\n";
     }
 }

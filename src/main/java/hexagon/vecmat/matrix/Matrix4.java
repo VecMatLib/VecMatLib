@@ -3,8 +3,16 @@ package hexagon.vecmat.matrix;
 import hexagon.vecmat.vector.Float4;
 import hexagon.vecmat.vector.Int4;
 
+/** A class representing a 4x4 matrix
+ *
+ * @author Nico
+ *
+ * @see IMatrix
+ * @see Float4
+ */
 public class Matrix4 implements IMatrix<Matrix4, Float4> {
     
+    /**A 4x4 matrix where every element is 0*/
     public static final Matrix4 ZERO = new Matrix4(
             0.0f, 0.0f, 0.0f, 0.0f,
             0.0f, 0.0f, 0.0f, 0.0f,
@@ -12,6 +20,7 @@ public class Matrix4 implements IMatrix<Matrix4, Float4> {
             0.0f, 0.0f, 0.0f, 0.0f
     );
     
+    /**A 4x4 matrix where every element on the diagonal is 1 and every other element is 0*/
     public static final Matrix4 IDENTITY = new Matrix4(
             1.0f, 0.0f, 0.0f, 0.0f,
             0.0f, 1.0f, 0.0f, 0.0f,
@@ -19,6 +28,13 @@ public class Matrix4 implements IMatrix<Matrix4, Float4> {
             0.0f, 0.0f, 0.0f, 1.0f
     );
     
+    /** Creates a 4x4 matrix from the given rows
+     * @param row0 First row
+     * @param row1 Second row
+     * @param row2 Third row
+     * @param row3 Fourth row
+     * @return A new matrix created from the given rows
+     */
     public static Matrix4 fromRows(Float4 row0, Float4 row1, Float4 row2, Float4 row3) {
         return new Matrix4(
                 row0.x, row0.y, row0.z, row0.w,
@@ -28,6 +44,13 @@ public class Matrix4 implements IMatrix<Matrix4, Float4> {
         );
     }
     
+    /** Creates a 4x4 matrix from the given columns
+     * @param column0 First column
+     * @param column1 Second column
+     * @param column2 Third column
+     * @param column3 Fourth column
+     * @return A new matrix created from the given columns
+     */
     public static Matrix4 fromColumns(Float4 column0, Float4 column1, Float4 column2, Float4 column3) {
         return new Matrix4(
                 column0.x, column1.x, column2.x, column3.x,
@@ -98,6 +121,12 @@ public class Matrix4 implements IMatrix<Matrix4, Float4> {
         return new Float4(x, y, z, w);
     }
     
+    /** Multiplies thi matrix by the given vector. <p>
+     * The product of a matrix and a vector is the a vector that is
+     * the sum of all the matrix's columns multiplied by every element of the vector.
+     * @param vector The vector to multiply
+     * @return A vector that is the product of this matrix and the given vector
+     */
     public Float4 multiply(Int4 vector) {
         float x = this.getRow(0).dotProduct(vector);
         float y = this.getRow(1).dotProduct(vector);
