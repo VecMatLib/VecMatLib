@@ -1,10 +1,23 @@
 package hexagon.vecmat.vector;
 
+/** A class to represent a float vector in a two-dimensional vector space.
+ *
+ * @author Nico
+ *
+ * @see FloatVector
+ * @see Int2
+ */
 public class Float2 implements FloatVector<Float2, Int2> {
     
+    /**First element of the vector*/
     public final float x;
+    /**Second element of the vector*/
     public final float y;
     
+    /** Creates a new 2D vector with the given values
+     * @param x First element of the vector
+     * @param y Second element of the vector
+     */
     public Float2(float x, float y) {
         this.x = x;
         this.y = y;
@@ -20,6 +33,12 @@ public class Float2 implements FloatVector<Float2, Int2> {
         return this.plus(operand.a, operand.b);
     }
     
+    /** Computes the sum of this vector and a vector with the two elements passed. <p>
+     * This method simplifies {@code vector.plus(new Float2(x, y))} into {@code vector.plus(x, y)}.
+     * @param x First element of the vector on the right-hand side
+     * @param y Second element of the vector on the right-hand side
+     * @return The sum of this vector and the values passed
+     */
     public Float2 plus(float x, float y) {
         return new Float2(this.x + x, this.y + y);
     }
@@ -29,6 +48,12 @@ public class Float2 implements FloatVector<Float2, Int2> {
         return new Float2(-this.x, -this.y);
     }
     
+    /** Computes the subtraction of this vector and a vector with the two elements passed. <p>
+     * This method simplifies {@code vector.minus(new Float2(x, y))} into {@code vector.minus(x, y)}.
+     * @param x First element of the vector on the right-hand side
+     * @param y Second element of the vector on the right-hand side
+     * @return The difference of this vector and the values passed
+     */
     public Float2 minus(float x, float y) {
         return this.plus(-x, -y);
     }
@@ -68,6 +93,11 @@ public class Float2 implements FloatVector<Float2, Int2> {
         return this.equals(value.a, value.b);
     }
     
+    /** Checks if the elements of this vector are equal to the ones passed
+     * @param x First element
+     * @param y Second element
+     * @return True if the first element of this vector is equal to {@code x} and the second element is equal to {@code y}
+     */
     public boolean equals(float x, float y) {
         return this.x == x && this.y == y;
     }

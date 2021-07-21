@@ -1,10 +1,23 @@
 package hexagon.vecmat.vector;
 
+/** A class to represent an integer vector in a two-dimensional vector space.
+ *
+ * @author Nico
+ *
+ * @see IntVector
+ * @see Float2
+ */
 public class Int2 implements IntVector<Int2, Float2> {
     
+    /**First element of the vector*/
     public final int a;
+    /**Second element of the vector*/
     public final int b;
     
+    /** Creates a new 2D vector with the given values
+     * @param a First element of the vector
+     * @param b Second element of the vector
+     */
     public Int2(int a, int b) {
         this.a = a;
         this.b = b;
@@ -20,10 +33,22 @@ public class Int2 implements IntVector<Int2, Float2> {
         return this.plus(operand.x, operand.y);
     }
     
+    /** Computes the sum of this vector and a vector with the two elements passed. <p>
+     * This method simplifies {@code vector.plus(new Int2(a, b))} into {@code vector.plus(a, b)}.
+     * @param a First element of the vector on the right-hand side
+     * @param b Second element of the vector on the right-hand side
+     * @return The sum of this vector and the values passed
+     */
     public Int2 plus(int a, int b) {
         return new Int2(this.a + a, this.b + b);
     }
     
+    /** Computes the sum of this vector and a vector with the two elements passed. <p>
+     * This method simplifies {@code vector.plus(new Float2(x, y))} into {@code vector.plus(x, y)}.
+     * @param x First element of the vector on the right-hand side
+     * @param y Second element of the vector on the right-hand side
+     * @return The sum of this vector and the values passed
+     */
     public Float2 plus(float x, float y) {
         return new Float2(this.a + x, this.b + y);
     }
@@ -33,10 +58,22 @@ public class Int2 implements IntVector<Int2, Float2> {
         return new Int2(-this.a, -this.b);
     }
     
+    /** Computes the subtraction of this vector and a vector with the two elements passed. <p>
+     * This method simplifies {@code vector.minus(new Int2(a, b))} into {@code vector.minus(a, b)}.
+     * @param a First element of the vector on the right-hand side
+     * @param b Second element of the vector on the right-hand side
+     * @return The difference of this vector and the values passed
+     */
     public Int2 minus(int a, int b) {
         return this.plus(-a, -b);
     }
     
+    /** Computes the subtraction of this vector and a vector with the two elements passed. <p>
+     * This method simplifies {@code vector.minus(new Float2(x, y))} into {@code vector.minus(x, y)}.
+     * @param x First element of the vector on the right-hand side
+     * @param y Second element of the vector on the right-hand side
+     * @return The difference of this vector and the values passed
+     */
     public Float2 minus(float x, float y) {
         return this.plus(-x, -y);
     }
@@ -76,6 +113,11 @@ public class Int2 implements IntVector<Int2, Float2> {
         return this.equals(value.a, value.b);
     }
     
+    /** Checks if the elements of this vector are equal to the ones passed
+     * @param a First element
+     * @param b Second element
+     * @return True if the first element of this vector is equal to {@code a} and the second element is equal to {@code b}
+     */
     public boolean equals(int a, int b) {
         return this.a == a && this.b == b;
     }
