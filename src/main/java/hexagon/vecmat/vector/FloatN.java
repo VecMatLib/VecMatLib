@@ -9,10 +9,22 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+/** A class to represent a float vector in an N-dimensional vector space.
+ * The size of the vector is specified by the number of elements passed in the constructor.
+ *
+ * @author Nico
+ *
+ * @see FloatVector
+ * @see IntN
+ */
 public class FloatN implements FloatVector<FloatN, IntN> {
     
     private final List<Float> values;
     
+    /** Creates a new vector with the given values
+     * @param values Values in the vector
+     * @throws VectorSizeException if the array of elements passed is empty
+     */
     public FloatN(Float... values) {
         if(values.length == 0)
             throw new VectorSizeException("Vector cannot be empty");
@@ -20,6 +32,11 @@ public class FloatN implements FloatVector<FloatN, IntN> {
         this.values = Arrays.asList(values);
     }
     
+    /** {@inheritDoc}
+     * @param operand Right-hand operand of the sum.
+     * @return The sum of this vector and {@code operand}
+     * @throws UndefinedOperationException if the two vectors have different sizes
+     */
     @Override
     public FloatN plus(FloatN operand) {
         if(this.size() != operand.size())
@@ -32,6 +49,11 @@ public class FloatN implements FloatVector<FloatN, IntN> {
         );
     }
     
+    /** {@inheritDoc}
+     * @param operand Right-hand operand of the sum.
+     * @return The sum of this vector and {@code operand}
+     * @throws UndefinedOperationException if the two vectors have different sizes
+     */
     @Override
     public FloatN plus(IntN operand) {
         if(this.size() != operand.size())
@@ -53,6 +75,11 @@ public class FloatN implements FloatVector<FloatN, IntN> {
         );
     }
     
+    /** {@inheritDoc}
+     * @param operand Right-hand operand of the subtraction.
+     * @return The difference of this vector and {@code operand}
+     * @throws UndefinedOperationException if the two vectors have different sizes
+     */
     @Override
     public FloatN minus(FloatN operand) {
         if(this.size() != operand.size())
@@ -65,6 +92,11 @@ public class FloatN implements FloatVector<FloatN, IntN> {
         );
     }
     
+    /** {@inheritDoc}
+     * @param operand Right-hand operand of the subtraction.
+     * @return The difference of this vector and {@code operand}
+     * @throws UndefinedOperationException if the two vectors have different sizes
+     */
     @Override
     public FloatN minus(IntN operand) {
         if(this.size() != operand.size())
@@ -86,6 +118,11 @@ public class FloatN implements FloatVector<FloatN, IntN> {
         );
     }
     
+    /** {@inheritDoc}
+     * @param vector The right-hand side of the product
+     * @return The result of the dot product
+     * @throws UndefinedOperationException if the two vectors have different sizes
+     */
     @Override
     public float dotProduct(FloatN vector) {
         if(this.size() != vector.size())
@@ -96,6 +133,11 @@ public class FloatN implements FloatVector<FloatN, IntN> {
                 .sum();
     }
     
+    /** {@inheritDoc}
+     * @param vector The right-hand side of the product
+     * @return The result of the dot product
+     * @throws UndefinedOperationException if the two vectors have different sizes
+     */
     @Override
     public float dotProduct(IntN vector) {
         if(this.size() != vector.size())
@@ -121,14 +163,24 @@ public class FloatN implements FloatVector<FloatN, IntN> {
         );
     }
     
+    /** Get the size of this vector
+     * @return The size of the vector
+     */
     public int size() {
         return this.values.size();
     }
     
+    /** Get an element in the vector
+     * @param i Index of the element
+     * @return The requested element
+     */
     public float element(int i) {
         return this.values.get(i);
     }
     
+    /** Get a stream of the values in the vector
+     * @return The elements in the vector as a float stream
+     */
     public Stream<Float> stream() {
         return this.values.stream();
     }
