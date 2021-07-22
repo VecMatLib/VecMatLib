@@ -6,13 +6,12 @@ import hexagon.vecmat.vector.Float4;
 
 public class Transformation {
     
-    public static Matrix4 transformationMatrix(Float3 translation, Float3 rotation, Float3 scale) {
-        Matrix4 translationMatrix = translation(translation);
-        Matrix4 rotationMatrix = rotation(rotation);
-        Matrix4 scalingMatrix = scaling(scale);
-        return translationMatrix.multiply(rotationMatrix).multiply(scalingMatrix);
-    }
-    
+    /** Creates a translation matrix for the given translation. <p>
+     * Multiplying this matrix by a vector {@code Float4(x, y, z, 1.0)}
+     * will apply the translation to the point {@code (x, y, z)}.
+     * @param vector A 3D vector containing the translation
+     * @return A 4x4 translation matrix
+     */
     public static Matrix4 translation(Float3 vector) {
         return Matrix4.fromRows(
                 new Float4(1.0f, 0.0f, 0.0f, vector.x),
@@ -22,6 +21,12 @@ public class Transformation {
         );
     }
     
+    /** Creates a rotation matrix that applies a rotation on the x axis. <p>
+     * Multiplying this matrix by a vector {@code Float4(x, y, z, 1.0)}
+     * will apply the rotation on the x axis to the point {@code (x, y, z)}.
+     * @param angle Rotation angle on x axis (in radians)
+     * @return A 4x4 rotation matrix
+     */
     public static Matrix4 rotationX(float angle) {
         float sin = (float) Math.sin(-angle);
         float cos = (float) Math.cos(-angle);
@@ -33,6 +38,12 @@ public class Transformation {
         );
     }
     
+    /** Creates a rotation matrix that applies a rotation on the y axis. <p>
+     * Multiplying this matrix by a vector {@code Float4(x, y, z, 1.0)}
+     * will apply the rotation on the y axis to the point {@code (x, y, z)}.
+     * @param angle Rotation angle on y axis (in radians)
+     * @return A 4x4 rotation matrix
+     */
     public static Matrix4 rotationY(float angle) {
         float sin = (float) Math.sin(-angle);
         float cos = (float) Math.cos(-angle);
@@ -44,6 +55,12 @@ public class Transformation {
         );
     }
     
+    /** Creates a rotation matrix that applies a rotation on the z axis. <p>
+     * Multiplying this matrix by a vector {@code Float4(x, y, z, 1.0)}
+     * will apply the rotation on the z axis to the point {@code (x, y, z)}.
+     * @param angle Rotation angle on z axis (in radians)
+     * @return A 4x4 rotation matrix
+     */
     public static Matrix4 rotationZ(float angle) {
         float sin = (float) Math.sin(-angle);
         float cos = (float) Math.cos(-angle);
@@ -55,6 +72,12 @@ public class Transformation {
         );
     }
     
+    /** Creates a rotation matrix. <p>
+     * Multiplying this matrix by a vector {@code Float4(x, y, z, 1.0)}
+     * will apply the rotation to the point {@code (x, y, z)}.
+     * @param rotation Vector representing rotation on x, y, z axis (in degrees)
+     * @return A 4x4 rotation matrix
+     */
     public static Matrix4 rotation(Float3 rotation) {
         Matrix4 x = rotationX((float) Math.toRadians(rotation.x));
         Matrix4 y = rotationY((float) Math.toRadians(rotation.y));
@@ -62,6 +85,12 @@ public class Transformation {
         return x.multiply(y).multiply(z);
     }
     
+    /** Creates a scaling matrix. <p>
+     * Multiplying this matrix by a vector {@code Float4(x, y, z, 1.0)}
+     * will apply the scaling to the point {@code (x, y, z)}.
+     * @param scale Vector representing scale on x, y, z axis
+     * @return A 4x4 scaling matrix
+     */
     public static Matrix4 scaling(Float3 scale) {
         return Matrix4.fromRows(
                 new Float4(scale.x, 0.0f, 0.0f, 0.0f),
