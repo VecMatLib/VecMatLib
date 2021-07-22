@@ -11,7 +11,7 @@ Hexagon VecMatLib provides simple structures for vectors and matrices and an imp
 ## How to use VecMatLib
 Following is an overview of all the features that the project offers.
 
-#### Vectors
+### Vectors
 Vectors are elements of a vector space which may be summed, subtracted or multiplied by a scalar.
 VecMatLib offers structures for vectors of different sizes and types.
 
@@ -49,7 +49,7 @@ Vectors of user-specified size can have any possible size and offer the same ope
     FloatN vec2 = vec1.times(1.5f);
 ```
 
-#### Matrices
+### Matrices
 A Matrix is a table of numbers arranged in rows and columns.
 They follow the same principles as vectors.
 They can have a size of 3x3, 4x4 or a user-specified size.
@@ -86,7 +86,7 @@ Matrices can be multiplied by a scalar, by a vector or by another matrix
     Matrix m = matrix1.multiply(matrix2);
 ```
 
-#### Transformation
+### Transformations
 4x4 matrices can be used to apply translations, rotations and scaling.
 ```
     Matrix4 matrix = Transformation.translation(new Float3(tx, ty, tz));
