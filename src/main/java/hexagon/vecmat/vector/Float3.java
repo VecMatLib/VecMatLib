@@ -9,6 +9,9 @@ package hexagon.vecmat.vector;
  */
 public class Float3 implements FloatVector<Float3, Int3> {
     
+    public static final Float3 ZERO = new Float3(0.0f, 0.0f, 0.0f);
+    public static final Float3 ONE = new Float3(1.0f, 1.0f, 1.0f);
+    
     /**First element of the vector*/
     public final float x;
     /**Second element of the vector*/

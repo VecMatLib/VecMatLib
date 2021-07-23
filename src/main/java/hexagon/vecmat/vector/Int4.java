@@ -9,6 +9,9 @@ package hexagon.vecmat.vector;
  */
 public class Int4 implements IntVector<Int4, Float4> {
     
+    public static final Int4 ZERO = new Int4(0, 0, 0, 0);
+    public static final Int4 ONE = new Int4(1, 1, 1, 1);
+    
     /**First element of the vector*/
     public final int a;
     /**Second element of the vector*/
