@@ -7,6 +7,13 @@ Hexagon VecMatLib provides simple structures for vectors and matrices and an imp
 - VecMatLab is lightweight, all operations use the fastest and most simple method.
 - Vectors and matrices are immutable. All operations do not alter the object on which they are invoked, they return a new one instead.
 - All operations implemented by vectors and matrices are intended to work similarly to java basic operators (examples below).
+- VecMatLib is compatible with Java 15
+
+## Support the project
+
+VecMatLib is currently being developed by a single person.
+
+Donate to support the project: [Dontaion Link](https://streamelements.com/hexagonnico/tip)
 
 ## How to use VecMatLib
 Following is an overview of all the features that the project offers.
