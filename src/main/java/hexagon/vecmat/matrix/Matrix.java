@@ -224,7 +224,7 @@ public class Matrix implements IMatrix<Matrix, FloatN> {
         if(this.columns != matrix.rows)
             throw new UnconformableMatrixException(this, matrix);
     
-        return new Matrix(this.rows, this.columns,
+        return new Matrix(this.rows, matrix.columns,
                 IntStream.range(0, this.rows * matrix.columns)
                         .mapToObj(i -> this.getRow(i / matrix.columns).dotProduct(matrix.getColumn(i % matrix.columns)))
                         .toArray(Float[]::new)
