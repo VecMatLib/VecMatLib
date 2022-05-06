@@ -1,15 +1,14 @@
 package hexagon.vecmat.vector;
 
-public record Float2(Float x, Float y) implements FloatVector<Float2, Int2>, Vector2<Float, Float2> {
+public record Float2(float x, float y) implements FloatVector<Float2, Int2> {
 
-	@Override
-	public Float2 plus(Float x, Float y) {
+	public Float2 plus(float x, float y) {
 		return new Float2(this.x() + x, this.y() + y);
 	}
 
 	@Override
 	public Float2 plus(Float2 vector) {
-		return this.plus(vector.x(), vector.y());
+		return vector != null ? this.plus(vector.x(), vector.y()) : this;
 	}
 
 	@Override
@@ -17,43 +16,35 @@ public record Float2(Float x, Float y) implements FloatVector<Float2, Int2>, Vec
 		return new Float2(-this.x(), -this.y());
 	}
 
-	@Override
-	public Float2 minus(Float x, Float y) {
+	public Float2 minus(float x, float y) {
 		return this.plus(-x, -y);
 	}
 
 	@Override
-	public Float2 multiply(Float k) {
+	public Float2 multipliedBy(float k) {
 		return new Float2(this.x() * k, this.y() * k);
 	}
 
-	@Override
-	public Float2 divide(Float k) {
-		return this.multiply(1.0f / k);
-	}
-
-	@Override
-	public Float dotProduct(Float x, Float y) {
+	public float dotProduct(float x, float y) {
 		return this.x() * x + this.y() * y;
 	}
 
 	@Override
-	public Float dotProduct(Float2 vector) {
-		return this.dotProduct(vector.x(), vector.y());
+	public float dotProduct(Float2 vector) {
+		return vector != null ? this.dotProduct(vector.x(), vector.y()) : 0.0f;
 	}
 
 	@Override
-	public Float lengthSquared() {
+	public float lengthSquared() {
 		return this.dotProduct(this);
 	}
 
-	@Override
-	public double angle(Float x, Float y) {
+	public double angle(float x, float y) {
 		return this.angle(new Float2(x, y));
 	}
 
 	@Override
 	public Int2 castToInt() {
-		return new Int2(this.x().intValue(), this.y().intValue());
+		return new Int2((int) this.x(), (int) this.y());
 	}
 }

@@ -1,19 +1,18 @@
 package hexagon.vecmat.vector;
 
-public record Int2(Integer x, Integer y) implements IntVector<Int2, Float2>, Vector2<Integer, Int2> {
+public record Int2(int x, int y) implements IntVector<Int2, Float2> {
 
-	@Override
-	public Int2 plus(Integer x, Integer y) {
+	public Int2 plus(int x, int y) {
 		return new Int2(this.x() + x, this.y() + y);
 	}
 
 	@Override
 	public Int2 plus(Int2 vector) {
-		return this.plus(vector.x(), vector.y());
+		return vector != null ? this.plus(vector.x(), vector.y()) : this;
 	}
 
-	public Float2 plus(Float x, Float y) {
-		return this.plus(new Float2(x, y));
+	public Float2 plus(float x, float y) {
+		return this.asFloat().plus(x, y);
 	}
 
 	@Override
@@ -21,47 +20,52 @@ public record Int2(Integer x, Integer y) implements IntVector<Int2, Float2>, Vec
 		return new Int2(-this.x(), -this.y());
 	}
 
-	@Override
-	public Int2 minus(Integer x, Integer y) {
+	public Int2 minus(int x, int y) {
 		return this.plus(-x, -y);
 	}
 
-	public Float2 minus(Float x, Float y) {
-		return this.minus(new Float2(x, y));
+	public Float2 minus(float x, float y) {
+		return this.asFloat().minus(x, y);
 	}
 
 	@Override
-	public Int2 multiply(Integer k) {
+	public Int2 multipliedBy(int k) {
 		return new Int2(this.x() * k, this.y() * k);
 	}
 
 	@Override
-	public Int2 divide(Integer k) {
+	public Int2 dividedBy(int k) {
 		return new Int2(this.x() / k, this.y() / k);
 	}
 
-	@Override
-	public Integer dotProduct(Integer x, Integer y) {
+	public int dotProduct(int x, int y) {
 		return this.x() * x + this.y() * y;
 	}
 
 	@Override
-	public Integer dotProduct(Int2 vector) {
-		return this.dotProduct(vector.x(), vector.y());
+	public int dotProduct(Int2 vector) {
+		return vector != null ? this.dotProduct(vector.x(), vector.y()) : 0;
+	}
+
+	public float dotProduct(float x, float y) {
+		return this.asFloat().dotProduct(x, y);
 	}
 
 	@Override
-	public Integer lengthSquared() {
+	public int lengthSquared() {
 		return this.dotProduct(this);
 	}
 
-	@Override
-	public double angle(Integer x, Integer y) {
+	public double angle(int x, int y) {
 		return this.angle(new Int2(x, y));
+	}
+
+	public double angle(float x, float y) {
+		return this.angle(new Float2(x, y));
 	}
 
 	@Override
 	public Float2 asFloat() {
-		return new Float2(this.x().floatValue(), this.y().floatValue());
+		return new Float2((int) this.x(), (int) this.y());
 	}
 }
