@@ -37,6 +37,15 @@ public record FloatMatrix4(
 		return matrix != null ? this.plus(matrix.asFloat()) : this;
 	}
 
+	public FloatMatrix4 negative() {
+		return new FloatMatrix4(
+			-this.m11(), -this.m12(), -this.m13(), -this.m14(),
+			-this.m21(), -this.m22(), -this.m23(), -this.m24(),
+			-this.m31(), -this.m32(), -this.m33(), -this.m34(),
+			-this.m41(), -this.m42(), -this.m43(), -this.m44()
+		);
+	}
+
 	public FloatMatrix4 minus(FloatMatrix4 matrix) {
 		return matrix != null ? new FloatMatrix4(
 			this.m11() - matrix.m11(), this.m12() - matrix.m12(), this.m13() - matrix.m13(), this.m14() - matrix.m14(),
