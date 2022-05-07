@@ -1,6 +1,6 @@
 package hexagon.vecmat.vector;
 
-public record Float3(float x, float y, float z) implements FloatVector<Float3, Int3> {
+public record Float3(float x, float y, float z) implements FloatVector<Float3, Double3, Int3> {
 
 	public static final Float3 ZERO = new Float3(0.0f, 0.0f, 0.0f);
 
@@ -44,8 +44,16 @@ public record Float3(float x, float y, float z) implements FloatVector<Float3, I
 		return vector != null ? this.crossProduct(vector.x(), vector.y(), vector.z()) : Float3.ZERO;
 	}
 
-	public Float3 crossProduct(Int3 vector) {
+	public Float3 crossProduct(VectorAsFloat<Float3> vector) {
 		return vector != null ? this.crossProduct(vector.asFloat()) : Float3.ZERO;
+	}
+
+	public Double3 crossProduct(double x, double y, double z) {
+		return this.asDouble().crossProduct(x, y, z);
+	}
+
+	public Double3 crossProduct(Double3 vector) {
+		return this.asDouble().crossProduct(vector);
 	}
 
 	@Override
@@ -55,6 +63,11 @@ public record Float3(float x, float y, float z) implements FloatVector<Float3, I
 
 	public double angle(float x, float y, float z) {
 		return this.angle(new Float3(x, y, z));
+	}
+
+	@Override
+	public Double3 asDouble() {
+		return new Double3(this.x(), this.y(), this.z());
 	}
 
 	@Override

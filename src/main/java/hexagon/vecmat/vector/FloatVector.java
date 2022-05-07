@@ -1,12 +1,12 @@
 package hexagon.vecmat.vector;
 
-public interface FloatVector<F extends FloatVector<F, I>, I extends IntVector<I, F>> extends Vector<F> {
+public interface FloatVector<F extends FloatVector<F, D, I>, D extends DoubleVector<D, F, I>, I extends IntVector<I, F, D>> extends Vector<F>, VectorAsDouble<D> {
 
-	default F plus(I vector) {
+	default F plus(VectorAsFloat<F> vector) {
 		return vector != null ? this.plus(vector.asFloat()) : this.multipliedBy(1);
 	}
 
-	default F minus(I vector) {
+	default F minus(VectorAsFloat<F> vector) {
 		return vector != null ? this.minus(vector.asFloat()) : this.multipliedBy(1);
 	}
 
@@ -18,7 +18,7 @@ public interface FloatVector<F extends FloatVector<F, I>, I extends IntVector<I,
 
 	float dotProduct(F vector);
 
-	default float dotProduct(I vector) {
+	default float dotProduct(VectorAsFloat<F> vector) {
 		return vector != null ? this.dotProduct(vector.asFloat()) : 0.0f;
 	}
 
@@ -29,16 +29,16 @@ public interface FloatVector<F extends FloatVector<F, I>, I extends IntVector<I,
 		return Math.sqrt(this.lengthSquared());
 	}
 
-	default F normalized() {
-		return this.dividedBy((float) this.length());
+	default D normalized() {
+		return this.dividedBy(this.length());
 	}
 
 	default double angle(F vector) {
-		return Math.acos(this.dotProduct(vector) / (this.length() * (vector != null ? vector.length() : 0.0)));
+		return this.asDouble().angle(vector);
 	}
 
-	default double angle(I vector) {
-		return Math.acos(this.dotProduct(vector) / (this.length() * (vector != null ? vector.length() : 0.0)));
+	default double angle(VectorAsFloat<F> vector) {
+		return this.angle(vector.asFloat());
 	}
 
 	I castToInt();

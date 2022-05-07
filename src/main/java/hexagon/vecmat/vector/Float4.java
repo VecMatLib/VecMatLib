@@ -1,11 +1,15 @@
 package hexagon.vecmat.vector;
 
-public record Float4(float x, float y, float z, float w) implements FloatVector<Float4, Int4> {
+public record Float4(float x, float y, float z, float w) implements FloatVector<Float4, Double4, Int4> {
 
 	public static final Float4 ZERO = new Float4(0.0f, 0.0f, 0.0f, 0.0f);
 
 	public Float4 plus(float x, float y, float z, float w) {
 		return new Float4(this.x() + x, this.y() + y, this.z() + z, this.w() + w);
+	}
+
+	public Double4 plus(double x, double y, double z, double w) {
+		return this.asDouble().plus(x, y, z, w);
 	}
 
 	@Override
@@ -19,6 +23,10 @@ public record Float4(float x, float y, float z, float w) implements FloatVector<
 	}
 
 	public Float4 minus(float x, float y, float z, float w) {
+		return this.plus(-x, -y, -z, -w);
+	}
+
+	public Double4 minus(double x, double y, double z, double w) {
 		return this.plus(-x, -y, -z, -w);
 	}
 
@@ -36,13 +44,22 @@ public record Float4(float x, float y, float z, float w) implements FloatVector<
 		return vector != null ? this.dotProduct(vector.x(), vector.y(), vector.z(), vector.w()) : 0.0f;
 	}
 
+	public double dotProduct(double x, double y, double z, double w) {
+		return this.asDouble().dotProduct(x, y, z, w);
+	}
+
 	@Override
 	public float lengthSquared() {
 		return this.dotProduct(this);
 	}
 
-	public double angle(float x, float y, float z, float w) {
-		return this.angle(new Float4(x, y, z, w));
+	public double angle(double x, double y, double z, double w) {
+		return this.angle(new Double4(x, y, z, w));
+	}
+
+	@Override
+	public Double4 asDouble() {
+		return new Double4(this.x(), this.y(), this.z(), this.w());
 	}
 
 	@Override

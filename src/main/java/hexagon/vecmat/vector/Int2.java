@@ -1,6 +1,6 @@
 package hexagon.vecmat.vector;
 
-public record Int2(int x, int y) implements IntVector<Int2, Float2> {
+public record Int2(int x, int y) implements IntVector<Int2, Float2, Double2> {
 
 	public Int2 plus(int x, int y) {
 		return new Int2(this.x() + x, this.y() + y);
@@ -15,6 +15,10 @@ public record Int2(int x, int y) implements IntVector<Int2, Float2> {
 		return this.asFloat().plus(x, y);
 	}
 
+	public Double2 plus(double x, double y) {
+		return this.asDouble().plus(x, y);
+	}
+
 	@Override
 	public Int2 negated() {
 		return new Int2(-this.x(), -this.y());
@@ -25,7 +29,11 @@ public record Int2(int x, int y) implements IntVector<Int2, Float2> {
 	}
 
 	public Float2 minus(float x, float y) {
-		return this.asFloat().minus(x, y);
+		return this.plus(-x, -y);
+	}
+
+	public Double2 minus(double x, double y) {
+		return this.plus(-x, -y);
 	}
 
 	@Override
@@ -51,6 +59,10 @@ public record Int2(int x, int y) implements IntVector<Int2, Float2> {
 		return this.asFloat().dotProduct(x, y);
 	}
 
+	public double dotProduct(double x, double y) {
+		return this.asDouble().dotProduct(x, y);
+	}
+
 	@Override
 	public int lengthSquared() {
 		return this.dotProduct(this);
@@ -60,12 +72,17 @@ public record Int2(int x, int y) implements IntVector<Int2, Float2> {
 		return this.angle(new Int2(x, y));
 	}
 
-	public double angle(float x, float y) {
-		return this.angle(new Float2(x, y));
+	public double angle(double x, double y) {
+		return this.angle(new Double2(x, y));
 	}
 
 	@Override
 	public Float2 asFloat() {
-		return new Float2((int) this.x(), (int) this.y());
+		return new Float2(this.x(), this.y());
+	}
+
+	@Override
+	public Double2 asDouble() {
+		return new Double2(this.x(), this.y());
 	}
 }
