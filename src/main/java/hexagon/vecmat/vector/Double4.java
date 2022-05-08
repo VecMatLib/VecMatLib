@@ -2,6 +2,8 @@ package hexagon.vecmat.vector;
 
 public record Double4(double x, double y, double z, double w) implements DoubleVector<Double4, Float4, Int4> {
 
+	public static final Double4 ZERO = new Double4(0.0, 0.0, 0.0, 0.0);
+
 	public Double4 plus(double x, double y, double z, double w) {
 		return new Double4(this.x() + x, this.y() + y, this.z() + z, this.w() + w);
 	}

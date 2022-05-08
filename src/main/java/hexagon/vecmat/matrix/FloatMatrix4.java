@@ -1,14 +1,15 @@
 package hexagon.vecmat.matrix;
 
+import hexagon.vecmat.vector.Double4;
 import hexagon.vecmat.vector.Float4;
-import hexagon.vecmat.vector.Int4;
+import hexagon.vecmat.vector.VectorAsFloat;
 
 public record FloatMatrix4(
 	float m11, float m12, float m13, float m14,
 	float m21, float m22, float m23, float m24,
 	float m31, float m32, float m33, float m34,
 	float m41, float m42, float m43, float m44
-) {
+) implements MatrixFloatOperations<FloatMatrix4, Float4, DoubleMatrix4, Double4, IntMatrix4> {
 
 	public static final FloatMatrix4 IDENTITY = new FloatMatrix4(
 		1.0f, 0.0f, 0.0f, 0.0f,
@@ -24,6 +25,7 @@ public record FloatMatrix4(
 		0.0f, 0.0f, 0.0f, 0.0f
 	);
 
+	@Override
 	public FloatMatrix4 plus(FloatMatrix4 matrix) {
 		return matrix != null ? new FloatMatrix4(
 			this.m11() + matrix.m11(), this.m12() + matrix.m12(), this.m13() + matrix.m13(), this.m14() + matrix.m14(),
@@ -33,10 +35,7 @@ public record FloatMatrix4(
 		) : this;
 	}
 
-	public FloatMatrix4 plus(IntMatrix4 matrix) {
-		return matrix != null ? this.plus(matrix.asFloat()) : this;
-	}
-
+	@Override
 	public FloatMatrix4 negative() {
 		return new FloatMatrix4(
 			-this.m11(), -this.m12(), -this.m13(), -this.m14(),
@@ -46,20 +45,8 @@ public record FloatMatrix4(
 		);
 	}
 
-	public FloatMatrix4 minus(FloatMatrix4 matrix) {
-		return matrix != null ? new FloatMatrix4(
-			this.m11() - matrix.m11(), this.m12() - matrix.m12(), this.m13() - matrix.m13(), this.m14() - matrix.m14(),
-			this.m21() - matrix.m21(), this.m22() - matrix.m22(), this.m23() - matrix.m23(), this.m24() - matrix.m24(),
-			this.m31() - matrix.m31(), this.m32() - matrix.m32(), this.m33() - matrix.m33(), this.m34() - matrix.m34(),
-			this.m41() - matrix.m41(), this.m42() - matrix.m42(), this.m43() - matrix.m43(), this.m44() - matrix.m44()
-		) : this;
-	}
-
-	public FloatMatrix4 minus(IntMatrix4 matrix) {
-		return matrix != null ? this.minus(matrix.asFloat()) : this;
-	}
-
-	public FloatMatrix4 multiply(float k) {
+	@Override
+	public FloatMatrix4 multipliedBy(float k) {
 		return new FloatMatrix4(
 			this.m11() * k, this.m12() * k, this.m13() * k, this.m14() * k,
 			this.m21() * k, this.m22() * k, this.m23() * k, this.m24() * k,
@@ -100,6 +87,7 @@ public record FloatMatrix4(
 		return new Float4(this.m14(), this.m24(), this.m34(), this.m44());
 	}
 
+	@Override
 	public Float4 multiply(Float4 vector) {
 		return new Float4(
 			this.row1().dotProduct(vector),
@@ -109,10 +97,12 @@ public record FloatMatrix4(
 		);
 	}
 
-	public Float4 multiply(Int4 vector) {
+	@Override
+	public Float4 multiply(VectorAsFloat<Float4> vector) {
 		return vector != null ? this.multiply(vector.asFloat()) : Float4.ZERO;
 	}
 
+	@Override
 	public FloatMatrix4 transposed() {
 		return new FloatMatrix4(
 			this.m11(), this.m21(), this.m31(), this.m41(),
@@ -122,18 +112,21 @@ public record FloatMatrix4(
 		);
 	}
 
+	@Override
 	public boolean isSymmetric() {
 		return this.m21() == this.m12() &&
 				this.m13() == this.m31() && this.m23() == this.m32() &&
 				this.m14() == this.m41() && this.m24() == this.m42() && this.m34() == this.m43();
 	}
 
+	@Override
 	public boolean isSkewSymmetric() {
 		return this.m21() == -this.m12() &&
 				this.m13() == -this.m31() && this.m23() == -this.m32() &&
 				this.m14() == -this.m41() && this.m24() == -this.m42() && this.m34() == -this.m43();
 	}
 
+	@Override
 	public FloatMatrix4 multiply(FloatMatrix4 matrix) {
 		return matrix != null ? new FloatMatrix4(
 			this.row1().dotProduct(matrix.column1()),
@@ -155,10 +148,7 @@ public record FloatMatrix4(
 		) : ZERO;
 	}
 
-	public FloatMatrix4 multiply(IntMatrix4 matrix) {
-		return matrix != null ? this.multiply(matrix.asFloat()) : ZERO;
-	}
-
+	@Override
 	public FloatMatrix4 power(int exponent) {
 		if(exponent < 0) {
 			return this.transposed().power(-exponent);
@@ -169,12 +159,23 @@ public record FloatMatrix4(
 		}
 	}
 
+	@Override
 	public IntMatrix4 castToInt() {
 		return new IntMatrix4(
 			(int) this.m11(), (int) this.m12(), (int) this.m13(), (int) this.m14(),
 			(int) this.m21(), (int) this.m22(), (int) this.m23(), (int) this.m24(),
 			(int) this.m31(), (int) this.m32(), (int) this.m33(), (int) this.m34(),
 			(int) this.m41(), (int) this.m42(), (int) this.m43(), (int) this.m44()
+		);
+	}
+
+	@Override
+	public DoubleMatrix4 asDouble() {
+		return new DoubleMatrix4(
+			this.m11(), this.m12(), this.m13(), this.m14(),
+			this.m21(), this.m22(), this.m23(), this.m24(),
+			this.m31(), this.m32(), this.m33(), this.m34(),
+			this.m41(), this.m42(), this.m43(), this.m44()
 		);
 	}
 }
