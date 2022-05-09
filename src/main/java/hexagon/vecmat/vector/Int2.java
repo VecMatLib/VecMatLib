@@ -1,6 +1,6 @@
 package hexagon.vecmat.vector;
 
-public record Int2(int x, int y) implements IntVector<Int2, Float2, Double2> {
+public record Int2(int x, int y) implements VectorIntOperations<Int2, Float2, Double2> {
 
 	public Int2 plus(int x, int y) {
 		return new Int2(this.x() + x, this.y() + y);
@@ -66,10 +66,6 @@ public record Int2(int x, int y) implements IntVector<Int2, Float2, Double2> {
 	@Override
 	public int lengthSquared() {
 		return this.dotProduct(this);
-	}
-
-	public double angle(int x, int y) {
-		return this.angle(new Int2(x, y));
 	}
 
 	public double angle(double x, double y) {

@@ -1,6 +1,6 @@
 package hexagon.vecmat.vector;
 
-public interface VectorAsFloat<F extends FloatVector<F, ?, ?>> {
+public interface VectorAsFloat<F extends VectorFloatOperations<F, ?, ?>> {
 
 	default F plus(F vector) {
 		return this.asFloat().plus(vector);

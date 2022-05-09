@@ -1,6 +1,6 @@
 package hexagon.vecmat.vector;
 
-public record Int4(int x, int y, int z, int w) implements IntVector<Int4, Float4, Double4> {
+public record Int4(int x, int y, int z, int w) implements VectorIntOperations<Int4, Float4, Double4> {
 
 	public Int4 plus(int x, int y, int z, int w) {
 		return new Int4(this.x() + x, this.y() + y, this.z() + z, this.w() + w);
@@ -15,6 +15,10 @@ public record Int4(int x, int y, int z, int w) implements IntVector<Int4, Float4
 		return this.asFloat().plus(x, y, z, w);
 	}
 
+	public Double4 plus(double x, double y, double z, double w) {
+		return this.asDouble().plus(x, y, z, w);
+	}
+
 	@Override
 	public Int4 negated() {
 		return new Int4(-this.y(), -this.y(), -this.z(), -this.w());
@@ -22,6 +26,14 @@ public record Int4(int x, int y, int z, int w) implements IntVector<Int4, Float4
 
 	public Int4 minus(int x, int y, int z, int w) {
 		return this.plus(-x, -y, -z, -w);
+	}
+
+	public Float4 minus(float x, float y, float z, float w) {
+		return this.asFloat().minus(x, y, z, w);
+	}
+
+	public Double4 minus(double x, double y, double z, double w) {
+		return this.asDouble().minus(x, y, z, w);
 	}
 
 	@Override
@@ -47,17 +59,17 @@ public record Int4(int x, int y, int z, int w) implements IntVector<Int4, Float4
 		return this.asFloat().dotProduct(x, y, z, w);
 	}
 
+	public double dotProduct(double x, double y, double z, double w) {
+		return this.asDouble().dotProduct(x, y, z, w);
+	}
+
 	@Override
 	public int lengthSquared() {
 		return this.dotProduct(this);
 	}
 
-	public double angle(int x, int y, int z, int w) {
-		return this.angle(new Int4(x, y, z, w));
-	}
-
-	public double angle(float x, float y, float z, float w) {
-		return this.angle(new Float4(x, y, z, w));
+	public double angle(double x, double y, double z, double w) {
+		return this.angle(new Double4(x, y, z, w));
 	}
 
 	@Override

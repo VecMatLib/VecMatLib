@@ -1,9 +1,9 @@
 package hexagon.vecmat.matrix;
 
-import hexagon.vecmat.vector.DoubleVector;
+import hexagon.vecmat.vector.VectorDoubleOperations;
 import hexagon.vecmat.vector.VectorAsDouble;
 
-public interface MatrixDoubleOperations<MD extends MatrixDoubleOperations<MD, VD, MF, MI>, VD extends DoubleVector<VD, ?, ?>, MF extends MatrixFloatOperations<MF, ?, MD, VD, MI>, MI extends MatrixIntOperations<MI, ?, MF, ?, MD, VD>> extends MatrixOperations<MD, VD> {
+public interface MatrixDoubleOperations<MD extends MatrixDoubleOperations<MD, VD, MF, MI>, VD extends VectorDoubleOperations<VD, ?, ?>, MF extends MatrixFloatOperations<MF, ?, MD, VD, MI>, MI extends MatrixIntOperations<MI, ?, MF, ?, MD, VD>> extends MatrixOperations<MD, VD> {
 
 	default MD plus(MatrixAsDouble<MD, VD> matrix) {
 		return matrix != null ? this.plus(matrix.asDouble()) : this.multipliedBy(1.0f);

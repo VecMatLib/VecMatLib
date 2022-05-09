@@ -1,6 +1,6 @@
 package hexagon.vecmat.vector;
 
-public record Float4(float x, float y, float z, float w) implements FloatVector<Float4, Double4, Int4> {
+public record Float4(float x, float y, float z, float w) implements VectorFloatOperations<Float4, Double4, Int4> {
 
 	public static final Float4 ZERO = new Float4(0.0f, 0.0f, 0.0f, 0.0f);
 
@@ -8,13 +8,13 @@ public record Float4(float x, float y, float z, float w) implements FloatVector<
 		return new Float4(this.x() + x, this.y() + y, this.z() + z, this.w() + w);
 	}
 
-	public Double4 plus(double x, double y, double z, double w) {
-		return this.asDouble().plus(x, y, z, w);
-	}
-
 	@Override
 	public Float4 plus(Float4 vector) {
 		return vector != null ? this.plus(vector.x(), vector.y(), vector.z(), vector.w()) : this;
+	}
+
+	public Double4 plus(double x, double y, double z, double w) {
+		return this.asDouble().plus(x, y, z, w);
 	}
 
 	@Override

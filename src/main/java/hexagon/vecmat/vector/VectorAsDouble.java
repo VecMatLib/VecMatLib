@@ -1,6 +1,6 @@
 package hexagon.vecmat.vector;
 
-public interface VectorAsDouble<D extends DoubleVector<D, ?, ?>> {
+public interface VectorAsDouble<D extends VectorDoubleOperations<D, ?, ?>> {
 
 	default D plus(D vector) {
 		return this.asDouble().plus(vector);

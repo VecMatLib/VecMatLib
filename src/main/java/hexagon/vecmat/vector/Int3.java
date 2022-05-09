@@ -1,6 +1,6 @@
 package hexagon.vecmat.vector;
 
-public record Int3(int x, int y, int z) implements IntVector<Int3, Float3, Double3> {
+public record Int3(int x, int y, int z) implements VectorIntOperations<Int3, Float3, Double3> {
 
 	public static final Int3 ZERO = new Int3(0, 0, 0);
 
@@ -17,6 +17,10 @@ public record Int3(int x, int y, int z) implements IntVector<Int3, Float3, Doubl
 		return this.asFloat().plus(x, y, z);
 	}
 
+	public Double3 plus(double x, double y, double z) {
+		return this.asDouble().plus(x, y, z);
+	}
+
 	@Override
 	public Int3 negated() {
 		return new Int3(-this.x(), -this.y(), -this.z());
@@ -28,6 +32,10 @@ public record Int3(int x, int y, int z) implements IntVector<Int3, Float3, Doubl
 
 	public Float3 minus(float x, float y, float z) {
 		return this.asFloat().minus(x, y, z);
+	}
+
+	public Double3 minus(double x, double y, double z) {
+		return this.asDouble().minus(x, y, z);
 	}
 
 	@Override
@@ -51,6 +59,10 @@ public record Int3(int x, int y, int z) implements IntVector<Int3, Float3, Doubl
 
 	public float dotProduct(float x, float y, float z) {
 		return this.asFloat().dotProduct(x, y, z);
+	}
+
+	public double dotProduct(double x, double y, double z) {
+		return this.asDouble().dotProduct(x, y, z);
 	}
 
 	public Int3 crossProduct(int x, int y, int z) {

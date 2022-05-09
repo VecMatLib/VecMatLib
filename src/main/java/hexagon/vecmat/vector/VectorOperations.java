@@ -1,6 +1,6 @@
 package hexagon.vecmat.vector;
 
-public interface Vector<V extends Vector<V>> {
+public interface VectorOperations<V extends VectorOperations<V>> {
 
 	V plus(V vector);
 

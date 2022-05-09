@@ -1,6 +1,6 @@
 package hexagon.vecmat.vector;
 
-public record Float3(float x, float y, float z) implements FloatVector<Float3, Double3, Int3> {
+public record Float3(float x, float y, float z) implements VectorFloatOperations<Float3, Double3, Int3> {
 
 	public static final Float3 ZERO = new Float3(0.0f, 0.0f, 0.0f);
 
@@ -13,6 +13,10 @@ public record Float3(float x, float y, float z) implements FloatVector<Float3, D
 		return vector != null ? this.plus(vector.x(), vector.y(), vector.z()) : this;
 	}
 
+	public Double3 plus(double x, double y, double z) {
+		return this.asDouble().plus(x, y, z);
+	}
+
 	@Override
 	public Float3 negated() {
 		return new Float3(-this.x(), -this.y(), -this.z());
@@ -20,6 +24,10 @@ public record Float3(float x, float y, float z) implements FloatVector<Float3, D
 
 	public Float3 minus(float x, float y, float z) {
 		return this.plus(-x, -y, -z);
+	}
+
+	public Double3 minus(double x, double y, double z) {
+		return this.asDouble().minus(x, y, z);
 	}
 
 	@Override
@@ -34,6 +42,10 @@ public record Float3(float x, float y, float z) implements FloatVector<Float3, D
 	@Override
 	public float dotProduct(Float3 vector) {
 		return vector != null ? this.dotProduct(vector.x(), vector.y(), vector.z()) : 0.0f;
+	}
+
+	public double dotProduct(double x, double y, double z) {
+		return this.asDouble().dotProduct(x, y, z);
 	}
 
 	public Float3 crossProduct(float x, float y, float z) {
@@ -61,8 +73,8 @@ public record Float3(float x, float y, float z) implements FloatVector<Float3, D
 		return this.dotProduct(this);
 	}
 
-	public double angle(float x, float y, float z) {
-		return this.angle(new Float3(x, y, z));
+	public double angle(double x, double y, double z) {
+		return this.angle(new Double3(x, y, z));
 	}
 
 	@Override

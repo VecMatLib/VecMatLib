@@ -1,6 +1,6 @@
 package hexagon.vecmat.vector;
 
-public record Double2(double x, double y) implements DoubleVector<Double2, Float2, Int2> {
+public record Double2(double x, double y) implements VectorDoubleOperations<Double2, Float2, Int2> {
 
 	public Double2 plus(double x, double y) {
 		return new Double2(this.x() + x, this.y() + y);
@@ -37,6 +37,10 @@ public record Double2(double x, double y) implements DoubleVector<Double2, Float
 	@Override
 	public double lengthSquared() {
 		return this.dotProduct(this);
+	}
+
+	public double angle(double x, double y) {
+		return this.angle(new Double2(x, y));
 	}
 
 	@Override

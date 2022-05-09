@@ -1,8 +1,8 @@
 package hexagon.vecmat.matrix;
 
-import hexagon.vecmat.vector.FloatVector;
+import hexagon.vecmat.vector.VectorFloatOperations;
 
-public interface MatrixAsFloat<M extends MatrixFloatOperations<M, V, ?, ?, ?>, V extends FloatVector<V, ?, ?>> {
+public interface MatrixAsFloat<M extends MatrixFloatOperations<M, V, ?, ?, ?>, V extends VectorFloatOperations<V, ?, ?>> {
 
 	default M plus(M matrix) {
 		return this.asFloat().plus(matrix);

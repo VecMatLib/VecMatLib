@@ -1,8 +1,8 @@
 package hexagon.vecmat.matrix;
 
-import hexagon.vecmat.vector.Vector;
+import hexagon.vecmat.vector.VectorOperations;
 
-public interface MatrixOperations<M extends MatrixOperations<M, V>, V extends Vector<V>> {
+public interface MatrixOperations<M extends MatrixOperations<M, V>, V extends VectorOperations<V>> {
 
 	M plus(M matrix);
 

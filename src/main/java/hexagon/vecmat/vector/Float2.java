@@ -1,6 +1,6 @@
 package hexagon.vecmat.vector;
 
-public record Float2(float x, float y) implements FloatVector<Float2, Double2, Int2> {
+public record Float2(float x, float y) implements VectorFloatOperations<Float2, Double2, Int2> {
 
 	public Float2 plus(float x, float y) {
 		return new Float2(this.x() + x, this.y() + y);
