@@ -8,7 +8,7 @@ public record FloatMatrix3(
 	float m11, float m12, float m13,
 	float m21, float m22, float m23,
 	float m31, float m32, float m33
-) implements MatrixFloatOperations<FloatMatrix3, Float3, DoubleMatrix3, Double3, IntMatrix3> {
+) implements MatrixFloatOperations<FloatMatrix3, Float3>, MatrixAsDouble<DoubleMatrix3, Double3> {
 
 	public static final FloatMatrix3 IDENTITY = new FloatMatrix3(
 		1.0f, 0.0f, 0.0f,
@@ -132,7 +132,10 @@ public record FloatMatrix3(
 		}
 	}
 
-	@Override
+	/**
+	 * TODO
+	 * @return
+	 */
 	public IntMatrix3 castToInt() {
 		return new IntMatrix3(
 			(int) this.m11(), (int) this.m12(), (int) this.m13(),

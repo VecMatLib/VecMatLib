@@ -8,7 +8,7 @@ package hexagon.vecmat.vector;
  * 
  * @author Nico
  */
-public record Double2(double x, double y) implements VectorDoubleOperations<Double2, Float2, Int2> {
+public record Double2(double x, double y) implements VectorDoubleOperations<Double2> {
 
 	/**Shorthand for {@code new Double2(0.0, 0.0)} */
 	public static final Double2 ZERO = new Double2(0.0, 0.0);
@@ -118,12 +118,18 @@ public record Double2(double x, double y) implements VectorDoubleOperations<Doub
 		return this.angle(new Double2(x, y));
 	}
 
-	@Override
+	/**
+	 * TODO
+	 * @return
+	 */
 	public Int2 castToInt() {
 		return new Int2((int) this.x(), (int) this.y());
 	}
 
-	@Override
+	/**
+	 * TODO
+	 * @return
+	 */
 	public Float2 castToFloat() {
 		return new Float2((float) this.x(), (float) this.y());
 	}

@@ -9,7 +9,7 @@ package hexagon.vecmat.vector;
  * 
  * @author Nico
  */
-public record Double3(double x, double y, double z) implements VectorDoubleOperations<Double3, Float3, Int3> {
+public record Double3(double x, double y, double z) implements VectorDoubleOperations<Double3> {
 
 	/**Shorthand for {@code new Double3(0.0, 0.0, 0.0)} */
 	public static final Double3 ZERO = new Double3(0.0, 0.0, 0.0);
@@ -187,12 +187,18 @@ public record Double3(double x, double y, double z) implements VectorDoubleOpera
 		return this.angle(new Double3(x, y, z));
 	}
 
-	@Override
+	/**
+	 * TODO
+	 * @return
+	 */
 	public Int3 castToInt() {
 		return new Int3((int) this.x(), (int) this.y(), (int) this.z());
 	}
 
-	@Override
+	/**
+	 * TODO
+	 * @return
+	 */
 	public Float3 castToFloat() {
 		return new Float3((float) this.x(), (float) this.y(), (float) this.z());
 	}

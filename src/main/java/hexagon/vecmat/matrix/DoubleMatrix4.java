@@ -8,7 +8,7 @@ public record DoubleMatrix4(
 	double m21, double m22, double m23, double m24,
 	double m31, double m32, double m33, double m34,
 	double m41, double m42, double m43, double m44
-) implements MatrixDoubleOperations<DoubleMatrix4, Double4, FloatMatrix4, IntMatrix4> {
+) implements MatrixDoubleOperations<DoubleMatrix4, Double4> {
 
 	public static final DoubleMatrix4 IDENTITY = new DoubleMatrix4(
 		1.0, 0.0, 0.0, 0.0,
@@ -158,7 +158,10 @@ public record DoubleMatrix4(
 		}
 	}
 
-	@Override
+	/**
+	 * TODO
+	 * @return
+	 */
 	public FloatMatrix4 castToFloat() {
 		return new FloatMatrix4(
 			(float) this.m11(), (float) this.m12(), (float) this.m13(), (float) this.m14,
@@ -168,7 +171,10 @@ public record DoubleMatrix4(
 		);
 	}
 
-	@Override
+	/**
+	 * TODO
+	 * @return
+	 */
 	public IntMatrix4 castToInt() {
 		return new IntMatrix4(
 			(int) this.m11(), (int) this.m12(), (int) this.m13(), (int) this.m14(),

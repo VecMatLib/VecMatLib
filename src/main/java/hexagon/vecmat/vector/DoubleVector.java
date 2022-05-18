@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
  * 
  * @author Nico
  */
-public final class DoubleVector implements VectorDoubleOperations<DoubleVector, FloatVector, IntVector> {
+public final class DoubleVector implements VectorDoubleOperations<DoubleVector> {
 
 	/**Vector values */
 	private double[] values;
@@ -348,12 +348,18 @@ public final class DoubleVector implements VectorDoubleOperations<DoubleVector, 
 		return this.angle(new IntVector(vector));
 	}
 
-	@Override
+	/**
+	 * TODO
+	 * @return
+	 */
 	public IntVector castToInt() {
 		return new IntVector(Arrays.stream(this.values).mapToInt(d -> (int) d).toArray());
 	}
 
-	@Override
+	/**
+	 * TODO
+	 * @return
+	 */
 	public FloatVector castToFloat() {
 		return new FloatVector(Arrays.stream(this.values).mapToObj(d -> (float) d).toArray(Float[]::new));
 	}

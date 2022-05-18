@@ -4,12 +4,10 @@ package hexagon.vecmat.vector;
  * Interface that defines all base operations for double vectors.
  * 
  * @param <D> The same vector that implements this interface
- * @param <F> A float vector of the same size as this one
- * @param <I> An integer vector of the same size as this one
  * 
  * @author Nico
  */
-public interface VectorDoubleOperations<D extends VectorDoubleOperations<D, F, I>, F extends VectorFloatOperations<F, D, I>, I extends VectorIntOperations<I, F, D>> extends VectorOperations<D> {
+public interface VectorDoubleOperations<D extends VectorDoubleOperations<D>> extends VectorOperations<D> {
 
 	/**
 	 * Computes the sum of this vector with the given one.
@@ -219,24 +217,4 @@ public interface VectorDoubleOperations<D extends VectorDoubleOperations<D, F, I
 	default double angle(VectorAsDouble<D> vector) {
 		return vector != null ? this.angle(vector.asDouble()) : Double.NaN;
 	}
-
-	/**
-	 * Casts this double vector to an integer vector.
-	 * 
-	 * <p> This methods casts all the values of this vector to int and
-	 * returns an integer vector.
-	 * 
-	 * @return A vector whose values are this vector's values cast to int
-	 */
-	I castToInt();
-
-	/**
-	 * Casts this float vector to a float vector.
-	 * 
-	 * <p> This methods casts all the values of this vector to float and
-	 * returns a float vector.
-	 * 
-	 * @return A vector whose values are this vector's values cast to float
-	 */
-	F castToFloat();
 }

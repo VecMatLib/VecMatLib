@@ -9,7 +9,7 @@ public record IntMatrix4(
 	int m21, int m22, int m23, int m24,
 	int m31, int m32, int m33, int m34,
 	int m41, int m42, int m43, int m44
-) implements MatrixIntOperations<IntMatrix4, Int4, FloatMatrix4, Float4, DoubleMatrix4, Double4> {
+) implements MatrixIntOperations<IntMatrix4, Int4>, MatrixAsFloat<FloatMatrix4, Float4>, MatrixAsDouble<DoubleMatrix4, Double4> {
 
 	public static final IntMatrix4 IDENTITY = new IntMatrix4(
 		1, 0, 0, 0,

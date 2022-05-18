@@ -10,7 +10,7 @@ import java.util.stream.Stream;
  * 
  * @author Nico
  */
-public final class FloatVector implements VectorFloatOperations<FloatVector, DoubleVector, IntVector> {
+public final class FloatVector implements VectorFloatOperations<FloatVector>, VectorAsDouble<DoubleVector> {
 
 	/**Vector values */
 	private float[] values;
@@ -364,7 +364,10 @@ public final class FloatVector implements VectorFloatOperations<FloatVector, Dou
 		return this.angle(new IntVector(vector));
 	}
 
-	@Override
+	/**
+	 * TODO
+	 * @return
+	 */
 	public IntVector castToInt() {
 		return new IntVector(IntStream.range(0, this.size()).mapToObj(i -> this.values[i]).mapToInt(f -> f.intValue()).toArray());
 	}

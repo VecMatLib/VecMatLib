@@ -10,7 +10,7 @@ package hexagon.vecmat.vector;
  * 
  * @author Nico
  */
-public record Int4(int x, int y, int z, int w) implements VectorIntOperations<Int4, Float4, Double4> {
+public record Int4(int x, int y, int z, int w) implements VectorIntOperations<Int4>, VectorAsFloat<Float4>, VectorAsDouble<Double4> {
 
 	/**Shorthand for {@code new Int4(0, 0, 0, 0)} */
 	public static final Int4 ZERO = new Int4(0, 0, 0, 0);

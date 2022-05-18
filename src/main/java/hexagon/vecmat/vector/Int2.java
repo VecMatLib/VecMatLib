@@ -8,7 +8,7 @@ package hexagon.vecmat.vector;
  * 
  * @author Nico
  */
-public record Int2(int x, int y) implements VectorIntOperations<Int2, Float2, Double2> {
+public record Int2(int x, int y) implements VectorIntOperations<Int2>, VectorAsFloat<Float2>, VectorAsDouble<Double2> {
 
 	/**Shorthand for {@code new Int2(0, 0)} */
 	public static final Int2 ZERO = new Int2(0, 0);

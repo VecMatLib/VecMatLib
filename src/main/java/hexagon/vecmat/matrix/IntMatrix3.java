@@ -8,7 +8,7 @@ public record IntMatrix3(
 	int m11, int m12, int m13,
 	int m21, int m22, int m23,
 	int m31, int m32, int m33
-) implements MatrixIntOperations<IntMatrix3, Int3, FloatMatrix3, Float3, DoubleMatrix3, Double3> {
+) implements MatrixIntOperations<IntMatrix3, Int3>, MatrixAsFloat<FloatMatrix3, Float3>, MatrixAsDouble<DoubleMatrix3, Double3> {
 
 	public static final IntMatrix3 IDENTITY = new IntMatrix3(
 		1, 0, 0,
@@ -136,7 +136,10 @@ public record IntMatrix3(
 		);
 	}
 
-	@Override
+	/**
+	 * TODO
+	 * @return
+	 */
 	public DoubleMatrix3 asDouble() {
 		return new DoubleMatrix3(
 			this.m11(), this.m12(), this.m13(),

@@ -10,7 +10,7 @@ package hexagon.vecmat.vector;
  * 
  * @author Nico
  */
-public record Double4(double x, double y, double z, double w) implements VectorDoubleOperations<Double4, Float4, Int4> {
+public record Double4(double x, double y, double z, double w) implements VectorDoubleOperations<Double4> {
 
 	/**Shorthand for {@code new Double4(0.0, 0.0, 0.0, 0.0)} */
 	public static final Double4 ZERO = new Double4(0.0, 0.0, 0.0, 0.0);
@@ -120,12 +120,18 @@ public record Double4(double x, double y, double z, double w) implements VectorD
 		return this.angle(new Double4(x, y, z, w));
 	}
 
-	@Override
+	/**
+	 * TODO
+	 * @return
+	 */
 	public Int4 castToInt() {
 		return new Int4((int) this.x(), (int) this.y(), (int) this.z(), (int) this.w());
 	}
 
-	@Override
+	/**
+	 * TODO
+	 * @return
+	 */
 	public Float4 castToFloat() {
 		return new Float4((float) this.x(), (float) this.y(), (float) this.z(), (float) this.w());
 	}

@@ -4,12 +4,10 @@ package hexagon.vecmat.vector;
  * Interface that defines all base operations for integer vectors.
  * 
  * @param <I> The same vector that implements this interface
- * @param <F> A float vector of the same size as this one
- * @param <D> A double vector of the same size as this one
  * 
  * @author Nico
  */
-public interface VectorIntOperations<I extends VectorIntOperations<I, F, D>, F extends VectorFloatOperations<F, D, I>, D extends VectorDoubleOperations<D, F, I>> extends VectorOperations<I>, VectorAsDouble<D>, VectorAsFloat<F> {
+public interface VectorIntOperations<I extends VectorIntOperations<I>> extends VectorOperations<I> {
 
 	/**
 	 * Computes the multiplication between this vector and a scalar.
@@ -86,35 +84,5 @@ public interface VectorIntOperations<I extends VectorIntOperations<I, F, D>, F e
 	@Override
 	default double length() {
 		return Math.sqrt(this.lengthSquared());
-	}
-
-	/**
-	 * Normalizes this vector.
-	 * 
-	 * <p> A normalized vector is a vector of length 1.
-	 * 
-	 * <p> This method returns a vector with the same direction as the
-	 * first one but with length 1.
-	 * 
-	 * <p> Vectors are supposed to be immutable. This means that
-	 * this method does not alter the object on which it is called,
-	 * it returns a new vector instead.
-	 * 
-	 * @return A double vector that has the same direction as this one
-	 * 		but length 1.
-	 */
-	default D normalized() {
-		return this.dividedBy(this.length());
-	}
-
-	/**
-	 * Computes the angle in radians between this vector and the given one.
-	 * 
-	 * @param vector The second vector
-	 * 
-	 * @return The angle in radians between this vector and the given one
-	 */
-	default double angle(VectorAsDouble<D> vector) {
-		return this.angle(vector.asDouble());
 	}
 }

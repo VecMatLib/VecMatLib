@@ -8,7 +8,7 @@ package hexagon.vecmat.vector;
  * 
  * @author Nico
  */
-public interface VectorAsFloat<F extends VectorFloatOperations<F, ?, ?>> {
+public interface VectorAsFloat<F extends VectorFloatOperations<F>> {
 
 	/**
 	 * Computes the sum of this vector with the given one.

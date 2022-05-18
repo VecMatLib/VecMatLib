@@ -8,7 +8,7 @@ package hexagon.vecmat.vector;
  * 
  * @author Nico
  */
-public interface VectorAsDouble<D extends VectorDoubleOperations<D, ?, ?>> {
+public interface VectorAsDouble<D extends VectorDoubleOperations<D>> {
 
 	/**
 	 * Computes the sum of this vector with the given one.
@@ -152,6 +152,14 @@ public interface VectorAsDouble<D extends VectorDoubleOperations<D, ?, ?>> {
 	}
 
 	/**
+	 * TODO
+	 * @return
+	 */
+	default D normalized() {
+		return this.asDouble().normalized();
+	}
+
+	/**
 	 * Computes the angle in radians between this vector and the given one.
 	 * 
 	 * @param vector The second vector
@@ -160,6 +168,10 @@ public interface VectorAsDouble<D extends VectorDoubleOperations<D, ?, ?>> {
 	 */
 	default double angle(D vector) {
 		return this.asDouble().angle(vector);
+	}
+
+	default double angle(VectorAsDouble<D> vector) {
+		return vector != null ? this.angle(vector.asDouble()) : Double.NaN;
 	}
 
 	/**

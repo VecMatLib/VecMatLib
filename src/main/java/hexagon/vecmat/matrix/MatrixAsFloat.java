@@ -2,7 +2,7 @@ package hexagon.vecmat.matrix;
 
 import hexagon.vecmat.vector.VectorFloatOperations;
 
-public interface MatrixAsFloat<M extends MatrixFloatOperations<M, V, ?, ?, ?>, V extends VectorFloatOperations<V, ?, ?>> {
+public interface MatrixAsFloat<M extends MatrixFloatOperations<M, V>, V extends VectorFloatOperations<V>> {
 
 	default M plus(M matrix) {
 		return this.asFloat().plus(matrix);

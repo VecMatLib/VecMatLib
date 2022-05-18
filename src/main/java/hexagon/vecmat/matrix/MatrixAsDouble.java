@@ -2,7 +2,7 @@ package hexagon.vecmat.matrix;
 
 import hexagon.vecmat.vector.VectorDoubleOperations;
 
-public interface MatrixAsDouble<M extends MatrixDoubleOperations<M, V, ?, ?>, V extends VectorDoubleOperations<V, ?, ?>> {
+public interface MatrixAsDouble<M extends MatrixDoubleOperations<M, V>, V extends VectorDoubleOperations<V>> {
 
 	default M plus(M matrix) {
 		return this.asDouble().plus(matrix);

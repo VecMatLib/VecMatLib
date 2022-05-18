@@ -9,7 +9,7 @@ public record FloatMatrix4(
 	float m21, float m22, float m23, float m24,
 	float m31, float m32, float m33, float m34,
 	float m41, float m42, float m43, float m44
-) implements MatrixFloatOperations<FloatMatrix4, Float4, DoubleMatrix4, Double4, IntMatrix4> {
+) implements MatrixFloatOperations<FloatMatrix4, Float4>, MatrixAsDouble<DoubleMatrix4, Double4> {
 
 	public static final FloatMatrix4 IDENTITY = new FloatMatrix4(
 		1.0f, 0.0f, 0.0f, 0.0f,
@@ -159,7 +159,10 @@ public record FloatMatrix4(
 		}
 	}
 
-	@Override
+	/**
+	 * TODO
+	 * @return
+	 */
 	public IntMatrix4 castToInt() {
 		return new IntMatrix4(
 			(int) this.m11(), (int) this.m12(), (int) this.m13(), (int) this.m14(),

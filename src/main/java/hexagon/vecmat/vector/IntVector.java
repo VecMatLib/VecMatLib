@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
  * 
  * @author Nico
  */
-public final class IntVector implements VectorIntOperations<IntVector, FloatVector, DoubleVector> {
+public final class IntVector implements VectorIntOperations<IntVector>, VectorAsFloat<FloatVector>, VectorAsDouble<DoubleVector> {
 
 	/**Vector values */
 	private int[] values;
@@ -324,7 +324,7 @@ public final class IntVector implements VectorIntOperations<IntVector, FloatVect
 	 * @return The angle in radians between this vector and the given one
 	 */
 	public double angle(int... vector) {
-		return this.asDouble().angle(new IntVector(vector));
+		return this.angle(new IntVector(vector));
 	}
 
 	/**
@@ -335,7 +335,7 @@ public final class IntVector implements VectorIntOperations<IntVector, FloatVect
 	 * @return The angle in radians between this vector and the given one
 	 */
 	public double angle(float... vector) {
-		return this.asDouble().angle(new FloatVector(vector));
+		return this.angle(new FloatVector(vector));
 	}
 
 	/**
