@@ -86,6 +86,11 @@ public record Double3(double x, double y, double z) implements VectorDoubleOpera
 		return new Double3(this.x() * k, this.y() * k, this.z() * k);
 	}
 
+	@Override
+	public Double3 dividedBy(double k) {
+		return new Double3(this.x() / k, this.y() / k, this.z() / k);
+	}
+
 	/**
 	 * Computes the dot product (or scalar product) between this
 	 * vector and the given one.

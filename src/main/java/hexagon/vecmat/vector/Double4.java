@@ -74,7 +74,12 @@ public record Double4(double x, double y, double z, double w) implements VectorD
 
 	@Override
 	public Double4 multipliedBy(double k) {
-		return new Double4(this.x() * k, this.y() * k, this.z() * k, this.w() * w);
+		return new Double4(this.x() * k, this.y() * k, this.z() * k, this.w() * k);
+	}
+
+	@Override
+	public Double4 dividedBy(double k) {
+		return new Double4(this.x() / k, this.y() / k, this.z() / k, this.w() / k);
 	}
 
 	/**

@@ -96,7 +96,7 @@ public record Int4(int x, int y, int z, int w) implements VectorIntOperations<In
 
 	@Override
 	public Int4 negated() {
-		return new Int4(-this.y(), -this.y(), -this.z(), -this.w());
+		return new Int4(-this.x(), -this.y(), -this.z(), -this.w());
 	}
 
 	/**

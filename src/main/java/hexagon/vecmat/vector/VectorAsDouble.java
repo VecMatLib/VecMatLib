@@ -170,6 +170,11 @@ public interface VectorAsDouble<D extends VectorDoubleOperations<D>> {
 		return this.asDouble().angle(vector);
 	}
 
+	/**
+	 * TODO
+	 * @param vector
+	 * @return
+	 */
 	default double angle(VectorAsDouble<D> vector) {
 		return vector != null ? this.angle(vector.asDouble()) : Double.NaN;
 	}

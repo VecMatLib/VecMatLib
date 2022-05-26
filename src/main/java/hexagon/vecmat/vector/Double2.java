@@ -79,6 +79,11 @@ public record Double2(double x, double y) implements VectorDoubleOperations<Doub
 		return new Double2(this.x() * k, this.y() * k);
 	}
 
+	@Override
+	public Double2 dividedBy(double k) {
+		return new Double2(this.x() / k, this.y() / k);
+	}
+
 	/**
 	 * Computes the dot product (or scalar product) between this
 	 * vector and the given one.
