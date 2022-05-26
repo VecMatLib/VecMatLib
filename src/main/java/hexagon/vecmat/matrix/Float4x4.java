@@ -4,21 +4,21 @@ import hexagon.vecmat.vector.Double4;
 import hexagon.vecmat.vector.Float4;
 import hexagon.vecmat.vector.VectorAsFloat;
 
-public record FloatMatrix4(
+public record Float4x4(
 	float m11, float m12, float m13, float m14,
 	float m21, float m22, float m23, float m24,
 	float m31, float m32, float m33, float m34,
 	float m41, float m42, float m43, float m44
-) implements MatrixFloatOperations<FloatMatrix4, Float4>, MatrixAsDouble<DoubleMatrix4, Double4> {
+) implements MatrixFloatOperations<Float4x4, Float4>, MatrixAsDouble<Double4x4, Double4> {
 
-	public static final FloatMatrix4 IDENTITY = new FloatMatrix4(
+	public static final Float4x4 IDENTITY = new Float4x4(
 		1.0f, 0.0f, 0.0f, 0.0f,
 		0.0f, 1.0f, 0.0f, 0.0f,
 		0.0f, 0.0f, 1.0f, 0.0f,
 		0.0f, 0.0f, 0.0f, 1.0f
 	);
 
-	public static final FloatMatrix4 ZERO = new FloatMatrix4(
+	public static final Float4x4 ZERO = new Float4x4(
 		0.0f, 0.0f, 0.0f, 0.0f,
 		0.0f, 0.0f, 0.0f, 0.0f,
 		0.0f, 0.0f, 0.0f, 0.0f,
@@ -26,8 +26,8 @@ public record FloatMatrix4(
 	);
 
 	@Override
-	public FloatMatrix4 plus(FloatMatrix4 matrix) {
-		return matrix != null ? new FloatMatrix4(
+	public Float4x4 plus(Float4x4 matrix) {
+		return matrix != null ? new Float4x4(
 			this.m11() + matrix.m11(), this.m12() + matrix.m12(), this.m13() + matrix.m13(), this.m14() + matrix.m14(),
 			this.m21() + matrix.m21(), this.m22() + matrix.m22(), this.m23() + matrix.m23(), this.m24() + matrix.m24(),
 			this.m31() + matrix.m31(), this.m32() + matrix.m32(), this.m33() + matrix.m33(), this.m34() + matrix.m34(),
@@ -36,8 +36,8 @@ public record FloatMatrix4(
 	}
 
 	@Override
-	public FloatMatrix4 negative() {
-		return new FloatMatrix4(
+	public Float4x4 negative() {
+		return new Float4x4(
 			-this.m11(), -this.m12(), -this.m13(), -this.m14(),
 			-this.m21(), -this.m22(), -this.m23(), -this.m24(),
 			-this.m31(), -this.m32(), -this.m33(), -this.m34(),
@@ -46,8 +46,8 @@ public record FloatMatrix4(
 	}
 
 	@Override
-	public FloatMatrix4 multipliedBy(float k) {
-		return new FloatMatrix4(
+	public Float4x4 multipliedBy(float k) {
+		return new Float4x4(
 			this.m11() * k, this.m12() * k, this.m13() * k, this.m14() * k,
 			this.m21() * k, this.m22() * k, this.m23() * k, this.m24() * k,
 			this.m31() * k, this.m32() * k, this.m33() * k, this.m34() * k,
@@ -103,8 +103,8 @@ public record FloatMatrix4(
 	}
 
 	@Override
-	public FloatMatrix4 transposed() {
-		return new FloatMatrix4(
+	public Float4x4 transposed() {
+		return new Float4x4(
 			this.m11(), this.m21(), this.m31(), this.m41(),
 			this.m12(), this.m22(), this.m32(), this.m42(),
 			this.m13(), this.m23(), this.m33(), this.m43(),
@@ -127,8 +127,8 @@ public record FloatMatrix4(
 	}
 
 	@Override
-	public FloatMatrix4 multiply(FloatMatrix4 matrix) {
-		return matrix != null ? new FloatMatrix4(
+	public Float4x4 multiply(Float4x4 matrix) {
+		return matrix != null ? new Float4x4(
 			this.row1().dotProduct(matrix.column1()),
 			this.row1().dotProduct(matrix.column2()),
 			this.row1().dotProduct(matrix.column3()),
@@ -149,7 +149,7 @@ public record FloatMatrix4(
 	}
 
 	@Override
-	public FloatMatrix4 power(int exponent) {
+	public Float4x4 power(int exponent) {
 		if(exponent < 0) {
 			return this.transposed().power(-exponent);
 		} else if(exponent == 0) {
@@ -163,8 +163,8 @@ public record FloatMatrix4(
 	 * TODO
 	 * @return
 	 */
-	public IntMatrix4 castToInt() {
-		return new IntMatrix4(
+	public Int4x4 castToInt() {
+		return new Int4x4(
 			(int) this.m11(), (int) this.m12(), (int) this.m13(), (int) this.m14(),
 			(int) this.m21(), (int) this.m22(), (int) this.m23(), (int) this.m24(),
 			(int) this.m31(), (int) this.m32(), (int) this.m33(), (int) this.m34(),
@@ -173,8 +173,8 @@ public record FloatMatrix4(
 	}
 
 	@Override
-	public DoubleMatrix4 asDouble() {
-		return new DoubleMatrix4(
+	public Double4x4 asDouble() {
+		return new Double4x4(
 			this.m11(), this.m12(), this.m13(), this.m14(),
 			this.m21(), this.m22(), this.m23(), this.m24(),
 			this.m31(), this.m32(), this.m33(), this.m34(),

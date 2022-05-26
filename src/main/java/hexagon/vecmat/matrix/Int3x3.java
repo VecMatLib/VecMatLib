@@ -4,27 +4,27 @@ import hexagon.vecmat.vector.Double3;
 import hexagon.vecmat.vector.Float3;
 import hexagon.vecmat.vector.Int3;
 
-public record IntMatrix3(
+public record Int3x3(
 	int m11, int m12, int m13,
 	int m21, int m22, int m23,
 	int m31, int m32, int m33
-) implements MatrixIntOperations<IntMatrix3, Int3>, MatrixAsFloat<FloatMatrix3, Float3>, MatrixAsDouble<DoubleMatrix3, Double3> {
+) implements MatrixIntOperations<Int3x3, Int3>, MatrixAsFloat<Float3x3, Float3>, MatrixAsDouble<Double3x3, Double3> {
 
-	public static final IntMatrix3 IDENTITY = new IntMatrix3(
+	public static final Int3x3 IDENTITY = new Int3x3(
 		1, 0, 0,
 		0, 1, 0,
 		0, 0, 1
 	);
 
-	public static final IntMatrix3 ZERO = new IntMatrix3(
+	public static final Int3x3 ZERO = new Int3x3(
 		0, 0, 0,
 		0, 0, 0,
 		0, 0, 0
 	);
 
 	@Override
-	public IntMatrix3 plus(IntMatrix3 matrix) {
-		return matrix != null ? new IntMatrix3(
+	public Int3x3 plus(Int3x3 matrix) {
+		return matrix != null ? new Int3x3(
 			this.m11() + matrix.m11(), this.m12() + matrix.m12(), this.m13() + matrix.m13(),
 			this.m21() + matrix.m21(), this.m22() + matrix.m22(), this.m23() + matrix.m23(),
 			this.m31() + matrix.m31(), this.m32() + matrix.m32(), this.m33() + matrix.m33()
@@ -32,8 +32,8 @@ public record IntMatrix3(
 	}
 
 	@Override
-	public IntMatrix3 negative() {
-		return new IntMatrix3(
+	public Int3x3 negative() {
+		return new Int3x3(
 			-this.m11(), -this.m12(), -this.m13(),
 			-this.m21(), -this.m22(), -this.m23(),
 			-this.m31(), -this.m32(), -this.m33()
@@ -41,8 +41,8 @@ public record IntMatrix3(
 	}
 
 	@Override
-	public IntMatrix3 multipliedBy(int k) {
-		return new IntMatrix3(
+	public Int3x3 multipliedBy(int k) {
+		return new Int3x3(
 			this.m11() * k, this.m12() * k, this.m13() * k,
 			this.m21() * k, this.m22() * k, this.m23() * k,
 			this.m31() * k, this.m32() * k, this.m33() * k
@@ -83,8 +83,8 @@ public record IntMatrix3(
 	}
 
 	@Override
-	public IntMatrix3 transposed() {
-		return new IntMatrix3(
+	public Int3x3 transposed() {
+		return new Int3x3(
 			this.m11(), this.m21(), this.m31(),
 			this.m12(), this.m22(), this.m32(),
 			this.m13(), this.m23(), this.m33() 
@@ -102,8 +102,8 @@ public record IntMatrix3(
 	}
 
 	@Override
-	public IntMatrix3 multiply(IntMatrix3 matrix) {
-		return matrix != null ? new IntMatrix3(
+	public Int3x3 multiply(Int3x3 matrix) {
+		return matrix != null ? new Int3x3(
 			this.row1().dotProduct(matrix.column1()),
 			this.row1().dotProduct(matrix.column2()),
 			this.row1().dotProduct(matrix.column3()),
@@ -117,7 +117,7 @@ public record IntMatrix3(
 	}
 
 	@Override
-	public IntMatrix3 power(int exponent) {
+	public Int3x3 power(int exponent) {
 		if(exponent < 0) {
 			return this.transposed().power(-exponent);
 		} else if(exponent == 0) {
@@ -128,8 +128,8 @@ public record IntMatrix3(
 	}
 
 	@Override
-	public FloatMatrix3 asFloat() {
-		return new FloatMatrix3(
+	public Float3x3 asFloat() {
+		return new Float3x3(
 			this.m11(), this.m12(), this.m13(),
 			this.m21(), this.m22(), this.m23(),
 			this.m31(), this.m32(), this.m33()
@@ -140,8 +140,8 @@ public record IntMatrix3(
 	 * TODO
 	 * @return
 	 */
-	public DoubleMatrix3 asDouble() {
-		return new DoubleMatrix3(
+	public Double3x3 asDouble() {
+		return new Double3x3(
 			this.m11(), this.m12(), this.m13(),
 			this.m21(), this.m22(), this.m23(),
 			this.m31(), this.m32(), this.m33()
