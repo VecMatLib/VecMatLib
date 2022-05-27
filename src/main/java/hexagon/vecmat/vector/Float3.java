@@ -301,8 +301,9 @@ public record Float3(float x, float y, float z) implements VectorFloatOperations
 	}
 
 	/**
-	 * TODO
-	 * @return
+	 * Casts this vector to an int vector.
+	 * 
+	 * @return A vector with the same elements as this vector casted to int.
 	 */
 	public Int3 castToInt() {
 		return new Int3((int) this.x(), (int) this.y(), (int) this.z());

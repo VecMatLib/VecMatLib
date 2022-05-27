@@ -349,16 +349,18 @@ public final class DoubleVector implements VectorDoubleOperations<DoubleVector> 
 	}
 
 	/**
-	 * TODO
-	 * @return
+	 * Casts this vector to an int vector.
+	 * 
+	 * @return A vector with the same elements as this vector casted to int.
 	 */
 	public IntVector castToInt() {
 		return new IntVector(Arrays.stream(this.values).mapToInt(d -> (int) d).toArray());
 	}
 
 	/**
-	 * TODO
-	 * @return
+	 * Casts this vector to a float vector.
+	 * 
+	 * @return A vector with the same elements as this vector casted to float.
 	 */
 	public FloatVector castToFloat() {
 		return new FloatVector(Arrays.stream(this.values).mapToObj(d -> (float) d).toArray(Float[]::new));

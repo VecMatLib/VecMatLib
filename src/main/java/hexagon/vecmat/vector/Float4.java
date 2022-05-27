@@ -194,8 +194,9 @@ public record Float4(float x, float y, float z, float w) implements VectorFloatO
 	}
 
 	/**
-	 * TODO
-	 * @return
+	 * Casts this vector to an int vector.
+	 * 
+	 * @return A vector with the same elements as this vector casted to int.
 	 */
 	public Int4 castToInt() {
 		return new Int4((int) this.x(), (int) this.y(), (int) this.z(), (int) this.w());

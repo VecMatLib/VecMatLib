@@ -186,8 +186,9 @@ public record Float2(float x, float y) implements VectorFloatOperations<Float2>,
 	}
 
 	/**
-	 * TODO
-	 * @return
+	 * Casts this vector to an int vector.
+	 * 
+	 * @return A vector with the same elements as this vector casted to int.
 	 */
 	public Int2 castToInt() {
 		return new Int2((int) this.x(), (int) this.y());

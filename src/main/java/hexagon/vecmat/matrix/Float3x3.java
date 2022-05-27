@@ -4,18 +4,35 @@ import hexagon.vecmat.vector.Double3;
 import hexagon.vecmat.vector.Float3;
 import hexagon.vecmat.vector.VectorAsFloat;
 
+/**
+ * Record that represents a 3x3 float matrix.
+ * 
+ * @param m11 The first element of the first row.
+ * @param m12 The second element of the first row.
+ * @param m13 The third element of the first row.
+ * @param m21 The first element of the second row.
+ * @param m22 The second element of the second row.
+ * @param m23 The third element of the second row.
+ * @param m31 The first element of the third row.
+ * @param m32 The second element of the third row.
+ * @param m33 The third element of the third row.
+ * 
+ * @author Nico
+ */
 public record Float3x3(
 	float m11, float m12, float m13,
 	float m21, float m22, float m23,
 	float m31, float m32, float m33
 ) implements MatrixFloatOperations<Float3x3, Float3>, MatrixAsDouble<Double3x3, Double3> {
 
+	/**Shorthand for a 3x3 identity matrix */
 	public static final Float3x3 IDENTITY = new Float3x3(
 		1.0f, 0.0f, 0.0f,
 		0.0f, 1.0f, 0.0f,
 		0.0f, 0.0f, 1.0f
 	);
 
+	/**Shorthand for a 3x3 matrix where every element is 0 */
 	public static final Float3x3 ZERO = new Float3x3(
 		0.0f, 0.0f, 0.0f,
 		0.0f, 0.0f, 0.0f,
@@ -49,26 +66,56 @@ public record Float3x3(
 		);
 	}
 
+	/**
+	 * Gets the first row of this matrix.
+	 * 
+	 * @return A float vector with all the elements of the first row.
+	 */
 	public Float3 row1() {
 		return new Float3(this.m11(), this.m12(), this.m13());
 	}
 
+	/**
+	 * Gets the second row of this matrix.
+	 * 
+	 * @return A float vector with all the elements of the second row.
+	 */
 	public Float3 row2() {
 		return new Float3(this.m21(), this.m22(), this.m23());
 	}
 
+	/**
+	 * Gets the third row of this matrix.
+	 * 
+	 * @return A float vector with all the elements of the third row.
+	 */
 	public Float3 row3() {
 		return new Float3(this.m31(), this.m32(), this.m33());
 	}
 
+	/**
+	 * Gets the first column of this matrix.
+	 * 
+	 * @return A float vector with all the elements of the first column.
+	 */
 	public Float3 column1() {
 		return new Float3(this.m11(), this.m21(), this.m31());
 	}
 
+	/**
+	 * Gets the second column of this matrix.
+	 * 
+	 * @return A float vector with all the elements of the second column.
+	 */
 	public Float3 column2() {
 		return new Float3(this.m12(), this.m22(), this.m32());
 	}
 
+	/**
+	 * Gets the third column of this matrix.
+	 * 
+	 * @return A float vector with all the elements of the third column.
+	 */
 	public Float3 column3() {
 		return new Float3(this.m13(), this.m23(), this.m33());
 	}
@@ -133,8 +180,9 @@ public record Float3x3(
 	}
 
 	/**
-	 * TODO
-	 * @return
+	 * Casts this matrix to an integer matrix.
+	 * 
+	 * @return A matrix with the same elements as this matrix casted to int.
 	 */
 	public Int3x3 castToInt() {
 		return new Int3x3(

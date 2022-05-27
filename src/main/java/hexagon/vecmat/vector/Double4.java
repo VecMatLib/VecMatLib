@@ -126,16 +126,18 @@ public record Double4(double x, double y, double z, double w) implements VectorD
 	}
 
 	/**
-	 * TODO
-	 * @return
+	 * Casts this vector to an int vector.
+	 * 
+	 * @return A vector with the same elements as this vector casted to int.
 	 */
 	public Int4 castToInt() {
 		return new Int4((int) this.x(), (int) this.y(), (int) this.z(), (int) this.w());
 	}
 
 	/**
-	 * TODO
-	 * @return
+	 * Casts this vector to a float vector.
+	 * 
+	 * @return A vector with the same elements as this vector casted to float.
 	 */
 	public Float4 castToFloat() {
 		return new Float4((float) this.x(), (float) this.y(), (float) this.z(), (float) this.w());

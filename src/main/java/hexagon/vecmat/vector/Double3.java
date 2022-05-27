@@ -193,16 +193,18 @@ public record Double3(double x, double y, double z) implements VectorDoubleOpera
 	}
 
 	/**
-	 * TODO
-	 * @return
+	 * Casts this vector to an int vector.
+	 * 
+	 * @return A vector with the same elements as this vector casted to int.
 	 */
 	public Int3 castToInt() {
 		return new Int3((int) this.x(), (int) this.y(), (int) this.z());
 	}
 
 	/**
-	 * TODO
-	 * @return
+	 * Casts this vector to a float vector.
+	 * 
+	 * @return A vector with the same elements as this vector casted to float.
 	 */
 	public Float3 castToFloat() {
 		return new Float3((float) this.x(), (float) this.y(), (float) this.z());

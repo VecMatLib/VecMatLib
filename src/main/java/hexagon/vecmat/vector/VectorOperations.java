@@ -41,7 +41,7 @@ public interface VectorOperations<V extends VectorOperations<V>> {
 	V plus(V vector);
 
 	/**
-	 * Compute the additive inverse of this vector.
+	 * Computes the additive inverse of this vector.
 	 * 
 	 * <p> The additive inverse of a vector v is a vector -v such
 	 * that v + (-v) is a vector where every element i is 0.

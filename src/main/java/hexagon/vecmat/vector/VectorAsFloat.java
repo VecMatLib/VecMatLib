@@ -152,7 +152,7 @@ public interface VectorAsFloat<F extends VectorFloatOperations<F>> {
 	}
 
 	/**
-	 * Converts this vector to a float without casting.
+	 * Converts this vector to a float vector without casting.
 	 * 
 	 * @return The float value of this vector
 	 */

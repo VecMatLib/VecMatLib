@@ -152,8 +152,19 @@ public interface VectorAsDouble<D extends VectorDoubleOperations<D>> {
 	}
 
 	/**
-	 * TODO
-	 * @return
+	 * Normalizes this vector.
+	 * 
+	 * <p> A normalized vector is a vector of length 1.
+	 * 
+	 * <p> This method returns a vector with the same direction as the
+	 * first one but with length 1.
+	 * 
+	 * <p> Vectors are supposed to be immutable. This means that
+	 * this method does not alter the object on which it is called,
+	 * it returns a new vector instead.
+	 * 
+	 * @return A double vector that has the same direction as this one
+	 * 		but length 1.
 	 */
 	default D normalized() {
 		return this.asDouble().normalized();
@@ -171,9 +182,12 @@ public interface VectorAsDouble<D extends VectorDoubleOperations<D>> {
 	}
 
 	/**
-	 * TODO
-	 * @param vector
-	 * @return
+	 * Computes the angle in radians between this vector and the given one.
+	 * 
+	 * @param vector The second vector, a vector that can be represented
+	 * 		as a double vector without casting.
+	 * 
+	 * @return The angle in radians between this vector and the given one
 	 */
 	default double angle(VectorAsDouble<D> vector) {
 		return vector != null ? this.angle(vector.asDouble()) : Double.NaN;

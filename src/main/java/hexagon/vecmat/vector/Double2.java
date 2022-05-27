@@ -124,16 +124,18 @@ public record Double2(double x, double y) implements VectorDoubleOperations<Doub
 	}
 
 	/**
-	 * TODO
-	 * @return
+	 * Casts this vector to an int vector.
+	 * 
+	 * @return A vector with the same elements as this vector casted to int.
 	 */
 	public Int2 castToInt() {
 		return new Int2((int) this.x(), (int) this.y());
 	}
 
 	/**
-	 * TODO
-	 * @return
+	 * Casts this vector to a float vector.
+	 * 
+	 * @return A vector with the same elements as this vector casted to float.
 	 */
 	public Float2 castToFloat() {
 		return new Float2((float) this.x(), (float) this.y());

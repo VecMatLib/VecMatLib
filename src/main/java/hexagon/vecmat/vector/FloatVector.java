@@ -365,8 +365,9 @@ public final class FloatVector implements VectorFloatOperations<FloatVector>, Ve
 	}
 
 	/**
-	 * TODO
-	 * @return
+	 * Casts this vector to an int vector.
+	 * 
+	 * @return A vector with the same elements as this vector casted to int.
 	 */
 	public IntVector castToInt() {
 		return new IntVector(IntStream.range(0, this.size()).mapToObj(i -> this.values[i]).mapToInt(f -> f.intValue()).toArray());

@@ -3,18 +3,35 @@ package hexagon.vecmat.matrix;
 import hexagon.vecmat.vector.Double3;
 import hexagon.vecmat.vector.VectorAsDouble;
 
+/**
+ * Record that represents a 3x3 double matrix.
+ * 
+ * @param m11 The first element of the first row.
+ * @param m12 The second element of the first row.
+ * @param m13 The third element of the first row.
+ * @param m21 The first element of the second row.
+ * @param m22 The second element of the second row.
+ * @param m23 The third element of the second row.
+ * @param m31 The first element of the third row.
+ * @param m32 The second element of the third row.
+ * @param m33 The third element of the third row.
+ * 
+ * @author Nico
+ */
 public record Double3x3(
 	double m11, double m12, double m13,
 	double m21, double m22, double m23,
 	double m31, double m32, double m33
 ) implements MatrixDoubleOperations<Double3x3, Double3> {
 
+	/**Shorthand for a 4x4 identity matrix */
 	public static final Double3x3 IDENTITY = new Double3x3(
 		1.0, 0.0, 0.0,
 		0.0, 1.0, 0.0,
 		0.0, 0.0, 1.0
 	);
 
+	/**Shorthand for a 4x4 matrix where every element is 0 */
 	public static final Double3x3 ZERO = new Double3x3(
 		0.0, 0.0, 0.0,
 		0.0, 0.0, 0.0,
@@ -48,26 +65,56 @@ public record Double3x3(
 		);
 	}
 
+	/**
+	 * Gets the first row of this matrix.
+	 * 
+	 * @return A double vector with all the elements of the first row.
+	 */
 	public Double3 row1() {
 		return new Double3(this.m11(), this.m12(), this.m13());
 	}
 
+	/**
+	 * Gets the second row of this matrix.
+	 * 
+	 * @return A double vector with all the elements of the second row.
+	 */
 	public Double3 row2() {
 		return new Double3(this.m21(), this.m22(), this.m23());
 	}
 
+	/**
+	 * Gets the third row of this matrix.
+	 * 
+	 * @return A double vector with all the elements of the third row.
+	 */
 	public Double3 row3() {
 		return new Double3(this.m31(), this.m32(), this.m33());
 	}
 
+	/**
+	 * Gets the first column of this matrix.
+	 * 
+	 * @return A double vector with all the elements of the first column.
+	 */
 	public Double3 column1() {
 		return new Double3(this.m11(), this.m21(), this.m31());
 	}
 
+	/**
+	 * Gets the second column of this matrix.
+	 * 
+	 * @return A double vector with all the elements of the second column.
+	 */
 	public Double3 column2() {
 		return new Double3(this.m12(), this.m22(), this.m32());
 	}
 
+	/**
+	 * Gets the third column of this matrix.
+	 * 
+	 * @return A double vector with all the elements of the third column.
+	 */
 	public Double3 column3() {
 		return new Double3(this.m13(), this.m23(), this.m33());
 	}
@@ -132,8 +179,9 @@ public record Double3x3(
 	}
 
 	/**
-	 * TODO
-	 * @return
+	 * Casts this matrix to a float matrix.
+	 * 
+	 * @return A matrix with the same elements as this matrix casted to float.
 	 */
 	public Float3x3 castToFloat() {
 		return new Float3x3(
@@ -144,8 +192,9 @@ public record Double3x3(
 	}
 
 	/**
-	 * TODO
-	 * @return
+	 * Casts this matrix to an integer matrix.
+	 * 
+	 * @return A matrix with the same elements as this matrix casted to int.
 	 */
 	public Int3x3 castToInt() {
 		return new Int3x3(

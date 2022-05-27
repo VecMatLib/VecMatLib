@@ -4,18 +4,35 @@ import hexagon.vecmat.vector.Double3;
 import hexagon.vecmat.vector.Float3;
 import hexagon.vecmat.vector.Int3;
 
+/**
+ * Record that represents a 3x3 int matrix.
+ * 
+ * @param m11 The first element of the first row.
+ * @param m12 The second element of the first row.
+ * @param m13 The third element of the first row.
+ * @param m21 The first element of the second row.
+ * @param m22 The second element of the second row.
+ * @param m23 The third element of the second row.
+ * @param m31 The first element of the third row.
+ * @param m32 The second element of the third row.
+ * @param m33 The third element of the third row.
+ * 
+ * @author Nico
+ */
 public record Int3x3(
 	int m11, int m12, int m13,
 	int m21, int m22, int m23,
 	int m31, int m32, int m33
 ) implements MatrixIntOperations<Int3x3, Int3>, MatrixAsFloat<Float3x3, Float3>, MatrixAsDouble<Double3x3, Double3> {
 
+	/**Shorthand for a 3x3 identity matrix */
 	public static final Int3x3 IDENTITY = new Int3x3(
 		1, 0, 0,
 		0, 1, 0,
 		0, 0, 1
 	);
 
+	/**Shorthand for a 3x3 matrix where every element is 0 */
 	public static final Int3x3 ZERO = new Int3x3(
 		0, 0, 0,
 		0, 0, 0,
@@ -49,26 +66,56 @@ public record Int3x3(
 		);
 	}
 
+	/**
+	 * Gets the first row of this matrix.
+	 * 
+	 * @return An int vector with all the elements of the first row.
+	 */
 	public Int3 row1() {
 		return new Int3(this.m11(), this.m12(), this.m13());
 	}
 
+	/**
+	 * Gets the second row of this matrix.
+	 * 
+	 * @return An int vector with all the elements of the second row.
+	 */
 	public Int3 row2() {
 		return new Int3(this.m21(), this.m22(), this.m23());
 	}
 
+	/**
+	 * Gets the third row of this matrix.
+	 * 
+	 * @return An int vector with all the elements of the third row.
+	 */
 	public Int3 row3() {
 		return new Int3(this.m31(), this.m32(), this.m33());
 	}
 
+	/**
+	 * Gets the first column of this matrix.
+	 * 
+	 * @return An int vector with all the elements of the first column.
+	 */
 	public Int3 column1() {
 		return new Int3(this.m11(), this.m21(), this.m31());
 	}
 
+	/**
+	 * Gets the second column of this matrix.
+	 * 
+	 * @return An int vector with all the elements of the second column.
+	 */
 	public Int3 column2() {
 		return new Int3(this.m12(), this.m22(), this.m32());
 	}
 
+	/**
+	 * Gets the third column of this matrix.
+	 * 
+	 * @return An int vector with all the elements of the third column.
+	 */
 	public Int3 column3() {
 		return new Int3(this.m13(), this.m23(), this.m33());
 	}
@@ -136,10 +183,7 @@ public record Int3x3(
 		);
 	}
 
-	/**
-	 * TODO
-	 * @return
-	 */
+	@Override
 	public Double3x3 asDouble() {
 		return new Double3x3(
 			this.m11(), this.m12(), this.m13(),
