@@ -70,6 +70,16 @@ public record Float4x4(
 	}
 
 	@Override
+	public Float4x4 minus(Float4x4 matrix) {
+		return matrix != null ? new Float4x4(
+			this.m11() - matrix.m11(), this.m12() - matrix.m12(), this.m13() - matrix.m13(), this.m14() - matrix.m14(),
+			this.m21() - matrix.m21(), this.m22() - matrix.m22(), this.m23() - matrix.m23(), this.m24() - matrix.m24(),
+			this.m31() - matrix.m31(), this.m32() - matrix.m32(), this.m33() - matrix.m33(), this.m34() - matrix.m34(),
+			this.m41() - matrix.m41(), this.m42() - matrix.m42(), this.m43() - matrix.m43(), this.m44() - matrix.m44()
+		) : this;
+	}
+
+	@Override
 	public Float4x4 multipliedBy(float k) {
 		return new Float4x4(
 			this.m11() * k, this.m12() * k, this.m13() * k, this.m14() * k,
@@ -219,7 +229,11 @@ public record Float4x4(
 		} else if(exponent == 0) {
 			return IDENTITY;
 		} else {
-			return this.multiply(this.power(exponent - 1));
+			Float4x4 result = this;
+			for(int i = 1; i < exponent; i++) {
+				result = result.multiply(this);
+			}
+			return result;
 		}
 	}
 

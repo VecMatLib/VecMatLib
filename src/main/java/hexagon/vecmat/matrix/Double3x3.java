@@ -57,6 +57,15 @@ public record Double3x3(
 	}
 
 	@Override
+	public Double3x3 minus(Double3x3 matrix) {
+		return matrix != null ? new Double3x3(
+			this.m11() - matrix.m11(), this.m12() - matrix.m12(), this.m13() - matrix.m13(),
+			this.m21() - matrix.m21(), this.m22() - matrix.m22(), this.m23() - matrix.m23(),
+			this.m31() - matrix.m31(), this.m32() - matrix.m32(), this.m33() - matrix.m33()
+		) : this;
+	}
+
+	@Override
 	public Double3x3 multipliedBy(double k) {
 		return new Double3x3(
 			this.m11() * k, this.m12() * k, this.m13() * k,
@@ -174,7 +183,11 @@ public record Double3x3(
 		} else if(exponent == 0) {
 			return IDENTITY;
 		} else {
-			return this.multiply(this.power(exponent - 1));
+			Double3x3 result = this;
+			for(int i = 1; i < exponent; i++) {
+				result = result.multiply(this);
+			}
+			return result;
 		}
 	}
 
