@@ -72,7 +72,9 @@ public class TestFloatVector {
 			//24. |FloatVector|^2
 			Arguments.of(7.0f, new FloatVector(1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f).lengthSquared()),
 			//25. |FloatVector|
-			Arguments.of(Math.sqrt(7), new FloatVector(1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f).length())
+			Arguments.of(Math.sqrt(7), new FloatVector(1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f).length()),
+			//14. ||FloatVector||
+			Arguments.of(1.0, v1.normalized().length())
 		);
 	}
 

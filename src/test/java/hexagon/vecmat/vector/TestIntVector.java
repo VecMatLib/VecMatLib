@@ -76,7 +76,9 @@ public class TestIntVector {
 			//26. |IntVector|^2
 			Arguments.of(7, new IntVector(1, 1, 1, 1, 1, 1, 1).lengthSquared()),
 			//27. |IntVector|
-			Arguments.of(Math.sqrt(7), new IntVector(1, 1, 1, 1, 1, 1, 1).length())
+			Arguments.of(Math.sqrt(7), new IntVector(1, 1, 1, 1, 1, 1, 1).length()),
+			//14. ||IntVector||
+			Arguments.of(1.0, v2.normalized().length())
 		);
 	}
 

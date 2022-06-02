@@ -45,7 +45,9 @@ public class TestDoubleVector {
 			//12. |DoubleVector|^2
 			Arguments.of(7.0, new DoubleVector(1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0).lengthSquared()),
 			//13. |DoubleVector|
-			Arguments.of(Math.sqrt(7), new DoubleVector(1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0).length())
+			Arguments.of(Math.sqrt(7), new DoubleVector(1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0).length()),
+			//14. ||DoubleVector||
+			Arguments.of(1.0, v1.normalized().length())
 		);
 	}
 
