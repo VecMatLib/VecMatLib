@@ -1,5 +1,6 @@
 package hexagon.vecmat.vector;
 
+import java.util.Arrays;
 import java.util.function.Function;
 import java.util.function.IntFunction;
 import java.util.stream.IntStream;
@@ -14,20 +15,6 @@ public final class FloatVector implements VectorFloatOperations<FloatVector>, Ve
 
 	/**Vector values */
 	private float[] values;
-
-	/**
-	 * Creates a vector with the values in the given array.
-	 * 
-	 * @param vector Values in the vector
-	 * 
-	 * @throws VectorMathException if the given array is null or has length 0
-	 */
-	public FloatVector(float... vector) {
-		if(vector == null || vector.length == 0) {
-			throw new VectorMathException("A vector cannot be null or empty");
-		}
-		this.values = vector;
-	}
 
 	/**
 	 * Creates a vector with the values in the given array.
@@ -73,87 +60,9 @@ public final class FloatVector implements VectorFloatOperations<FloatVector>, Ve
 		}
 	}
 
-	/**
-	 * Computes the sum of this vector with the given one.
-	 * 
-	 * <p> The sum of two vectors v1 and v2 of the same size is
-	 * a vector v3 such that every i-th element of v3 is the
-	 * sum of the i-th element of v1 and the i-th element of v2.
-	 * 
-	 * <p> Vectors are supposed to be immutable. This means that
-	 * this method does not alter the object on which it is called,
-	 * it returns a new vector instead.
-	 * 
-	 * @param vector The second operand of the sum, a float
-	 * 		vector of the same size as this one
-	 * 
-	 * @return The sum of this vector and the given one
-	 * 
-	 * @throws VectorMathException if this vector and the given one
-	 * 		have different sizes
-	 * @throws NullPointerException if the given vector is null
-	 */
-	public FloatVector plus(float... vector) {
-		return this.applyOperation(vector.length, i -> this.values[i] + vector[i]);
-	}
-
 	@Override
 	public FloatVector plus(FloatVector vector) {
-		return this.plus(vector != null ? vector.values : new float[0]);
-	}
-
-	/**
-	 * Computes the sum of this vector with the given one.
-	 * 
-	 * <p> The sum of two vectors v1 and v2 of the same size is
-	 * a vector v3 such that every i-th element of v3 is the
-	 * sum of the i-th element of v1 and the i-th element of v2.
-	 * 
-	 * <p> Vectors are supposed to be immutable. This means that
-	 * this method does not alter the object on which it is called,
-	 * it returns a new vector instead.
-	 * 
-	 * <p> The sum of this vector and an integer vector will result
-	 * in a float vector.
-	 * 
-	 * @param vector The second operand of the sum, an integer
-	 * 		vector of the same size as this one
-	 * 
-	 * @return The sum of this vector and the given one
-	 * 
-	 * @throws VectorMathException if this vector and the given one
-	 * 		have different sizes
-	 * @throws NullPointerException if the given vector is null
-	 */
-	public FloatVector plus(int... vector) {
-		return this.applyOperation(vector.length, i -> this.values[i] + vector[i]);
-	}
-
-	/**
-	 * Computes the sum of this vector with the given one.
-	 * 
-	 * <p> The sum of two vectors v1 and v2 of the same size is
-	 * a vector v3 such that every i-th element of v3 is the
-	 * sum of the i-th element of v1 and the i-th element of v2.
-	 * 
-	 * <p> Vectors are supposed to be immutable. This means that
-	 * this method does not alter the object on which it is called,
-	 * it returns a new vector instead.
-	 * 
-	 * <p> The sum of this vector and a double vector will result
-	 * in a double vector.
-	 * 
-	 * @param vector The second operand of the sum, a double
-	 * 		vector of the same size as this one
-	 * 
-	 * @return The sum of this vector and the given one
-	 * 
-	 * @throws VectorMathException if this vector and the given one
-	 * 		have different sizes
-	 * @throws NullPointerException if the given vector is null
-	 */
-	public DoubleVector plus(double... vector) {
-		return this.asDouble().plus(vector);
+		return vector != null ? this.applyOperation(vector.size(), i -> this.values[i] + vector.values[i]) : this;
 	}
 
 	@Override
@@ -161,90 +70,9 @@ public final class FloatVector implements VectorFloatOperations<FloatVector>, Ve
 		return this.applyOperation(v -> -v);
 	}
 
-	/**
-	 * Computes the subtraction of the given vector from this one.
-	 * 
-	 * <p> The subtraction of a vector v2 from a vector v1 is defined
-	 * as the sum of v1 with the additive inverse of v2. That is
-	 * v1 - v2 = v1 + (-v2)
-	 * 
-	 * <p> Vectors are supposed to be immutable. This means that
-	 * this method does not alter the object on which it is called,
-	 * it returns a new vector instead.
-	 * 
-	 * @param vector The second operand of the subtraction, an integer
-	 * 		vector of the same size as this one
-	 * 
-	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one
-	 * 
-	 * @throws VectorMathException if this vector and the given one
-	 * 		have different sizes
-	 * @throws NullPointerException if the given vector is null
-	 */
-	public FloatVector minus(float... vector) {
-		return this.applyOperation(vector.length, i -> this.values[i] - vector[i]);
-	}
-
 	@Override
 	public FloatVector minus(FloatVector vector) {
-		return this.minus(vector != null ? vector.values : new float[0]);
-	}
-
-	/**
-	 * Computes the subtraction of the given vector from this one.
-	 * 
-	 * <p> The subtraction of a vector v2 from a vector v1 is defined
-	 * as the sum of v1 with the additive inverse of v2. That is
-	 * v1 - v2 = v1 + (-v2)
-	 * 
-	 * <p> Vectors are supposed to be immutable. This means that
-	 * this method does not alter the object on which it is called,
-	 * it returns a new vector instead.
-	 * 
-	 * <p> The subtraction between this vector and an integer vector
-	 * will result in a float vector.
-	 * 
-	 * @param vector The second operand of the subtraction, an integer
-	 * 		vector of the same size as this one
-	 * 
-	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one
-	 * 
-	 * @throws VectorMathException if this vector and the given one
-	 * 		have different sizes
-	 * @throws NullPointerException if the given vector is null
-	 */
-	public FloatVector minus(int... vector) {
-		return this.applyOperation(vector.length, i -> this.values[i] - vector[i]);
-	}
-
-	/**
-	 * Computes the subtraction of the given vector from this one.
-	 * 
-	 * <p> The subtraction of a vector v2 from a vector v1 is defined
-	 * as the sum of v1 with the additive inverse of v2. That is
-	 * v1 - v2 = v1 + (-v2)
-	 * 
-	 * <p> Vectors are supposed to be immutable. This means that
-	 * this method does not alter the object on which it is called,
-	 * it returns a new vector instead.
-	 * 
-	 * <p> The subtraction between this vector and a double vector
-	 * will result in a double vector.
-	 * 
-	 * @param vector The second operand of the subtraction, a double
-	 * 		vector of the same size as this one
-	 * 
-	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one
-	 * 
-	 * @throws VectorMathException if this vector and the given one
-	 * 		have different sizes
-	 * @throws NullPointerException if the given vector is null
-	 */
-	public DoubleVector minus(double... vector) {
-		return this.asDouble().minus(vector);
+		return vector != null ? this.applyOperation(vector.size(), i -> this.values[i] - vector.values[i]) : this;
 	}
 
 	@Override
@@ -252,116 +80,19 @@ public final class FloatVector implements VectorFloatOperations<FloatVector>, Ve
 		return this.applyOperation(v -> v * k);
 	}
 
-	/**
-	 * Computes the dot product (or scalar product) between this
-	 * vector and the given one.
-	 * 
-	 * <p> The dot product between two vectors v and w of the same
-	 * size is a scalar defined as the summation of the products of
-	 * every element vi and wi of the two vectors.
-	 * 
-	 * @param vector The second operand of the product, another
-	 * 		float vector
-	 * 
-	 * @return The result of the dot product between the two vectors
-	 * 
-	 * @throws VectorMathException if this vector and the given one
-	 * 		have different sizes
-	 * @throws NullPointerException if the given vector is null
-	 */
-	public float dotProduct(float... vector) {
-		return this.mapEach(vector.length, i -> this.values[i] * vector[i]).reduce(0.0f, (v1, v2) -> v1 + v2);
+	@Override
+	public FloatVector dividedBy(float k) {
+		return this.applyOperation(v -> v / k);
 	}
 
 	@Override
 	public float dotProduct(FloatVector vector) {
-		return this.dotProduct(vector != null ? vector.values : new float[0]);
-	}
-
-	/**
-	 * Computes the dot product (or scalar product) between this
-	 * vector and the given one.
-	 * 
-	 * <p> The dot product between two vectors v and w of the same
-	 * size is a scalar defined as the summation of the products of
-	 * every element vi and wi of the two vectors.
-	 * 
-	 * <p> The dot product between this vector and an integer vector
-	 * will result in a float.
-	 * 
-	 * @param vector The second operand of the product, an
-	 * 		integer vector
-	 * 
-	 * @return The result of the dot product between the two vectors
-	 * 
-	 * @throws VectorMathException if this vector and the given one
-	 * 		have different sizes
-	 * @throws NullPointerException if the given vector is null
-	 */
-	public float dotProduct(int... vector) {
-		return this.mapEach(vector.length, i -> this.values[i] * vector[i]).reduce(0.0f, (v1, v2) -> v1 + v2);
-	}
-
-	/**
-	 * Computes the dot product (or scalar product) between this
-	 * vector and the given one.
-	 * 
-	 * <p> The dot product between two vectors v and w of the same
-	 * size is a scalar defined as the summation of the products of
-	 * every element vi and wi of the two vectors.
-	 * 
-	 * <p> The dot product between this vector and a double vector
-	 * will result in a double.
-	 * 
-	 * @param vector The second operand of the product, a
-	 * 		double vector
-	 * 
-	 * @return The result of the dot product between the two vectors
-	 * 
-	 * @throws VectorMathException if this vector and the given one
-	 * 		have different sizes
-	 * @throws NullPointerException if the given vector is null
-	 */
-	public double dotProduct(double... vector) {
-		return this.asDouble().dotProduct(vector);
+		return vector != null ? this.mapEach(vector.size(), i -> this.values[i] * vector.values[i]).reduce(0.0f, (v1, v2) -> v1 + v2): 0.0f;
 	}
 
 	@Override
 	public float lengthSquared() {
 		return this.dotProduct(this);
-	}
-
-	/**
-	 * Computes the angle in radians between this vector and the given one.
-	 * 
-	 * @param vector The second vector
-	 * 
-	 * @return The angle in radians between this vector and the given one
-	 */
-	public double angle(double... vector) {
-		return this.angle(new DoubleVector(vector));
-	}
-
-	/**
-	 * Computes the angle in radians between this vector and the given one.
-	 * 
-	 * @param vector The second vector
-	 * 
-	 * @return The angle in radians between this vector and the given one
-	 */
-	public double angle(float... vector) {
-		return this.angle(new FloatVector(vector));
-	}
-
-	/**
-	 * Computes the angle in radians between this vector and the given one.
-	 * 
-	 * @param vector The second vector
-	 * 
-	 * @return The angle in radians between this vector and the given one
-	 */
-	public double angle(int... vector) {
-		return this.angle(new IntVector(vector));
 	}
 
 	/**
@@ -406,7 +137,7 @@ public final class FloatVector implements VectorFloatOperations<FloatVector>, Ve
 		if(length == this.size()) {
 			return IntStream.range(0, length).mapToObj(operator);
 		} else {
-			throw new VectorMathException("Vector of size " + this.size() + " cannot operate with vector of size " + length);
+			throw new VectorMathException("Vectors must have the same size");
 		}
 	}
 
@@ -430,5 +161,15 @@ public final class FloatVector implements VectorFloatOperations<FloatVector>, Ve
 	 */
 	private Stream<Float> mapEach(Function<Float, Float> operator) {
 		return IntStream.range(0, this.size()).mapToObj(i -> this.values[i]).map(operator);
+	}
+
+	@Override
+	public String toString() {
+		return "FloatVector[values=" + Arrays.toString(this.values) + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof FloatVector that && Arrays.equals(this.values, that.values);
 	}
 }

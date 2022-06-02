@@ -17,6 +17,8 @@ public interface VectorAsDouble<D extends VectorDoubleOperations<D>> {
 	 * a vector v3 such that every i-th element of v3 is the
 	 * sum of the i-th element of v1 and the i-th element of v2.
 	 * 
+	 * <p> Two vectors can only be summed if their size is the same.
+	 * 
 	 * <p> Vectors are supposed to be immutable. This means that
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
@@ -24,20 +26,18 @@ public interface VectorAsDouble<D extends VectorDoubleOperations<D>> {
 	 * <p> The sum of this vector and a double vector will result
 	 * in a double vector.
 	 * 
-	 * <p> If the given vector is null, in the case of fixed-size
-	 * vectors it will be treated as a vector where every element
-	 * is 0. In the case of vectors of unknown size, this will
-	 * throw an exception, since it is not possible to check if the
-	 * two vectors have the same size.
+	 * <p> If the given vector is null, it will be treated as a
+	 * vector where every element is 0. Which means this method
+	 * will return a vector equal to this one.
 	 * 
 	 * @param vector The second operand of the sum, a double vector
+	 * 		of the same size as this one.
 	 * 
 	 * @return The sum of this vector and the given one or the same
-	 * 		vector if the given one is null and this is a fixed-size
-	 * 		vector
+	 * 		vector if the given one is null.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
-	 * 		have different sizes
+	 * 		have different sizes.
 	 */
 	default D plus(D vector) {
 		return this.asDouble().plus(vector);
@@ -50,6 +50,8 @@ public interface VectorAsDouble<D extends VectorDoubleOperations<D>> {
 	 * as the sum of v1 with the additive inverse of v2. That is
 	 * v1 - v2 = v1 + (-v2)
 	 * 
+	 * <p> Two vectors can only be subtracted if their size is the same.
+	 * 
 	 * <p> Vectors are supposed to be immutable. This means that
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
@@ -57,21 +59,18 @@ public interface VectorAsDouble<D extends VectorDoubleOperations<D>> {
 	 * <p> The subtraction between this vector and a double vector
 	 * will result in a double vector.
 	 * 
-	 * <p> If the given vector is null, in the case of fixed-size
-	 * vectors it will be treated as a vector where every element
-	 * is 0. In the case of vectors of unknown size, this will
-	 * throw an exception, since it is not possible to check if the
-	 * two vectors have the same size.
+	 * <p> If the given vector is null, it will be treated as a
+	 * vector where every element is 0. Which means this method
+	 * will return a vector equal to this one.
 	 * 
 	 * @param vector The second operand of the subtraction, a double
-	 * 		vector
+	 * 		vector of the same size as this one.
 	 * 
 	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one or the same vector if the given one is null and
-	 * 		this is a fixed-size vector
+	 * 		given one or the same vector if the given one is null.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
-	 * 		have different sizes
+	 * 		have different sizes.
 	 */
 	default D minus(D vector) {
 		return this.asDouble().minus(vector);
@@ -129,17 +128,18 @@ public interface VectorAsDouble<D extends VectorDoubleOperations<D>> {
 	 * size is a scalar defined as the summation of the products of
 	 * every element vi and wi of the two vectors.
 	 * 
+	 * <p> The dot product can only be computed between two vectors
+	 * of the same size.
+	 * 
 	 * <p> The dot product between this vector and a double vector
 	 * will result in a double.
 	 * 
-	 * <p> If the given vector is null, in the case of fixed-size
-	 * vectors it will be treated as a vector where every element
-	 * is 0. In the case of vectors of unknown size, this will
-	 * throw an exception, since it is not possible to check if the
-	 * two vectors have the same size.
+	 * <p> If the given vector is null, it will be treated as a
+	 * vector where every element is 0. Which means this method
+	 * will return 0.
 	 * 
-	 * @param vector The second operand of the product, another
-	 * 		double vector
+	 * @param vector The second operand of the product, a double
+	 * 		vector of the same size as this one.
 	 * 
 	 * @return The result of the dot product between the two vectors
 	 * 		or 0 if the given vector is null
@@ -173,9 +173,12 @@ public interface VectorAsDouble<D extends VectorDoubleOperations<D>> {
 	/**
 	 * Computes the angle in radians between this vector and the given one.
 	 * 
-	 * @param vector The second vector
+	 * @param vector The second vector.
 	 * 
-	 * @return The angle in radians between this vector and the given one
+	 * @return The angle in radians between this vector and the given one.
+	 * 
+	 * @throws VectorMathException if this vector and the given one
+	 * 		have different sizes.
 	 */
 	default double angle(D vector) {
 		return this.asDouble().angle(vector);
@@ -187,7 +190,10 @@ public interface VectorAsDouble<D extends VectorDoubleOperations<D>> {
 	 * @param vector The second vector, a vector that can be represented
 	 * 		as a double vector without casting.
 	 * 
-	 * @return The angle in radians between this vector and the given one
+	 * @return The angle in radians between this vector and the given one.
+	 * 
+	 * @throws VectorMathException if this vector and the given one
+	 * 		have different sizes.
 	 */
 	default double angle(VectorAsDouble<D> vector) {
 		return vector != null ? this.angle(vector.asDouble()) : Double.NaN;

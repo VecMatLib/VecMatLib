@@ -17,6 +17,8 @@ public interface VectorAsFloat<F extends VectorFloatOperations<F>> {
 	 * a vector v3 such that every i-th element of v3 is the
 	 * sum of the i-th element of v1 and the i-th element of v2.
 	 * 
+	 * <p> Two vectors can only be summed if their size is the same.
+	 * 
 	 * <p> Vectors are supposed to be immutable. This means that
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
@@ -24,20 +26,18 @@ public interface VectorAsFloat<F extends VectorFloatOperations<F>> {
 	 * <p> The sum of this vector and a float vector will result
 	 * in a float vector.
 	 * 
-	 * <p> If the given vector is null, in the case of fixed-size
-	 * vectors it will be treated as a vector where every element
-	 * is 0. In the case of vectors of unknown size, this will
-	 * throw an exception, since it is not possible to check if the
-	 * two vectors have the same size.
+	 * <p> If the given vector is null, it will be treated as a
+	 * vector where every element is 0. Which means this method
+	 * will return a vector equal to this one.
 	 * 
 	 * @param vector The second operand of the sum, a float vector
+	 * 		of the same size as this one.
 	 * 
 	 * @return The sum of this vector and the given one or the same
-	 * 		vector if the given one is null and this is a fixed-size
-	 * 		vector
+	 * 		vector if the given one is null.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
-	 * 		have different sizes
+	 * 		have different sizes.
 	 */
 	default F plus(F vector) {
 		return this.asFloat().plus(vector);
@@ -50,6 +50,8 @@ public interface VectorAsFloat<F extends VectorFloatOperations<F>> {
 	 * as the sum of v1 with the additive inverse of v2. That is
 	 * v1 - v2 = v1 + (-v2)
 	 * 
+	 * <p> Two vectors can only be subtracted if their size is the same.
+	 * 
 	 * <p> Vectors are supposed to be immutable. This means that
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
@@ -57,21 +59,18 @@ public interface VectorAsFloat<F extends VectorFloatOperations<F>> {
 	 * <p> The subtraction between this vector and a float vector
 	 * will result in a float vector.
 	 * 
-	 * <p> If the given vector is null, in the case of fixed-size
-	 * vectors it will be treated as a vector where every element
-	 * is 0. In the case of vectors of unknown size, this will
-	 * throw an exception, since it is not possible to check if the
-	 * two vectors have the same size.
+	 * <p> If the given vector is null, it will be treated as a
+	 * vector where every element is 0. Which means this method
+	 * will return a vector equal to this one.
 	 * 
 	 * @param vector The second operand of the subtraction, a float
-	 * 		vector
+	 * 		vector of the same size as this one.
 	 * 
 	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one or the same vector if the given one is null and
-	 * 		this is a fixed-size vector
+	 * 		given one or the same vector if the given one is null.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
-	 * 		have different sizes
+	 * 		have different sizes.
 	 */
 	default F minus(F vector) {
 		return this.asFloat().minus(vector);
@@ -129,23 +128,24 @@ public interface VectorAsFloat<F extends VectorFloatOperations<F>> {
 	 * size is a scalar defined as the summation of the products of
 	 * every element vi and wi of the two vectors.
 	 * 
+	 * <p> The dot product can only be computed between two vectors
+	 * of the same size.
+	 * 
 	 * <p> The dot product between this vector and a float vector
 	 * will result in a float.
 	 * 
-	 * <p> If the given vector is null, in the case of fixed-size
-	 * vectors it will be treated as a vector where every element
-	 * is 0. In the case of vectors of unknown size, this will
-	 * throw an exception, since it is not possible to check if the
-	 * two vectors have the same size.
+	 * <p> If the given vector is null, it will be treated as a
+	 * vector where every element is 0. Which means this method
+	 * will return 0.
 	 * 
-	 * @param vector The second operand of the product, another
-	 * 		float vector
+	 * @param vector The second operand of the product, a float
+	 * 		vector of the same size as this one.
 	 * 
 	 * @return The result of the dot product between the two vectors
-	 * 		or 0 if the given vector is null
+	 * 		or 0 if the given vector is null.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
-	 * 		have different sizes
+	 * 		have different sizes.
 	 */
 	default float dotProduct(F vector) {
 		return this.asFloat().dotProduct(vector);

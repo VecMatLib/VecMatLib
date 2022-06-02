@@ -51,27 +51,28 @@ public interface VectorIntOperations<I extends VectorIntOperations<I>> extends V
 	 * size is a scalar defined as the summation of the products of
 	 * every element vi and wi of the two vectors.
 	 * 
-	 * <p> If the given vector is null, in the case of fixed-size
-	 * vectors it will be treated as a vector where every element
-	 * is 0. In the case of vectors of unknown size, this will
-	 * throw an exception, since it is not possible to check if the
-	 * two vectors have the same size.
+	 * <p> The dot product can only be computed between two vectors
+	 * of the same size.
+	 * 
+	 * <p> If the given vector is null, it will be treated as a
+	 * vector where every element is 0. Which means this method
+	 * will return 0.
 	 * 
 	 * @param vector The second operand of the product, another
-	 * 		integer vector
+	 * 		integer vector of the same size as this one.
 	 * 
 	 * @return The result of the dot product between the two vectors
-	 * 		or 0 if the given vector is null
+	 * 		or 0 if the given vector is null.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
-	 * 		have different sizes
+	 * 		have different sizes.
 	 */
 	int dotProduct(I vector);
 
 	/**
 	 * Computes the squared length (or squared magnitude) of this vector.
 	 * 
-	 * <p> When the user needs to compare the length of two vectors, it
+	 * <p> When one needs to compare the length of two vectors, it
 	 * is best to use this method instead of {@link #length()}, since
 	 * given two numbers a > b, then it also holds that a^2 > b^2, and
 	 * this method is more efficient since it does not compute a

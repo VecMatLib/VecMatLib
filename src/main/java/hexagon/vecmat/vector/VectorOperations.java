@@ -18,25 +18,24 @@ public interface VectorOperations<V extends VectorOperations<V>> {
 	 * a vector v3 such that every i-th element of v3 is the
 	 * sum of the i-th element of v1 and the i-th element of v2.
 	 * 
+	 * <p> Two vectors can only be summed if their size is the same.
+	 * 
 	 * <p> Vectors are supposed to be immutable. This means that
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * <p> If the given vector is null, in the case of fixed-size
-	 * vectors it will be treated as a vector where every element
-	 * is 0. In the case of vectors of unknown size, this will
-	 * throw an exception, since it is not possible to check if the
-	 * two vectors have the same size.
+	 * <p> If the given vector is null, it will be treated as a
+	 * vector where every element is 0. Which means this method
+	 * will return a vector equal to this one.
 	 * 
 	 * @param vector The second operand of the sum, a vector of the
-	 * 		same type as this one
+	 * 		same type and same size as this one.
 	 * 
 	 * @return The sum of this vector and the given one or the same
-	 * 		vector if the given one is null and this is a fixed-size
-	 * 		vector
+	 * 		vector if the given one is null.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
-	 * 		have different sizes
+	 * 		have different sizes.
 	 */
 	V plus(V vector);
 
@@ -57,25 +56,24 @@ public interface VectorOperations<V extends VectorOperations<V>> {
 	 * as the sum of v1 with the additive inverse of v2. That is
 	 * v1 - v2 = v1 + (-v2)
 	 * 
+	 * <p> Two vectors can only be subtracted if their size is the same.
+	 * 
 	 * <p> Vectors are supposed to be immutable. This means that
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * <p> If the given vector is null, in the case of fixed-size
-	 * vectors it will be treated as a vector where every element
-	 * is 0. In the case of vectors of unknown size, this will
-	 * throw an exception, since it is not possible to check if the
-	 * two vectors have the same size.
+	 * <p> If the given vector is null, it will be treated as a
+	 * vector where every element is 0. Which means this method
+	 * will return a vector equal to this one.
 	 * 
 	 * @param vector The second operand of the subtraction, a vector
-	 * 		of the same type as this one
+	 * 		of the same type and same size as this one.
 	 * 
 	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one or the same vector if the given one is null and
-	 * 		this is a fixed-size vector
+	 * 		given one or the same vector if the given one is null.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
-	 * 		have different sizes
+	 * 		have different sizes.
 	 */
 	default V minus(V vector) {
 		return this.negated().plus(vector).negated();

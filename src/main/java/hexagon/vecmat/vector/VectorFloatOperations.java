@@ -16,25 +16,25 @@ public interface VectorFloatOperations<F extends VectorFloatOperations<F>> exten
 	 * a vector v3 such that every i-th element of v3 is the
 	 * sum of the i-th element of v1 and the i-th element of v2.
 	 * 
+	 * <p> Two vectors can only be summed if their size is the same.
+	 * 
 	 * <p> Vectors are supposed to be immutable. This means that
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * <p> If the given vector is null, in the case of fixed-size
-	 * vectors it will be treated as a vector where every element
-	 * is 0. In the case of vectors of unknown size, this will
-	 * throw an exception, since it is not possible to check if the
-	 * two vectors have the same size.
+	 * <p> If the given vector is null, it will be treated as a
+	 * vector where every element is 0. Which means this method
+	 * will return a vector equal to this one.
 	 * 
-	 * @param vector The second operand of the sum, a vector
-	 * 		that can be represented as a float vector without casting
+	 * @param vector The second operand of the sum, a vector of the
+	 * 		same size as this one that can be represented as a
+	 * 		float vector without casting.
 	 * 
 	 * @return The sum of this vector and the given one or the same
-	 * 		vector if the given one is null and this is a fixed-size
-	 * 		vector
+	 * 		vector if the given one is null.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
-	 * 		have different sizes
+	 * 		have different sizes.
 	 */
 	default F plus(VectorAsFloat<F> vector) {
 		return vector != null ? this.plus(vector.asFloat()) : this.multipliedBy(1);
@@ -47,25 +47,25 @@ public interface VectorFloatOperations<F extends VectorFloatOperations<F>> exten
 	 * as the sum of v1 with the additive inverse of v2. That is
 	 * v1 - v2 = v1 + (-v2)
 	 * 
+	 * <p> Two vectors can only be subtracted if their size is the same.
+	 * 
 	 * <p> Vectors are supposed to be immutable. This means that
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * <p> If the given vector is null, in the case of fixed-size
-	 * vectors it will be treated as a vector where every element
-	 * is 0. In the case of vectors of unknown size, this will
-	 * throw an exception, since it is not possible to check if the
-	 * two vectors have the same size.
+	 * <p> If the given vector is null, it will be treated as a
+	 * vector where every element is 0. Which means this method
+	 * will return a vector equal to this one.
 	 * 
 	 * @param vector The second operand of the subtraction, a vector
-	 * 		that can be represented as a float vector without casting
+	 * 		of the same size as this one that can be represented as
+	 * 		a float vector without casting.
 	 * 
 	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one or the same vector if the given one is null and
-	 * 		this is a fixed-size vector
+	 * 		given one or the same vector if the given one is null.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
-	 * 		have different sizes
+	 * 		have different sizes.
 	 */
 	default F minus(VectorAsFloat<F> vector) {
 		return vector != null ? this.minus(vector.asFloat()) : this.multipliedBy(1);
@@ -115,20 +115,21 @@ public interface VectorFloatOperations<F extends VectorFloatOperations<F>> exten
 	 * size is a scalar defined as the summation of the products of
 	 * every element vi and wi of the two vectors.
 	 * 
-	 * <p> If the given vector is null, in the case of fixed-size
-	 * vectors it will be treated as a vector where every element
-	 * is 0. In the case of vectors of unknown size, this will
-	 * throw an exception, since it is not possible to check if the
-	 * two vectors have the same size.
+	 * <p> The dot product can only be computed between two vectors
+	 * of the same size.
+	 * 
+	 * <p> If the given vector is null, it will be treated as a
+	 * vector where every element is 0. Which means this method
+	 * will return 0.
 	 * 
 	 * @param vector The second operand of the product, another
-	 * 		float vector
+	 * 		float vector of the same size as this one.
 	 * 
 	 * @return The result of the dot product between the two vectors
-	 * 		or 0 if the given vector is null
+	 * 		or 0 if the given vector is null.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
-	 * 		have different sizes
+	 * 		have different sizes.
 	 */
 	float dotProduct(F vector);
 
@@ -140,20 +141,22 @@ public interface VectorFloatOperations<F extends VectorFloatOperations<F>> exten
 	 * size is a scalar defined as the summation of the products of
 	 * every element vi and wi of the two vectors.
 	 * 
-	 * <p> If the given vector is null, in the case of fixed-size
-	 * vectors it will be treated as a vector where every element
-	 * is 0. In the case of vectors of unknown size, this will
-	 * throw an exception, since it is not possible to check if the
-	 * two vectors have the same size.
+	 * <p> The dot product can only be computed between two vectors
+	 * of the same size.
+	 * 
+	 * <p> If the given vector is null, it will be treated as a
+	 * vector where every element is 0. Which means this method
+	 * will return 0.
 	 * 
 	 * @param vector The second operand of the product, a vector
-	 * 		that can be represented as a float vector without casting
+	 * 		of the same size as this one that can be represented
+	 * 		as a float vector without casting.
 	 * 
 	 * @return The result of the dot product between the two vectors
-	 * 		or 0 if the given vector is null
+	 * 		or 0 if the given vector is null.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
-	 * 		have different sizes
+	 * 		have different sizes.
 	 */
 	default float dotProduct(VectorAsFloat<F> vector) {
 		return vector != null ? this.dotProduct(vector.asFloat()) : 0.0f;
@@ -162,7 +165,7 @@ public interface VectorFloatOperations<F extends VectorFloatOperations<F>> exten
 	/**
 	 * Computes the squared length (or squared magnitude) of this vector.
 	 * 
-	 * <p> When the user needs to compare the length of two vectors, it
+	 * <p> When one needs to compare the length of two vectors, it
 	 * is best to use this method instead of {@link #length()}, since
 	 * given two numbers a > b, then it also holds that a^2 > b^2, and
 	 * this method is more efficient since it does not compute a
