@@ -25,59 +25,41 @@ public class TestIntVector {
 		return Stream.of(
 			//1. IntVector + IntVector
 			Arguments.of(new IntVector(1+2, 5+4, 4+3, 2+1, 3+5, 6+7, 9+8), v1.plus(v2)),
-			//2. IntVector + null (IntVector)
-			Arguments.of(v1, v1.plus(vn1)),
-			//3. IntVector + FloatVector
+			//2. IntVector + FloatVector
 			Arguments.of(new FloatVector(1+0.6f, 5+1.2f, 4+0.1f, 2+2.4f, 3+1.9f, 6+0.5f, 9+1.0f), v1.plus(v3)),
-			//4. IntVector + null (FloatVector)
-			Arguments.of(v1.asFloat(), v1.plus(vn2)),
-			//5. IntVector + DoubleVector
+			//3. IntVector + DoubleVector
 			Arguments.of(new DoubleVector(1+1.14, 5+3.12, 4+1.14, 2+5.67, 3+0.34, 6+1.56, 9+0.97), v1.plus(v4)),
-			//6. IntVector + null (DoubleVector)
-			Arguments.of(v1.asDouble(), v1.plus(vn3)),
-			//7. -IntVector
+			//4. -IntVector
 			Arguments.of(new IntVector(-1, -5, -4, -2, -3, -6, -9), v1.negated()),
-			//8. IntVector - IntVector
+			//5. IntVector - IntVector
 			Arguments.of(new IntVector(1-2, 5-4, 4-3, 2-1, 3-5, 6-7, 9-8), v1.minus(v2)),
-			//9. IntVector - null (IntVector)
-			Arguments.of(v1, v1.minus(vn1)),
-			//10. IntVector - FloatVector
+			//6. IntVector - FloatVector
 			Arguments.of(new FloatVector(1-0.6f, 5-1.2f, 4-0.1f, 2-2.4f, 3-1.9f, 6-0.5f, 9-1.0f), v1.minus(v3)),
-			//11. IntVector - null (FloatVector)
-			Arguments.of(v1.asFloat(), v1.minus(vn2)),
-			//12. IntVector - DoubleVector
+			//7. IntVector - DoubleVector
 			Arguments.of(new DoubleVector(1-1.14, 5-3.12, 4-1.14, 2-5.67, 3-0.34, 6-1.56, 9-0.97), v1.minus(v4)),
-			//13. IntVector - null (DoubleVector)
-			Arguments.of(v1.asDouble(), v1.minus(vn3)),
-			//14. IntVector * (int)
+			//8. IntVector * (int)
 			Arguments.of(new IntVector(1*2, 5*2, 4*2, 2*2, 3*2, 6*2, 9*2), v1.multipliedBy(2)),
-			//15. IntVector / (int)
+			//9. IntVector / (int)
 			Arguments.of(new IntVector(1/2, 5/2, 4/2, 2/2, 3/2, 6/2, 9/2), v1.dividedBy(2)),
-			//16. IntVector * (float)
+			//10. IntVector * (float)
 			Arguments.of(new FloatVector(1*1.5f, 5*1.5f, 4*1.5f, 2*1.5f, 3*1.5f, 6*1.5f, 9*1.5f), v1.multipliedBy(1.5f)),
-			//17. IntVector / (float)
+			//11. IntVector / (float)
 			Arguments.of(new FloatVector(1/2.0f, 5/2.0f, 4/2.0f, 2/2.0f, 3/2.0f, 6/2.0f, 9/2.0f), v1.dividedBy(2.0f)),
-			//18. IntVector * (double)
+			//12. IntVector * (double)
 			Arguments.of(new DoubleVector(1*1.25, 5*1.25, 4*1.25, 2*1.25, 3*1.25, 6*1.25, 9*1.25), v1.multipliedBy(1.25)),
-			//19. IntVector / (double)
+			//13. IntVector / (double)
 			Arguments.of(new DoubleVector(1/1.25, 5/1.25, 4/1.25, 2/1.25, 3/1.25, 6/1.25, 9/1.25), v1.dividedBy(1.25)),
-			//20. IntVector * IntVector
+			//14. IntVector * IntVector
 			Arguments.of(1*2 + 5*4 + 4*3 + 2*1 + 3*5 + 6*7 + 9*8, v1.dotProduct(v2)),
-			//21. IntVector * null (IntVector)
-			Arguments.of(0, v1.dotProduct(vn1)),
-			//22. IntVector * FloatVector
+			//15. IntVector * FloatVector
 			Arguments.of(1*0.6f + 5*1.2f + 4*0.1f + 2*2.4f + 3*1.9f + 6*0.5f + 9*1.0f, v1.dotProduct(v3)),
-			//23. IntVector * null (FloatVector)
-			Arguments.of(0.0f, v1.dotProduct(vn2)),
-			//24. IntVector * DoubleVector
+			//16. IntVector * DoubleVector
 			Arguments.of(1*1.14 + 5*3.12 + 4*1.14 + 2*5.67 + 3*0.34 + 6*1.56 + 9*0.97, v1.dotProduct(v4)),
-			//25. IntVector * null (DoubleVector)
-			Arguments.of(0.0, v1.dotProduct(vn3)),
-			//26. |IntVector|^2
+			//17. |IntVector|^2
 			Arguments.of(7, new IntVector(1, 1, 1, 1, 1, 1, 1).lengthSquared()),
-			//27. |IntVector|
+			//18. |IntVector|
 			Arguments.of(Math.sqrt(7), new IntVector(1, 1, 1, 1, 1, 1, 1).length()),
-			//14. ||IntVector||
+			//19. ||IntVector||
 			Arguments.of(1.0, v2.normalized().length())
 		);
 	}
@@ -119,6 +101,35 @@ public class TestIntVector {
 	@MethodSource("testExceptionsSource")
 	void testExceptions(Executable method) {
 		Assertions.assertThrows(VectorMathException.class, method);
+	}
+
+	static Stream<Arguments> testNullValuesSource() {
+		return Stream.of(
+			//1. IntVector + null (IntVector)
+			Arguments.of((Executable) () -> v1.plus(vn1)),
+			//2. IntVector + null (FloatVector)
+			Arguments.of((Executable) () -> v1.plus(vn2)),
+			//3. IntVector + null (DoubleVector)
+			Arguments.of((Executable) () -> v1.plus(vn3)),
+			//4. IntVector - null (IntVector)
+			Arguments.of((Executable) () -> v1.minus(vn1)),
+			//5. IntVector - null (FloatVector)
+			Arguments.of((Executable) () -> v1.minus(vn2)),
+			//6. IntVector - null (DoubleVector)
+			Arguments.of((Executable) () -> v1.minus(vn3)),
+			//7. IntVector * null (IntVector)
+			Arguments.of((Executable) () -> v1.dotProduct(vn1)),
+			//8. IntVector * null (FloatVector)
+			Arguments.of((Executable) () -> v1.dotProduct(vn2)),
+			//9. IntVector * null (DoubleVector)
+			Arguments.of((Executable) () -> v1.dotProduct(vn3))
+		);
+	}
+
+	@ParameterizedTest
+	@MethodSource("testNullValuesSource")
+	void testNullValues(Executable method) {
+		Assertions.assertThrows(NullPointerException.class, method);
 	}
 }
  

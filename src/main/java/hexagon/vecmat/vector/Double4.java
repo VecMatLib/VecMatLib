@@ -28,12 +28,12 @@ public record Double4(double x, double y, double z, double w) implements VectorD
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
-	 * @param w Fourth coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
+	 * @param w Fourth coordinate of the given vector.
 	 * 
-	 * @return The sum of this vector and the given one
+	 * @return The sum of this vector and the given one.
 	 */
 	public Double4 plus(double x, double y, double z, double w) {
 		return new Double4(this.x() + x, this.y() + y, this.z() + z, this.w() + w);
@@ -41,7 +41,7 @@ public record Double4(double x, double y, double z, double w) implements VectorD
 
 	@Override
 	public Double4 plus(Double4 vector) {
-		return vector != null ? this.plus(vector.x(), vector.y(), vector.z(), vector.w()) : this;
+		return this.plus(vector.x(), vector.y(), vector.z(), vector.w());
 	}
 
 	@Override
@@ -60,13 +60,13 @@ public record Double4(double x, double y, double z, double w) implements VectorD
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
-	 * @param w Fourth coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
+	 * @param w Fourth coordinate of the given vector.
 	 * 
 	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one
+	 * 		given one.
 	 */
 	public Double4 minus(double x, double y, double z, double w) {
 		return this.plus(-x, -y, -z, -w);
@@ -90,12 +90,12 @@ public record Double4(double x, double y, double z, double w) implements VectorD
 	 * size is a scalar defined as the summation of the products of
 	 * every element vi and wi of the two vectors.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
-	 * @param w Fourth coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
+	 * @param w Fourth coordinate of the given vector.
 	 * 
-	 * @return The result of the dot product between the two vectors
+	 * @return The result of the dot product between the two vectors.
 	 */
 	public double dotProduct(double x, double y, double z, double w) {
 		return this.x() * x + this.y() * y + this.z() * z + this.w() * w;
@@ -103,7 +103,7 @@ public record Double4(double x, double y, double z, double w) implements VectorD
 
 	@Override
 	public double dotProduct(Double4 vector) {
-		return vector != null ? this.dotProduct(vector.x(), vector.y(), vector.z(), vector.w()) : 0.0;
+		return this.dotProduct(vector.x(), vector.y(), vector.z(), vector.w());
 	}
 
 	@Override
@@ -114,12 +114,12 @@ public record Double4(double x, double y, double z, double w) implements VectorD
 	/**
 	 * Computes the angle in radians between this vector and the given one.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
-	 * @param w Fourth coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
+	 * @param w Fourth coordinate of the given vector.
 	 * 
-	 * @return The angle in radians between this vector and the given one
+	 * @return The angle in radians between this vector and the given one.
 	 */
 	public double angle(double x, double y, double z, double w) {
 		return this.angle(new Double4(x, y, z, w));

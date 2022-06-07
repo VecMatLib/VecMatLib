@@ -2,11 +2,7 @@ package hexagon.vecmat.vector;
 
 /**
  * Thrown when an application attempts to perform an undefined
- * operation with vectors. These include:
- * <ul>
- * <li>Performing an operation between two vectors of different sizes
- * <li>Creating a vector of size 0
- * </ul>
+ * operation with vectors.
  * 
  * @author Nico
  */
@@ -32,7 +28,7 @@ public class VectorMathException extends RuntimeException {
 	 * Constructs a {@code VectorMathException} with the specified detail message and cause.
 	 *
 	 * @param message The detail message.
-	 * @param cause The cause 
+	 * @param cause The cause.
 	 */
 	public VectorMathException(String message, Throwable cause) {
 		super(message, cause);
@@ -41,7 +37,7 @@ public class VectorMathException extends RuntimeException {
 	/**
 	 * Constructs a {@code VectorMathException} with the specified cause.
 	 *
-	 * @param cause The cause 
+	 * @param cause The cause.
 	 */
 	public VectorMathException(Throwable cause) {
 		super(cause);

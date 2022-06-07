@@ -39,11 +39,11 @@ public record Int3(int x, int y, int z) implements VectorIntOperations<Int3>, Ve
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
 	 * 
-	 * @return The sum of this vector and the given one
+	 * @return The sum of this vector and the given one.
 	 */
 	public Int3 plus(int x, int y, int z) {
 		return new Int3(this.x() + x, this.y() + y, this.z() + z);
@@ -51,7 +51,7 @@ public record Int3(int x, int y, int z) implements VectorIntOperations<Int3>, Ve
 
 	@Override
 	public Int3 plus(Int3 vector) {
-		return vector != null ? this.plus(vector.x(), vector.y(), vector.z()) : this;
+		return this.plus(vector.x(), vector.y(), vector.z());
 	}
 
 	/**
@@ -68,11 +68,11 @@ public record Int3(int x, int y, int z) implements VectorIntOperations<Int3>, Ve
 	 * <p> The sum of this vector and a float vector will result
 	 * in a float vector.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
 	 * 
-	 * @return The sum of this vector and the given one
+	 * @return The sum of this vector and the given one.
 	 */
 	public Float3 plus(float x, float y, float z) {
 		return this.asFloat().plus(x, y, z);
@@ -92,11 +92,11 @@ public record Int3(int x, int y, int z) implements VectorIntOperations<Int3>, Ve
 	 * <p> The sum of this vector and a double vector will result
 	 * in a double vector.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
 	 * 
-	 * @return The sum of this vector and the given one
+	 * @return The sum of this vector and the given one.
 	 */
 	public Double3 plus(double x, double y, double z) {
 		return this.asDouble().plus(x, y, z);
@@ -118,12 +118,12 @@ public record Int3(int x, int y, int z) implements VectorIntOperations<Int3>, Ve
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
 	 * 
 	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one
+	 * 		given one.
 	 */
 	public Int3 minus(int x, int y, int z) {
 		return this.plus(-x, -y, -z);
@@ -143,12 +143,12 @@ public record Int3(int x, int y, int z) implements VectorIntOperations<Int3>, Ve
 	 * <p> The subtraction of this vector and a float vector will
 	 * result in a float vector.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
 	 * 
 	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one
+	 * 		given one.
 	 */
 	public Float3 minus(float x, float y, float z) {
 		return this.asFloat().minus(x, y, z);
@@ -168,12 +168,12 @@ public record Int3(int x, int y, int z) implements VectorIntOperations<Int3>, Ve
 	 * <p> The subtraction of this vector and a double vector will
 	 * result in a double vector.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
 	 * 
 	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one
+	 * 		given one.
 	 */
 	public Double3 minus(double x, double y, double z) {
 		return this.asDouble().minus(x, y, z);
@@ -197,11 +197,11 @@ public record Int3(int x, int y, int z) implements VectorIntOperations<Int3>, Ve
 	 * size is a scalar defined as the summation of the products of
 	 * every element vi and wi of the two vectors.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
 	 * 
-	 * @return The result of the dot product between the two vectors
+	 * @return The result of the dot product between the two vectors.
 	 */
 	public int dotProduct(int x, int y, int z) {
 		return this.x() * x + this.y() * y + this.z() * z;
@@ -209,7 +209,7 @@ public record Int3(int x, int y, int z) implements VectorIntOperations<Int3>, Ve
 
 	@Override
 	public int dotProduct(Int3 vector) {
-		return vector != null ? this.dotProduct(vector.x(), vector.y(), vector.z()) : 0;
+		return this.dotProduct(vector.x(), vector.y(), vector.z());
 	}
 
 	/**
@@ -223,11 +223,11 @@ public record Int3(int x, int y, int z) implements VectorIntOperations<Int3>, Ve
 	 * <p> The dot product between this vector and a float vector
 	 * will result in a float.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
 	 * 
-	 * @return The result of the dot product between the two vectors
+	 * @return The result of the dot product between the two vectors.
 	 */
 	public float dotProduct(float x, float y, float z) {
 		return this.asFloat().dotProduct(x, y, z);
@@ -244,11 +244,11 @@ public record Int3(int x, int y, int z) implements VectorIntOperations<Int3>, Ve
 	 * <p> The dot product between this vector and a double vector
 	 * will result in a double.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
 	 * 
-	 * @return The result of the dot product between the two vectors
+	 * @return The result of the dot product between the two vectors.
 	 */
 	public double dotProduct(double x, double y, double z) {
 		return this.asDouble().dotProduct(x, y, z);
@@ -262,11 +262,11 @@ public record Int3(int x, int y, int z) implements VectorIntOperations<Int3>, Ve
 	 * perpendicular to both of them whose magnitude equals the
 	 * area of the parallelogram with the two vectors for sides.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
 	 * 
-	 * @return The result of the cross product between the two vectors
+	 * @return The result of the cross product between the two vectors.
 	 */
 	public Int3 crossProduct(int x, int y, int z) {
 		return new Int3(this.y() * z - this.z() * y, x * this.z() - z * this.x(), this.x() * y - this.y() * x);
@@ -280,15 +280,14 @@ public record Int3(int x, int y, int z) implements VectorIntOperations<Int3>, Ve
 	 * perpendicular to both of them whose magnitude equals the
 	 * area of the parallelogram with the two vectors for sides.
 	 * 
-	 * <p> If the given vector is null, it will be treated as a
-	 * vector where every element is 0.
+	 * @param vector The second operand of the product.
 	 * 
-	 * @param vector The second operand of the product
+	 * @return The result of the cross product between the two vectors.
 	 * 
-	 * @return The result of the cross product between the two vectors
+	 * @throws NullPointerException If the given vector is null.
 	 */
 	public Int3 crossProduct(Int3 vector) {
-		return vector != null ? this.crossProduct(vector.x(), vector.y(), vector.z()) : Int3.ZERO;
+		return this.crossProduct(vector.x(), vector.y(), vector.z());
 	}
 
 	/**
@@ -302,11 +301,11 @@ public record Int3(int x, int y, int z) implements VectorIntOperations<Int3>, Ve
 	 * <p> The cross product between this vector and a float vector
 	 * will result in a float vector.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
 	 * 
-	 * @return The result of the cross product between the two vectors
+	 * @return The result of the cross product between the two vectors.
 	 */
 	public Float3 crossProduct(float x, float y, float z) {
 		return this.asFloat().crossProduct(x, y, z);
@@ -323,12 +322,11 @@ public record Int3(int x, int y, int z) implements VectorIntOperations<Int3>, Ve
 	 * <p> The cross product between this vector and a float vector
 	 * will result in a float vector.
 	 * 
-	 * <p> If the given vector is null, it will be treated as a
-	 * vector where every element is 0.
+	 * @param vector The second operand of the product.
 	 * 
-	 * @param vector The second operand of the product
+	 * @return The result of the cross product between the two vectors.
 	 * 
-	 * @return The result of the cross product between the two vectors
+	 * @throws NullPointerException If the given vector is null.
 	 */
 	public Float3 crossProduct(Float3 vector) {
 		return this.asFloat().crossProduct(vector);
@@ -345,11 +343,11 @@ public record Int3(int x, int y, int z) implements VectorIntOperations<Int3>, Ve
 	 * <p> The cross product between this vector and a double vector
 	 * will result in a double vector.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
 	 * 
-	 * @return The result of the cross product between the two vectors
+	 * @return The result of the cross product between the two vectors.
 	 */
 	public Double3 crossProduct(double x, double y, double z) {
 		return this.asDouble().crossProduct(x, y, z);
@@ -366,12 +364,11 @@ public record Int3(int x, int y, int z) implements VectorIntOperations<Int3>, Ve
 	 * <p> The cross product between this vector and a double vector
 	 * will result in a double vector.
 	 * 
-	 * <p> If the given vector is null, it will be treated as a
-	 * vector where every element is 0.
+	 * @param vector The second operand of the product.
 	 * 
-	 * @param vector The second operand of the product
+	 * @return The result of the cross product between the two vectors.
 	 * 
-	 * @return The result of the cross product between the two vectors
+	 * @throws NullPointerException If the given vector is null.
 	 */
 	public Double3 crossProduct(Double3 vector) {
 		return this.asDouble().crossProduct(vector);
@@ -385,11 +382,11 @@ public record Int3(int x, int y, int z) implements VectorIntOperations<Int3>, Ve
 	/**
 	 * Computes the angle in radians between this vector and the given one.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
 	 * 
-	 * @return The angle in radians between this vector and the given one
+	 * @return The angle in radians between this vector and the given one.
 	 */
 	public double angle(double x, double y, double z) {
 		return this.angle(new Double3(x, y, z));

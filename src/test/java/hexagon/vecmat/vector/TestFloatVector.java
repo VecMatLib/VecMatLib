@@ -25,55 +25,37 @@ public class TestFloatVector {
 		return Stream.of(
 			//1. FloatVector + FloatVector
 			Arguments.of(new FloatVector(1.1f+0.7f, 0.5f+1.4f, 2.1f+1.2f, 0.1f+2.4f, 0.4f+0.5f, 2.4f+1.2f, 1.5f+0.1f), v1.plus(v2)),
-			//2. FloatVector + null (FloatVector)
-			Arguments.of(v1, v1.plus(vn1)),
-			//3. FloatVector + IntVector
+			//2. FloatVector + IntVector
 			Arguments.of(new FloatVector(1.1f+1, 0.5f+2, 2.1f+3, 0.1f+4, 0.4f+5, 2.4f+6, 1.5f+7), v1.plus(v3)),
-			//4. FloatVector + null (IntVector)
-			Arguments.of(v1, v1.plus(vn2)),
-			//5. FloatVector + DoubleVector
+			//3. FloatVector + DoubleVector
 			Arguments.of(new DoubleVector(1.1f+1.14, 0.5f+3.12, 2.1f+1.14, 0.1f+5.67, 0.4f+0.34, 2.4f+1.56, 1.5f+0.97), v1.plus(v4)),
-			//6. FloatVector + null (DoubleVector)
-			Arguments.of(v1.asDouble(), v1.plus(vn3)),
-			//7. -FloatVector
+			//4. -FloatVector
 			Arguments.of(new FloatVector(-1.1f, -0.5f, -2.1f, -0.1f, -0.4f, -2.4f, -1.5f), v1.negated()),
-			//8. FloatVector - FloatVector
+			//5. FloatVector - FloatVector
 			Arguments.of(new FloatVector(1.1f-0.7f, 0.5f-1.4f, 2.1f-1.2f, 0.1f-2.4f, 0.4f-0.5f, 2.4f-1.2f, 1.5f-0.1f), v1.minus(v2)),
-			//9. FloatVector - null (FloatVector)
-			Arguments.of(v1, v1.minus(vn1)),
-			//10. FloatVector - IntVector
+			//6. FloatVector - IntVector
 			Arguments.of(new FloatVector(1.1f-1, 0.5f-2, 2.1f-3, 0.1f-4, 0.4f-5, 2.4f-6, 1.5f-7), v1.minus(v3)),
-			//11. FloatVector - null (IntVector)
-			Arguments.of(v1, v1.minus(vn2)),
-			//12. FloatVector - DoubleVector
+			//7. FloatVector - DoubleVector
 			Arguments.of(new DoubleVector(1.1f-1.14, 0.5f-3.12, 2.1f-1.14, 0.1f-5.67, 0.4f-0.34, 2.4f-1.56, 1.5f-0.97), v1.minus(v4)),
-			//13. FloatVector - null (DoubleVector)
-			Arguments.of(v1.asDouble(), v1.minus(vn3)),
-			//14. FloatVector * (float)
+			//8. FloatVector * (float)
 			Arguments.of(new FloatVector(1.1f*1.5f, 0.5f*1.5f, 2.1f*1.5f, 0.1f*1.5f, 0.4f*1.5f, 2.4f*1.5f, 1.5f*1.5f), v1.multipliedBy(1.5f)),
-			//15. FloatVector / (float)
+			//9. FloatVector / (float)
 			Arguments.of(new FloatVector(1.1f/1.5f, 0.5f/1.5f, 2.1f/1.5f, 0.1f/1.5f, 0.4f/1.5f, 2.4f/1.5f, 1.5f/1.5f), v1.dividedBy(1.5f)),
-			//16. FloatVector * (double)
+			//10. FloatVector * (double)
 			Arguments.of(new DoubleVector(1.1f*1.25, 0.5f*1.25, 2.1f*1.25, 0.1f*1.25, 0.4f*1.25, 2.4f*1.25, 1.5f*1.25), v1.multipliedBy(1.25)),
-			//17. FloatVector / (double)
+			//11. FloatVector / (double)
 			Arguments.of(new DoubleVector(1.1f/1.25, 0.5f/1.25, 2.1f/1.25, 0.1f/1.25, 0.4f/1.25, 2.4f/1.25, 1.5f/1.25), v1.dividedBy(1.25)),
-			//18. FloatVector * FloatVector
+			//12. FloatVector * FloatVector
 			Arguments.of(1.1f*0.7f + 0.5f*1.4f + 2.1f*1.2f + 0.1f*2.4f + 0.4f*0.5f + 2.4f*1.2f + 1.5f*0.1f, v1.dotProduct(v2)),
-			//19. FloatVector * null (FloatVector)
-			Arguments.of(0.0f, v1.dotProduct(vn1)),
-			//20. FloatVector * IntVector
+			//13. FloatVector * IntVector
 			Arguments.of(1.1f*1 + 0.5f*2 + 2.1f*3 + 0.1f*4 + 0.4f*5 + 2.4f*6 + 1.5f*7, v1.dotProduct(v3)),
-			//21. FloatVector * null (IntVector)
-			Arguments.of(0.0f, v1.dotProduct(vn2)),
-			//22. FloatVector * DoubleVector
+			//14. FloatVector * DoubleVector
 			Arguments.of(1.1f*1.14 + 0.5f*3.12 + 2.1f*1.14 + 0.1f*5.67 + 0.4f*0.34 + 2.4f*1.56 + 1.5f*0.97, v1.dotProduct(v4)),
-			//23. FloatVector * null (DoubleVector)
-			Arguments.of(0.0, v1.dotProduct(vn3)),
-			//24. |FloatVector|^2
+			//15. |FloatVector|^2
 			Arguments.of(7.0f, new FloatVector(1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f).lengthSquared()),
-			//25. |FloatVector|
+			//16. |FloatVector|
 			Arguments.of(Math.sqrt(7), new FloatVector(1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f).length()),
-			//14. ||FloatVector||
+			//17. ||FloatVector||
 			Arguments.of(1.0, v1.normalized().length())
 		);
 	}
@@ -115,5 +97,34 @@ public class TestFloatVector {
 	@MethodSource("testExceptionsSource")
 	void testExceptions(Executable method) {
 		Assertions.assertThrows(VectorMathException.class, method);
+	}
+
+	static Stream<Arguments> testNullValuesSource() {
+		return Stream.of(
+			//1. FloatVector + null (FloatVector)
+			Arguments.of((Executable) () -> v1.plus(vn1)),
+			//2. FloatVector + null (IntVector)
+			Arguments.of((Executable) () -> v1.plus(vn2)),
+			//3. FloatVector + null (DoubleVector)
+			Arguments.of((Executable) () -> v1.plus(vn3)),
+			//4. FloatVector - null (FloatVector)
+			Arguments.of((Executable) () -> v1.minus(vn1)),
+			//5. FloatVector - null (IntVector)
+			Arguments.of((Executable) () -> v1.minus(vn2)),
+			//6. FloatVector - null (DoubleVector)
+			Arguments.of((Executable) () -> v1.minus(vn3)),
+			//7. FloatVector * null (FloatVector)
+			Arguments.of((Executable) () -> v1.dotProduct(vn1)),
+			//8. FloatVector * null (IntVector)
+			Arguments.of((Executable) () -> v1.dotProduct(vn2)),
+			//9. FloatVector * null (DoubleVector)
+			Arguments.of((Executable) () -> v1.dotProduct(vn3))
+		);
+	}
+
+	@ParameterizedTest
+	@MethodSource("testNullValuesSource")
+	void testNullValues(Executable method) {
+		Assertions.assertThrows(NullPointerException.class, method);
 	}
 }

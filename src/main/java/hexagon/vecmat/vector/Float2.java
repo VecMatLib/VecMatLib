@@ -34,10 +34,10 @@ public record Float2(float x, float y) implements VectorFloatOperations<Float2>,
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
 	 * 
-	 * @return The sum of this vector and the given one
+	 * @return The sum of this vector and the given one.
 	 */
 	public Float2 plus(float x, float y) {
 		return new Float2(this.x() + x, this.y() + y);
@@ -45,7 +45,7 @@ public record Float2(float x, float y) implements VectorFloatOperations<Float2>,
 
 	@Override
 	public Float2 plus(Float2 vector) {
-		return vector != null ? this.plus(vector.x(), vector.y()) : this;
+		return this.plus(vector.x(), vector.y());
 	}
 
 	/**
@@ -62,10 +62,10 @@ public record Float2(float x, float y) implements VectorFloatOperations<Float2>,
 	 * <p> The sum of this vector and a double vector will result
 	 * in a double vector.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
 	 * 
-	 * @return The sum of this vector and the given one
+	 * @return The sum of this vector and the given one.
 	 */
 	public Double2 plus(double x, double y) {
 		return this.asDouble().plus(x, y);
@@ -87,11 +87,11 @@ public record Float2(float x, float y) implements VectorFloatOperations<Float2>,
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
 	 * 
 	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one
+	 * 		given one.
 	 */
 	public Float2 minus(float x, float y) {
 		return this.plus(-x, -y);
@@ -111,14 +111,14 @@ public record Float2(float x, float y) implements VectorFloatOperations<Float2>,
 	 * <p> The subtraction of this vector and a double vector will
 	 * result in a double vector.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
 	 * 
 	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one
+	 * 		given one.
 	 */
 	public Double2 minus(double x, double y) {
-		return this.plus(-x, -y);
+		return this.asDouble().minus(x, y);
 	}
 
 	@Override
@@ -134,10 +134,10 @@ public record Float2(float x, float y) implements VectorFloatOperations<Float2>,
 	 * size is a scalar defined as the summation of the products of
 	 * every element vi and wi of the two vectors.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
 	 * 
-	 * @return The result of the dot product between the two vectors
+	 * @return The result of the dot product between the two vectors.
 	 */
 	public float dotProduct(float x, float y) {
 		return this.x() * x + this.y() * y;
@@ -145,7 +145,7 @@ public record Float2(float x, float y) implements VectorFloatOperations<Float2>,
 
 	@Override
 	public float dotProduct(Float2 vector) {
-		return vector != null ? this.dotProduct(vector.x(), vector.y()) : 0.0f;
+		return this.dotProduct(vector.x(), vector.y());
 	}
 
 	/**
@@ -159,10 +159,10 @@ public record Float2(float x, float y) implements VectorFloatOperations<Float2>,
 	 * <p> The dot product between this vector and a double vector
 	 * will result in a double.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
 	 * 
-	 * @return The result of the dot product between the two vectors
+	 * @return The result of the dot product between the two vectors.
 	 */
 	public double dotProduct(double x, double y) {
 		return this.asDouble().dotProduct(x, y);
@@ -176,10 +176,10 @@ public record Float2(float x, float y) implements VectorFloatOperations<Float2>,
 	/**
 	 * Computes the angle in radians between this vector and the given one.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
 	 * 
-	 * @return The angle in radians between this vector and the given one
+	 * @return The angle in radians between this vector and the given one.
 	 */
 	public double angle(double x, double y) {
 		return this.angle(new Double2(x, y));

@@ -26,18 +26,14 @@ public interface VectorAsDouble<D extends VectorDoubleOperations<D>> {
 	 * <p> The sum of this vector and a double vector will result
 	 * in a double vector.
 	 * 
-	 * <p> If the given vector is null, it will be treated as a
-	 * vector where every element is 0. Which means this method
-	 * will return a vector equal to this one.
-	 * 
 	 * @param vector The second operand of the sum, a double vector
 	 * 		of the same size as this one.
 	 * 
-	 * @return The sum of this vector and the given one or the same
-	 * 		vector if the given one is null.
+	 * @return The sum of this vector and the given one.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
 	 * 		have different sizes.
+	 * @throws NullPointerException if the given vector is null.
 	 */
 	default D plus(D vector) {
 		return this.asDouble().plus(vector);
@@ -59,18 +55,15 @@ public interface VectorAsDouble<D extends VectorDoubleOperations<D>> {
 	 * <p> The subtraction between this vector and a double vector
 	 * will result in a double vector.
 	 * 
-	 * <p> If the given vector is null, it will be treated as a
-	 * vector where every element is 0. Which means this method
-	 * will return a vector equal to this one.
-	 * 
 	 * @param vector The second operand of the subtraction, a double
 	 * 		vector of the same size as this one.
 	 * 
 	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one or the same vector if the given one is null.
+	 * 		given one.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
 	 * 		have different sizes.
+	 * @throws NullPointerException if the given vector is null.
 	 */
 	default D minus(D vector) {
 		return this.asDouble().minus(vector);
@@ -89,9 +82,9 @@ public interface VectorAsDouble<D extends VectorDoubleOperations<D>> {
 	 * <p> Multiplying this vector by a double will result in a
 	 * double vector.
 	 * 
-	 * @param k The scalar to which this vector is multiplied
+	 * @param k The scalar to which this vector is multiplied.
 	 * 
-	 * @return The product between this vector and the given scalar
+	 * @return The product between this vector and the given scalar.
 	 */
 	default D multipliedBy(double k) {
 		return this.asDouble().multipliedBy(k);
@@ -111,10 +104,10 @@ public interface VectorAsDouble<D extends VectorDoubleOperations<D>> {
 	 * <p> Dividing this vector by a double will result in a
 	 * double vector.
 	 * 
-	 * @param k The scalar by which this vector is divided
+	 * @param k The scalar by which this vector is divided.
 	 * 
 	 * @return The product between this vector and the multiplicative
-	 * 		inverse of the given scalar
+	 * 		inverse of the given scalar.
 	 */
 	default D dividedBy(double k) {
 		return this.asDouble().dividedBy(k);
@@ -134,18 +127,14 @@ public interface VectorAsDouble<D extends VectorDoubleOperations<D>> {
 	 * <p> The dot product between this vector and a double vector
 	 * will result in a double.
 	 * 
-	 * <p> If the given vector is null, it will be treated as a
-	 * vector where every element is 0. Which means this method
-	 * will return 0.
-	 * 
 	 * @param vector The second operand of the product, a double
 	 * 		vector of the same size as this one.
 	 * 
-	 * @return The result of the dot product between the two vectors
-	 * 		or 0 if the given vector is null
+	 * @return The result of the dot product between the two vectors.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
-	 * 		have different sizes
+	 * 		have different sizes.
+	 * @throws NullPointerException if the given vector is null.
 	 */
 	default double dotProduct(D vector) {
 		return this.asDouble().dotProduct(vector);
@@ -179,6 +168,7 @@ public interface VectorAsDouble<D extends VectorDoubleOperations<D>> {
 	 * 
 	 * @throws VectorMathException if this vector and the given one
 	 * 		have different sizes.
+	 * @throws NullPointerException if the given vector is null.
 	 */
 	default double angle(D vector) {
 		return this.asDouble().angle(vector);
@@ -194,15 +184,16 @@ public interface VectorAsDouble<D extends VectorDoubleOperations<D>> {
 	 * 
 	 * @throws VectorMathException if this vector and the given one
 	 * 		have different sizes.
+	 * @throws NullPointerException if the given vector is null.
 	 */
 	default double angle(VectorAsDouble<D> vector) {
-		return vector != null ? this.angle(vector.asDouble()) : Double.NaN;
+		return this.angle(vector.asDouble());
 	}
 
 	/**
 	 * Converts this vector to a double without casting.
 	 * 
-	 * @return The double value of this vector
+	 * @return The double value of this vector.
 	 */
 	D asDouble();
 }

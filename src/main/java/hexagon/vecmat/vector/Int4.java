@@ -28,12 +28,12 @@ public record Int4(int x, int y, int z, int w) implements VectorIntOperations<In
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
-	 * @param w Fourth coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
+	 * @param w Fourth coordinate of the given vector.
 	 * 
-	 * @return The sum of this vector and the given one
+	 * @return The sum of this vector and the given one.
 	 */
 	public Int4 plus(int x, int y, int z, int w) {
 		return new Int4(this.x() + x, this.y() + y, this.z() + z, this.w() + w);
@@ -41,7 +41,7 @@ public record Int4(int x, int y, int z, int w) implements VectorIntOperations<In
 
 	@Override
 	public Int4 plus(Int4 vector) {
-		return vector != null ? this.plus(vector.x(), vector.y(), vector.z(), vector.w()) : this;
+		return this.plus(vector.x(), vector.y(), vector.z(), vector.w());
 	}
 
 	/**
@@ -58,12 +58,12 @@ public record Int4(int x, int y, int z, int w) implements VectorIntOperations<In
 	 * <p> The sum of this vector and a float vector will result
 	 * in a float vector.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
-	 * @param w Fourth coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
+	 * @param w Fourth coordinate of the given vector.
 	 * 
-	 * @return The sum of this vector and the given one
+	 * @return The sum of this vector and the given one.
 	 */
 	public Float4 plus(float x, float y, float z, float w) {
 		return this.asFloat().plus(x, y, z, w);
@@ -83,12 +83,12 @@ public record Int4(int x, int y, int z, int w) implements VectorIntOperations<In
 	 * <p> The sum of this vector and a double vector will result
 	 * in a double vector.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
-	 * @param w Fourth coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
+	 * @param w Fourth coordinate of the given vector.
 	 * 
-	 * @return The sum of this vector and the given one
+	 * @return The sum of this vector and the given one.
 	 */
 	public Double4 plus(double x, double y, double z, double w) {
 		return this.asDouble().plus(x, y, z, w);
@@ -110,13 +110,13 @@ public record Int4(int x, int y, int z, int w) implements VectorIntOperations<In
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
-	 * @param w Fourth coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
+	 * @param w Fourth coordinate of the given vector.
 	 * 
 	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one
+	 * 		given one.
 	 */
 	public Int4 minus(int x, int y, int z, int w) {
 		return this.plus(-x, -y, -z, -w);
@@ -136,13 +136,13 @@ public record Int4(int x, int y, int z, int w) implements VectorIntOperations<In
 	 * <p> The subtraction of this vector and a float vector will
 	 * result in a float vector.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
-	 * @param w Fourth coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
+	 * @param w Fourth coordinate of the given vector.
 	 * 
 	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one
+	 * 		given one.
 	 */
 	public Float4 minus(float x, float y, float z, float w) {
 		return this.asFloat().minus(x, y, z, w);
@@ -162,13 +162,13 @@ public record Int4(int x, int y, int z, int w) implements VectorIntOperations<In
 	 * <p> The subtraction of this vector and a double vector will
 	 * result in a double vector.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
-	 * @param w Fourth coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
+	 * @param w Fourth coordinate of the given vector.
 	 * 
 	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one
+	 * 		given one.
 	 */
 	public Double4 minus(double x, double y, double z, double w) {
 		return this.asDouble().minus(x, y, z, w);
@@ -192,12 +192,12 @@ public record Int4(int x, int y, int z, int w) implements VectorIntOperations<In
 	 * size is a scalar defined as the summation of the products of
 	 * every element vi and wi of the two vectors.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
-	 * @param w Fourth coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
+	 * @param w Fourth coordinate of the given vector.
 	 * 
-	 * @return The result of the dot product between the two vectors
+	 * @return The result of the dot product between the two vectors.
 	 */
 	public int dotProduct(int x, int y, int z, int w) {
 		return this.x() * x + this.y() * y + this.z() * z + this.w() * w;
@@ -205,7 +205,7 @@ public record Int4(int x, int y, int z, int w) implements VectorIntOperations<In
 
 	@Override
 	public int dotProduct(Int4 vector) {
-		return vector != null ? this.dotProduct(vector.x(), vector.y(), vector.z(), vector.w()) : 0;
+		return this.dotProduct(vector.x(), vector.y(), vector.z(), vector.w());
 	}
 
 	/**
@@ -219,12 +219,12 @@ public record Int4(int x, int y, int z, int w) implements VectorIntOperations<In
 	 * <p> The dot product between this vector and a float vector
 	 * will result in a float.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
-	 * @param w Fourth coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
+	 * @param w Fourth coordinate of the given vector.
 	 * 
-	 * @return The result of the dot product between the two vectors
+	 * @return The result of the dot product between the two vectors.
 	 */
 	public float dotProduct(float x, float y, float z, float w) {
 		return this.asFloat().dotProduct(x, y, z, w);
@@ -241,12 +241,12 @@ public record Int4(int x, int y, int z, int w) implements VectorIntOperations<In
 	 * <p> The dot product between this vector and a double vector
 	 * will result in a double.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
-	 * @param w Fourth coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
+	 * @param w Fourth coordinate of the given vector.
 	 * 
-	 * @return The result of the dot product between the two vectors
+	 * @return The result of the dot product between the two vectors.
 	 */
 	public double dotProduct(double x, double y, double z, double w) {
 		return this.asDouble().dotProduct(x, y, z, w);
@@ -260,12 +260,12 @@ public record Int4(int x, int y, int z, int w) implements VectorIntOperations<In
 	/**
 	 * Computes the angle in radians between this vector and the given one.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
-	 * @param w Fourth coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
+	 * @param w Fourth coordinate of the given vector.
 	 * 
-	 * @return The angle in radians between this vector and the given one
+	 * @return The angle in radians between this vector and the given one.
 	 */
 	public double angle(double x, double y, double z, double w) {
 		return this.angle(new Double4(x, y, z, w));

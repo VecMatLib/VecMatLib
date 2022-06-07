@@ -24,18 +24,14 @@ public interface VectorOperations<V extends VectorOperations<V>> {
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * <p> If the given vector is null, it will be treated as a
-	 * vector where every element is 0. Which means this method
-	 * will return a vector equal to this one.
-	 * 
 	 * @param vector The second operand of the sum, a vector of the
 	 * 		same type and same size as this one.
 	 * 
-	 * @return The sum of this vector and the given one or the same
-	 * 		vector if the given one is null.
+	 * @return The sum of this vector and the given one.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
 	 * 		have different sizes.
+	 * @throws NullPointerException if the given vector is null.
 	 */
 	V plus(V vector);
 
@@ -45,7 +41,7 @@ public interface VectorOperations<V extends VectorOperations<V>> {
 	 * <p> The additive inverse of a vector v is a vector -v such
 	 * that v + (-v) is a vector where every element i is 0.
 	 * 
-	 * @return The additive inverse of this vector
+	 * @return The additive inverse of this vector.
 	 */
 	V negated();
 
@@ -62,21 +58,18 @@ public interface VectorOperations<V extends VectorOperations<V>> {
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * <p> If the given vector is null, it will be treated as a
-	 * vector where every element is 0. Which means this method
-	 * will return a vector equal to this one.
-	 * 
 	 * @param vector The second operand of the subtraction, a vector
 	 * 		of the same type and same size as this one.
 	 * 
 	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one or the same vector if the given one is null.
+	 * 		given one.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
 	 * 		have different sizes.
+	 * @throws NullPointerException if the given vector is null.
 	 */
 	default V minus(V vector) {
-		return this.negated().plus(vector).negated();
+		return this.plus(vector.negated());
 	}
 
 	/**
@@ -87,7 +80,7 @@ public interface VectorOperations<V extends VectorOperations<V>> {
 	 * the distance between the origin of the vector space and
 	 * the vector in standard position.
 	 * 
-	 * @return The length (or magnitude) of this vector
+	 * @return The length (or magnitude) of this vector.
 	 */
 	double length();
 }

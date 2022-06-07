@@ -3,6 +3,7 @@ package hexagon.vecmat.vector;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -26,43 +27,31 @@ public class TestDouble4 {
 			Arguments.of(new Double4(x1 + x2, y1 + y2, z1 + z2, w1 + w2), v1.plus(v2)),
 			//2. Double4 + (double, double, double, double)
 			Arguments.of(new Double4(x1 + x2, y1 + y2, z1 + z2, w1 + w2), v1.plus(x2, y2, z2, w2)),
-			//3. Double4 + null (Double4)
-			Arguments.of(v1, v1.plus(vn1)),
-			//4. Double4 + Float4
+			//3. Double4 + Float4
 			Arguments.of(new Double4(x1 + x3, y1 + y3, z1 + z3, w1 + w3), v1.plus(v3)),
-			//5. Double4 + null (Float4)
-			Arguments.of(v1, v1.plus(vn2)),
-			//6. -Double4
+			//4. -Double4
 			Arguments.of(new Double4(-x1, -y1, -z1, -w1), v1.negated()),
-			//7. Double4 - Double4
+			//5. Double4 - Double4
 			Arguments.of(new Double4(x1 - x2, y1 - y2, z1 - z2, w1 - w2), v1.minus(v2)),
-			//8. Double4 - (double, double, double, double)
+			//6. Double4 - (double, double, double, double)
 			Arguments.of(new Double4(x1 - x2, y1 - y2, z1 - z2, w1 - w2), v1.minus(x2, y2, z2, w2)),
-			//9. Double4 - null (Double4)
-			Arguments.of(v1, v1.minus(vn1)),
-			//10. Double4 - Float4
+			//7. Double4 - Float4
 			Arguments.of(new Double4(x1 - x3, y1 - y3, z1 - z3, w1 - w3), v1.minus(v3)),
-			//11. Double4 - null (Float4)
-			Arguments.of(v1, v1.minus(vn2)),
-			//12. Double4 * (double)
+			//8. Double4 * (double)
 			Arguments.of(new Double4(x1 * 1.25, y1 * 1.25, z1 * 1.25, w1 * 1.25), v1.multipliedBy(1.25)),
-			//13. Double4 / (double)
+			//9. Double4 / (double)
 			Arguments.of(new Double4(x1 / 1.25, y1 / 1.25, z1 / 1.25, w1 / 1.25), v1.dividedBy(1.25)),
-			//14. Double4 * Double4
+			//10. Double4 * Double4
 			Arguments.of(x1 * x2 + y1 * y2 + z1 * z2 + w1 * w2, v1.dotProduct(v2)),
-			//15. Double4 * (double, double, double, double)
+			//11. Double4 * (double, double, double, double)
 			Arguments.of(x1 * x2 + y1 * y2 + z1 * z2 + w1 * w2, v1.dotProduct(x2, y2, z2, w2)),
-			//16. Double4 * null (Double4)
-			Arguments.of(0.0, v1.dotProduct(vn1)),
-			//17. Double4 * Float4
+			//12. Double4 * Float4
 			Arguments.of(x1 * x3 + y1 * y3 + z1 * z3 + w1 * w3, v1.dotProduct(v3)),
-			//18. Double4 * null (Float4)
-			Arguments.of(0.0, v1.dotProduct(vn2)),
-			//19. |Double4|^2
+			//13. |Double4|^2
 			Arguments.of(4.0, Double4.ONE.lengthSquared()),
-			//20. |Double4|
+			//14. |Double4|
 			Arguments.of(Math.sqrt(4), Double4.ONE.length()),
-			//21. ||Double4||
+			//15. ||Double4||
 			Arguments.of(new Double4(1 / Math.sqrt(4), 1 / Math.sqrt(4), 1 / Math.sqrt(4), 1 / Math.sqrt(4)), Double4.ONE.normalized())
 		);
 	}
@@ -71,5 +60,28 @@ public class TestDouble4 {
 	@MethodSource("testSource")
 	void testEquals(Object expected, Object actual) {
 		Assertions.assertEquals(expected, actual);
+	}
+
+	static Stream<Arguments> testExceptionsSource() {
+		return Stream.of(
+			//1. Double4 + null (Double4)
+			Arguments.of((Executable) () -> v1.plus(vn1)),
+			//2. Double4 + null (Float4)
+			Arguments.of((Executable) () -> v1.plus(vn2)),
+			//4. Double4 - null (Double4)
+			Arguments.of((Executable) () -> v1.minus(vn1)),
+			//4. Double4 - null (Float4)
+			Arguments.of((Executable) () -> v1.minus(vn2)),
+			//5. Double4 * null (Double4)
+			Arguments.of((Executable) () -> v1.dotProduct(vn1)),
+			//6. Double4 * null (Float4)
+			Arguments.of((Executable) () -> v1.dotProduct(vn2))
+		);
+	}
+
+	@ParameterizedTest
+	@MethodSource("testExceptionsSource")
+	void testExceptions(Executable method) {
+		Assertions.assertThrows(NullPointerException.class, method);
 	}
 }

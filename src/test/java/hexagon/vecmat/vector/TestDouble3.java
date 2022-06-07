@@ -3,6 +3,7 @@ package hexagon.vecmat.vector;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -26,61 +27,43 @@ public class TestDouble3 {
 			Arguments.of(new Double3(x1 + x2, y1 + y2, z1 + z2), v1.plus(v2)),
 			//2. Double3 + (double, double, double)
 			Arguments.of(new Double3(x1 + x2, y1 + y2, z1 + z2), v1.plus(x2, y2, z2)),
-			//3. Double3 + null (Double3)
-			Arguments.of(v1, v1.plus(vn1)),
-			//4. Double3 + Float3
+			//3. Double3 + Float3
 			Arguments.of(new Double3(x1 + x3, y1 + y3, z1 + z3), v1.plus(v3)),
-			//5. Double3 + null (Float3)
-			Arguments.of(v1, v1.plus(vn2)),
-			//6. -Double3
+			//4. -Double3
 			Arguments.of(new Double3(-x1, -y1, -z1), v1.negated()),
-			//7. Double3 - Double3
+			//5. Double3 - Double3
 			Arguments.of(new Double3(x1 - x2, y1 - y2, z1 - z2), v1.minus(v2)),
-			//8. Double3 - (double, double, double)
+			//6. Double3 - (double, double, double)
 			Arguments.of(new Double3(x1 - x2, y1 - y2, z1 - z2), v1.minus(x2, y2, z2)),
-			//9. Double3 - null (Double3)
-			Arguments.of(v1, v1.minus(vn1)),
-			//10. Double3 - Float3
+			//7. Double3 - Float3
 			Arguments.of(new Double3(x1 - x3, y1 - y3, z1 - z3), v1.minus(v3)),
-			//11. Double3 - null (Float3)
-			Arguments.of(v1, v1.minus(vn2)),
-			//12. Double3 * (double)
+			//8. Double3 * (double)
 			Arguments.of(new Double3(x1 * 1.25, y1 * 1.25, z1 * 1.25), v1.multipliedBy(1.25)),
-			//13. Double3 / (double)
+			//9. Double3 / (double)
 			Arguments.of(new Double3(x1 / 1.25, y1 / 1.25, z1 / 1.25), v1.dividedBy(1.25)),
-			//14. Double3 * Double3
+			//10. Double3 * Double3
 			Arguments.of(x1 * x2 + y1 * y2 + z1 * z2, v1.dotProduct(v2)),
-			//15. Double3 * (double, double, double)
+			//11. Double3 * (double, double, double)
 			Arguments.of(x1 * x2 + y1 * y2 + z1 * z2, v1.dotProduct(x2, y2, z2)),
-			//16. Double3 * null (Double3)
-			Arguments.of(0.0, v1.dotProduct(vn1)),
-			//17. Double3 * Float3
+			//12. Double3 * Float3
 			Arguments.of(x1 * x3 + y1 * y3 + z1 * z3, v1.dotProduct(v3)),
-			//18. Double3 * null (Float3)
-			Arguments.of(0.0, v1.dotProduct(vn2)),
-			//19. Double3 X Double3
+			//13. Double3 X Double3
 			Arguments.of(new Double3(y1 * z2 - z1 * y2, x2 * z1 - z2 * x1, x1 * y2 - y1 * x2), v1.crossProduct(v2)),
-			//20. Double3 X (double, double, double)
+			//14. Double3 X (double, double, double)
 			Arguments.of(new Double3(y1 * z2 - z1 * y2, x2 * z1 - z2 * x1, x1 * y2 - y1 * x2), v1.crossProduct(x2, y2, z2)),
-			//21. Double3 X null (Double3)
-			Arguments.of(Double3.ZERO, v1.crossProduct(vn1)),
-			//22. Double3 X Float3
+			//15. Double3 X Float3
 			Arguments.of(new Double3(y1 * z3 - z1 * y3, x3 * z1 - z3 * x1, x1 * y3 - y1 * x3), v1.crossProduct(v3)),
-			//23. |Double3|^2
+			//16. |Double3|^2
 			Arguments.of(3.0, Double3.ONE.lengthSquared()),
-			//24. |Double3|
+			//17. |Double3|
 			Arguments.of(Math.sqrt(3), Double3.ONE.length()),
-			//25. ||Double3||
+			//18. ||Double3||
 			Arguments.of(new Double3(1 / Math.sqrt(3), 1 / Math.sqrt(3), 1 / Math.sqrt(3)), Double3.ONE.normalized()),
-			//26. Double3 ^ Double3
+			//19. Double3 ^ Double3
 			Arguments.of(Math.toRadians(90.0), Double3.UP.angle(Double3.FORWARD)),
-			//27. Double3 ^ null (Double3)
-			Arguments.of(Double.NaN, Double3.UP.angle(vn1)),
-			//28. Double3 ^ Double3
+			//20. Double3 ^ Double3
 			Arguments.of(Math.toRadians(90.0), Double3.UP.angle(Double3.FORWARD)),
-			//29. Double3 ^ null (Float3)
-			Arguments.of(Double.NaN, Double3.UP.angle(vn2)),
-			//30. Double3 ^ (double, double, double)
+			//21. Double3 ^ (double, double, double)
 			Arguments.of(Math.toRadians(90.0), Double3.UP.angle(0.0, 0.0, 1.0))
 		);
 	}
@@ -89,5 +72,36 @@ public class TestDouble3 {
 	@MethodSource("testSource")
 	void testEquals(Object expected, Object actual) {
 		Assertions.assertEquals(expected, actual);
+	}
+
+	static Stream<Arguments> testExceptionsSource() {
+		return Stream.of(
+			//1. Double3 + null (Double3)
+			Arguments.of((Executable) () -> v1.plus(vn1)),
+			//2. Double3 + null (Float3)
+			Arguments.of((Executable) () -> v1.plus(vn2)),
+			//3. Double3 - null (Double3)
+			Arguments.of((Executable) () -> v1.minus(vn1)),
+			//4. Double3 - null (Float3)
+			Arguments.of((Executable) () -> v1.minus(vn2)),
+			//5. Double3 * null (Double3)
+			Arguments.of((Executable) () -> v1.dotProduct(vn1)),
+			//6. Double3 * null (Float3)
+			Arguments.of((Executable) () -> v1.dotProduct(vn2)),
+			//7. Double3 X null (Double3)
+			Arguments.of((Executable) () -> v1.crossProduct(vn1)),
+			//8. Double3 X null (Float3)
+			Arguments.of((Executable) () -> v1.crossProduct(vn2)),
+			//9. Double3 ^ null (Double3)
+			Arguments.of((Executable) () -> Double3.UP.angle(vn1)),
+			//10. Double3 ^ null (Float3)
+			Arguments.of((Executable) () -> Double3.UP.angle(vn2))
+		);
+	}
+
+	@ParameterizedTest
+	@MethodSource("testExceptionsSource")
+	void testExceptions(Executable method) {
+		Assertions.assertThrows(NullPointerException.class, method);
 	}
 }

@@ -17,9 +17,9 @@ public final class IntVector implements VectorIntOperations<IntVector>, VectorAs
 	/**
 	 * Creates a vector with the values in the given array.
 	 * 
-	 * @param vector Values in the vector
+	 * @param vector Values in the vector.
 	 * 
-	 * @throws VectorMathException if the given array is null or has length 0
+	 * @throws VectorMathException if the given array is null or has length 0.
 	 */
 	public IntVector(int... vector) {
 		if(vector == null || vector.length == 0) {
@@ -31,7 +31,7 @@ public final class IntVector implements VectorIntOperations<IntVector>, VectorAs
 	/**
 	 * Gets the size of this vector.
 	 * 
-	 * @return The size of this vector
+	 * @return The size of this vector.
 	 */
 	public int size() {
 		return this.values.length;
@@ -40,12 +40,12 @@ public final class IntVector implements VectorIntOperations<IntVector>, VectorAs
 	/**
 	 * Get the i-th element of this vector.
 	 * 
-	 * @param i Index of the element to get
+	 * @param i Index of the element to get.
 	 * 
-	 * @return The i-th element of this vector
+	 * @return The i-th element of this vector.
 	 * 
 	 * @throws IndexOutOfBoundsException if the given i is less than 0
-	 * 		or greater than the vector's size
+	 * 		or greater than the vector's size.
 	 */
 	public int element(int i) {
 		if(i >= 0 && i < this.size()) {
@@ -57,7 +57,7 @@ public final class IntVector implements VectorIntOperations<IntVector>, VectorAs
 
 	@Override
 	public IntVector plus(IntVector vector) {
-		return vector != null ? this.applyOperation(vector.size(), i -> this.values[i] + vector.values[i]) : this;
+		return this.applyOperation(vector.size(), i -> this.values[i] + vector.values[i]);
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public final class IntVector implements VectorIntOperations<IntVector>, VectorAs
 
 	@Override
 	public IntVector minus(IntVector vector) {
-		return vector != null ? this.applyOperation(vector.size(), i -> this.values[i] - vector.values[i]) : this;
+		return this.applyOperation(vector.size(), i -> this.values[i] - vector.values[i]);
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public final class IntVector implements VectorIntOperations<IntVector>, VectorAs
 
 	@Override
 	public int dotProduct(IntVector vector) {
-		return vector != null ? this.mapEach(vector.size(), i -> this.values[i] * vector.values[i]).sum() : 0;
+		return this.mapEach(vector.size(), i -> this.values[i] * vector.values[i]).sum();
 	}
 
 	@Override
@@ -103,26 +103,26 @@ public final class IntVector implements VectorIntOperations<IntVector>, VectorAs
 	/**
 	 * Utility method that applies an operation to all values of the array.
 	 * 
-	 * @param length Length of the array
-	 * @param operator Operation to apply
+	 * @param length Length of the array.
+	 * @param operator Operation to apply.
 	 * 
-	 * @return The result of the operation
+	 * @return The result of the operation.
 	 * 
-	 * @throws VectorMathException if the given size is different from the size of this vector
+	 * @throws VectorMathException if the given size is different from the size of this vector.
 	 */
 	private IntVector applyOperation(int length, IntUnaryOperator operator) {
 		return new IntVector(this.mapEach(length, operator).toArray());
 	}
 
 	/**
-	 * Utility method that maps all values in the vector with a given function
+	 * Utility method that maps all values in the vector with a given function.
 	 * 
-	 * @param length Length of the array
-	 * @param operator The mapper function
+	 * @param length Length of the array.
+	 * @param operator The mapper function.
 	 * 
-	 * @return The resulting {@link IntStream}
+	 * @return The resulting {@link IntStream}.
 	 * 
-	 * @throws VectorMathException if the given size is different from the size of this vector
+	 * @throws VectorMathException if the given size is different from the size of this vector.
 	 */
 	private IntStream mapEach(int length, IntUnaryOperator operator) {
 		if(length == this.size()) {
@@ -135,9 +135,9 @@ public final class IntVector implements VectorIntOperations<IntVector>, VectorAs
 	/**
 	 * Utility method that applies a unary mapper function to all the values in this vector.
 	 * 
-	 * @param operator Operation to apply
+	 * @param operator Operation to apply.
 	 * 
-	 * @return The result of the operation
+	 * @return The result of the operation.
 	 */
 	private IntVector applyOperation(IntUnaryOperator operator) {
 		return new IntVector(this.mapEach(operator).toArray());
@@ -146,9 +146,9 @@ public final class IntVector implements VectorIntOperations<IntVector>, VectorAs
 	/**
 	 * Utility method that applies a unary operation to all the values in this vector.
 	 * 
-	 * @param operator The mapper function
+	 * @param operator The mapper function.
 	 * 
-	 * @return The resulting {@link IntStream}
+	 * @return The resulting {@link IntStream}.
 	 */
 	private IntStream mapEach(IntUnaryOperator operator) {
 		return Arrays.stream(this.values).map(operator);

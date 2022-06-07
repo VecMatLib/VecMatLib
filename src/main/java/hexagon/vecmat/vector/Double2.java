@@ -34,10 +34,10 @@ public record Double2(double x, double y) implements VectorDoubleOperations<Doub
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
 	 * 
-	 * @return The sum of this vector and the given one
+	 * @return The sum of this vector and the given one.
 	 */
 	public Double2 plus(double x, double y) {
 		return new Double2(this.x() + x, this.y() + y);
@@ -45,7 +45,7 @@ public record Double2(double x, double y) implements VectorDoubleOperations<Doub
 
 	@Override
 	public Double2 plus(Double2 vector) {
-		return vector != null ? this.plus(vector.x(), vector.y()) : this;
+		return this.plus(vector.x(), vector.y());
 	}
 
 	@Override
@@ -64,11 +64,11 @@ public record Double2(double x, double y) implements VectorDoubleOperations<Doub
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
 	 * 
 	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one
+	 * 		given one.
 	 */
 	public Double2 minus(double x, double y) {
 		return this.plus(-x, -y);
@@ -92,10 +92,10 @@ public record Double2(double x, double y) implements VectorDoubleOperations<Doub
 	 * size is a scalar defined as the summation of the products of
 	 * every element vi and wi of the two vectors.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
 	 * 
-	 * @return The result of the dot product between the two vectors
+	 * @return The result of the dot product between the two vectors.
 	 */
 	public double dotProduct(double x, double y) {
 		return this.x() * x + this.y() * y;
@@ -103,7 +103,7 @@ public record Double2(double x, double y) implements VectorDoubleOperations<Doub
 
 	@Override
 	public double dotProduct(Double2 vector) {
-		return vector != null ? this.dotProduct(vector.x(), vector.y()) : 0.0;
+		return this.dotProduct(vector.x(), vector.y());
 	}
 
 	@Override
@@ -114,10 +114,10 @@ public record Double2(double x, double y) implements VectorDoubleOperations<Doub
 	/**
 	 * Computes the angle in radians between this vector and the given one.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
 	 * 
-	 * @return The angle in radians between this vector and the given one
+	 * @return The angle in radians between this vector and the given one.
 	 */
 	public double angle(double x, double y) {
 		return this.angle(new Double2(x, y));

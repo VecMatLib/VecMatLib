@@ -22,22 +22,18 @@ public interface VectorFloatOperations<F extends VectorFloatOperations<F>> exten
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * <p> If the given vector is null, it will be treated as a
-	 * vector where every element is 0. Which means this method
-	 * will return a vector equal to this one.
-	 * 
 	 * @param vector The second operand of the sum, a vector of the
 	 * 		same size as this one that can be represented as a
 	 * 		float vector without casting.
 	 * 
-	 * @return The sum of this vector and the given one or the same
-	 * 		vector if the given one is null.
+	 * @return The sum of this vector and the given one.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
 	 * 		have different sizes.
+	 * @throws NullPointerException if the given vector is null.
 	 */
 	default F plus(VectorAsFloat<F> vector) {
-		return vector != null ? this.plus(vector.asFloat()) : this.multipliedBy(1);
+		return this.plus(vector.asFloat());
 	}
 
 	/**
@@ -53,22 +49,19 @@ public interface VectorFloatOperations<F extends VectorFloatOperations<F>> exten
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * <p> If the given vector is null, it will be treated as a
-	 * vector where every element is 0. Which means this method
-	 * will return a vector equal to this one.
-	 * 
 	 * @param vector The second operand of the subtraction, a vector
 	 * 		of the same size as this one that can be represented as
 	 * 		a float vector without casting.
 	 * 
 	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one or the same vector if the given one is null.
+	 * 		given one.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
 	 * 		have different sizes.
+	 * @throws NullPointerException if the given vector is null.
 	 */
 	default F minus(VectorAsFloat<F> vector) {
-		return vector != null ? this.minus(vector.asFloat()) : this.multipliedBy(1);
+		return this.minus(vector.asFloat());
 	}
 
 	/**
@@ -81,9 +74,9 @@ public interface VectorFloatOperations<F extends VectorFloatOperations<F>> exten
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * @param k The scalar to which this vector is multiplied
+	 * @param k The scalar to which this vector is multiplied.
 	 * 
-	 * @return The product between this vector and the given scalar
+	 * @return The product between this vector and the given scalar.
 	 */
 	F multipliedBy(float k);
 
@@ -98,10 +91,10 @@ public interface VectorFloatOperations<F extends VectorFloatOperations<F>> exten
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * @param k The scalar by which this vector is divided
+	 * @param k The scalar by which this vector is divided.
 	 * 
 	 * @return The product between this vector and the multiplicative
-	 * 		inverse of the given scalar
+	 * 		inverse of the given scalar.
 	 */
 	default F dividedBy(float k) {
 		return this.multipliedBy(1.0f / k);
@@ -118,18 +111,14 @@ public interface VectorFloatOperations<F extends VectorFloatOperations<F>> exten
 	 * <p> The dot product can only be computed between two vectors
 	 * of the same size.
 	 * 
-	 * <p> If the given vector is null, it will be treated as a
-	 * vector where every element is 0. Which means this method
-	 * will return 0.
-	 * 
 	 * @param vector The second operand of the product, another
 	 * 		float vector of the same size as this one.
 	 * 
-	 * @return The result of the dot product between the two vectors
-	 * 		or 0 if the given vector is null.
+	 * @return The result of the dot product between the two vectors.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
 	 * 		have different sizes.
+	 * @throws NullPointerException if the given vector is null.
 	 */
 	float dotProduct(F vector);
 
@@ -144,22 +133,18 @@ public interface VectorFloatOperations<F extends VectorFloatOperations<F>> exten
 	 * <p> The dot product can only be computed between two vectors
 	 * of the same size.
 	 * 
-	 * <p> If the given vector is null, it will be treated as a
-	 * vector where every element is 0. Which means this method
-	 * will return 0.
-	 * 
 	 * @param vector The second operand of the product, a vector
 	 * 		of the same size as this one that can be represented
 	 * 		as a float vector without casting.
 	 * 
-	 * @return The result of the dot product between the two vectors
-	 * 		or 0 if the given vector is null.
+	 * @return The result of the dot product between the two vectors.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
 	 * 		have different sizes.
+	 * @throws NullPointerException if the given vector is null.
 	 */
 	default float dotProduct(VectorAsFloat<F> vector) {
-		return vector != null ? this.dotProduct(vector.asFloat()) : 0.0f;
+		return this.dotProduct(vector.asFloat());
 	}
 
 	/**
@@ -171,7 +156,7 @@ public interface VectorFloatOperations<F extends VectorFloatOperations<F>> exten
 	 * this method is more efficient since it does not compute a
 	 * square root.
 	 * 
-	 * @return The squared length (or squared magnitude) of this vector
+	 * @return The squared length (or squared magnitude) of this vector.
 	 */
 	float lengthSquared();
 

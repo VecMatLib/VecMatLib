@@ -19,9 +19,9 @@ public final class FloatVector implements VectorFloatOperations<FloatVector>, Ve
 	/**
 	 * Creates a vector with the values in the given array.
 	 * 
-	 * @param vector Values in the vector
+	 * @param vector Values in the vector.
 	 * 
-	 * @throws VectorMathException if the given array is null or has length 0
+	 * @throws VectorMathException if the given array is null or has length 0.
 	 */
 	public FloatVector(Float... vector) {
 		if(vector == null || vector.length == 0) {
@@ -36,7 +36,7 @@ public final class FloatVector implements VectorFloatOperations<FloatVector>, Ve
 	/**
 	 * Gets the size of this vector.
 	 * 
-	 * @return The size of this vector
+	 * @return The size of this vector.
 	 */
 	public int size() {
 		return this.values.length;
@@ -45,12 +45,12 @@ public final class FloatVector implements VectorFloatOperations<FloatVector>, Ve
 	/**
 	 * Get the i-th element of this vector.
 	 * 
-	 * @param i Index of the element to get
+	 * @param i Index of the element to get.
 	 * 
-	 * @return The i-th element of this vector
+	 * @return The i-th element of this vector.
 	 * 
 	 * @throws IndexOutOfBoundsException if the given i is less than 0
-	 * 		or greater than the vector's size
+	 * 		or greater than the vector's size.
 	 */
 	public float element(int i) {
 		if(i >= 0 && i < this.size()) {
@@ -62,7 +62,7 @@ public final class FloatVector implements VectorFloatOperations<FloatVector>, Ve
 
 	@Override
 	public FloatVector plus(FloatVector vector) {
-		return vector != null ? this.applyOperation(vector.size(), i -> this.values[i] + vector.values[i]) : this;
+		return this.applyOperation(vector.size(), i -> this.values[i] + vector.values[i]);
 	}
 
 	@Override
@@ -72,7 +72,7 @@ public final class FloatVector implements VectorFloatOperations<FloatVector>, Ve
 
 	@Override
 	public FloatVector minus(FloatVector vector) {
-		return vector != null ? this.applyOperation(vector.size(), i -> this.values[i] - vector.values[i]) : this;
+		return this.applyOperation(vector.size(), i -> this.values[i] - vector.values[i]);
 	}
 
 	@Override
@@ -87,7 +87,7 @@ public final class FloatVector implements VectorFloatOperations<FloatVector>, Ve
 
 	@Override
 	public float dotProduct(FloatVector vector) {
-		return vector != null ? this.mapEach(vector.size(), i -> this.values[i] * vector.values[i]).reduce(0.0f, (v1, v2) -> v1 + v2): 0.0f;
+		return this.mapEach(vector.size(), i -> this.values[i] * vector.values[i]).reduce(0.0f, (v1, v2) -> v1 + v2);
 	}
 
 	@Override
@@ -112,12 +112,12 @@ public final class FloatVector implements VectorFloatOperations<FloatVector>, Ve
 	/**
 	 * Utility method that applies an operation to all values of the array.
 	 * 
-	 * @param length Length of the array
-	 * @param operator Operation to apply
+	 * @param length Length of the array.
+	 * @param operator Operation to apply.
 	 * 
-	 * @return The result of the operation
+	 * @return The result of the operation.
 	 * 
-	 * @throws VectorMathException if the given size is different from the size of this vector
+	 * @throws VectorMathException if the given size is different from the size of this vector.
 	 */
 	private FloatVector applyOperation(int length, IntFunction<Float> operator) {
 		return new FloatVector(this.mapEach(length, operator).toArray(Float[]::new));
@@ -126,12 +126,12 @@ public final class FloatVector implements VectorFloatOperations<FloatVector>, Ve
 	/**
 	 * Utility method that maps all values in the vector with a given function.
 	 * 
-	 * @param length Length of the array
-	 * @param operator The mapper function
+	 * @param length Length of the array.
+	 * @param operator The mapper function.
 	 * 
 	 * @return The resulting {@link Stream}
 	 * 
-	 * @throws VectorMathException if the given size is different from the size of this vector
+	 * @throws VectorMathException if the given size is different from the size of this vector.
 	 */
 	private Stream<Float> mapEach(int length, IntFunction<Float> operator) {
 		if(length == this.size()) {
@@ -144,9 +144,9 @@ public final class FloatVector implements VectorFloatOperations<FloatVector>, Ve
 	/**
 	 * Utility method that applies a unary mapper function to all the values in this vector.
 	 * 
-	 * @param operator Operation to apply
+	 * @param operator Operation to apply.
 	 * 
-	 * @return The result of the operation
+	 * @return The result of the operation.
 	 */
 	private FloatVector applyOperation(Function<Float, Float> operator) {
 		return new FloatVector(this.mapEach(operator).toArray(Float[]::new));
@@ -155,9 +155,9 @@ public final class FloatVector implements VectorFloatOperations<FloatVector>, Ve
 	/**
 	 * Utility method that applies a unary operation to all the values in this vector.
 	 * 
-	 * @param operator The mapper function
+	 * @param operator The mapper function.
 	 * 
-	 * @return The resulting {@link Stream}
+	 * @return The resulting {@link Stream}.
 	 */
 	private Stream<Float> mapEach(Function<Float, Float> operator) {
 		return IntStream.range(0, this.size()).mapToObj(i -> this.values[i]).map(operator);

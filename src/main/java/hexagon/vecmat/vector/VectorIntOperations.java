@@ -19,9 +19,9 @@ public interface VectorIntOperations<I extends VectorIntOperations<I>> extends V
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * @param k The scalar to which this vector is multiplied
+	 * @param k The scalar to which this vector is multiplied.
 	 * 
-	 * @return The product between this vector and the given scalar
+	 * @return The product between this vector and the given scalar.
 	 */
 	I multipliedBy(int k);
 
@@ -36,10 +36,10 @@ public interface VectorIntOperations<I extends VectorIntOperations<I>> extends V
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * @param k The scalar by which this vector is divided
+	 * @param k The scalar by which this vector is divided.
 	 * 
 	 * @return The result of the integer division between this
-	 * 		vector and the given scalar
+	 * 		vector and the given scalar.
 	 */
 	I dividedBy(int k);
 
@@ -54,18 +54,14 @@ public interface VectorIntOperations<I extends VectorIntOperations<I>> extends V
 	 * <p> The dot product can only be computed between two vectors
 	 * of the same size.
 	 * 
-	 * <p> If the given vector is null, it will be treated as a
-	 * vector where every element is 0. Which means this method
-	 * will return 0.
-	 * 
 	 * @param vector The second operand of the product, another
 	 * 		integer vector of the same size as this one.
 	 * 
-	 * @return The result of the dot product between the two vectors
-	 * 		or 0 if the given vector is null.
+	 * @return The result of the dot product between the two vectors.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
 	 * 		have different sizes.
+	 * @throws NullPointerException if the given vector is null.
 	 */
 	int dotProduct(I vector);
 
@@ -78,7 +74,7 @@ public interface VectorIntOperations<I extends VectorIntOperations<I>> extends V
 	 * this method is more efficient since it does not compute a
 	 * square root.
 	 * 
-	 * @return The squared length (or squared magnitude) of this vector
+	 * @return The squared length (or squared magnitude) of this vector.
 	 */
 	int lengthSquared();
 

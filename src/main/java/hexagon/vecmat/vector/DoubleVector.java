@@ -19,9 +19,9 @@ public final class DoubleVector implements VectorDoubleOperations<DoubleVector> 
 	/**
 	 * Creates a vector with the values in the given array.
 	 * 
-	 * @param vector Values in the vector
+	 * @param vector Values in the vector.
 	 * 
-	 * @throws VectorMathException if the given array is null or has length 0
+	 * @throws VectorMathException if the given array is null or has length 0.
 	 */
 	public DoubleVector(double... vector) {
 		if(vector == null || vector.length == 0) {
@@ -33,7 +33,7 @@ public final class DoubleVector implements VectorDoubleOperations<DoubleVector> 
 	/**
 	 * Gets the size of this vector.
 	 * 
-	 * @return The size of this vector
+	 * @return The size of this vector.
 	 */
 	public int size() {
 		return this.values.length;
@@ -42,12 +42,12 @@ public final class DoubleVector implements VectorDoubleOperations<DoubleVector> 
 	/**
 	 * Get the i-th element of this vector.
 	 * 
-	 * @param i Index of the element to get
+	 * @param i Index of the element to get.
 	 * 
-	 * @return The i-th element of this vector
+	 * @return The i-th element of this vector.
 	 * 
 	 * @throws IndexOutOfBoundsException if the given i is less than 0
-	 * 		or greater than the vector's size
+	 * 		or greater than the vector's size.
 	 */
 	public double element(int i) {
 		if(i >= 0 && i < this.size()) {
@@ -59,7 +59,7 @@ public final class DoubleVector implements VectorDoubleOperations<DoubleVector> 
 
 	@Override
 	public DoubleVector plus(DoubleVector vector) {
-		return vector != null ? this.applyOperation(vector.size(), i -> this.values[i] + vector.values[i]) : this;
+		return this.applyOperation(vector.size(), i -> this.values[i] + vector.values[i]);
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public final class DoubleVector implements VectorDoubleOperations<DoubleVector> 
 
 	@Override
 	public DoubleVector minus(DoubleVector vector) {
-		return vector != null ? this.applyOperation(vector.size(), i -> this.values[i] - vector.values[i]) : this;
+		return this.applyOperation(vector.size(), i -> this.values[i] - vector.values[i]);
 	}
 
 	@Override
@@ -84,7 +84,7 @@ public final class DoubleVector implements VectorDoubleOperations<DoubleVector> 
 
 	@Override
 	public double dotProduct(DoubleVector vector) {
-		return vector != null ? this.mapEach(vector.size(), i -> this.values[i] * vector.values[i]).sum() : 0.0;
+		return this.mapEach(vector.size(), i -> this.values[i] * vector.values[i]).sum();
 	}
 
 	@Override
@@ -113,12 +113,12 @@ public final class DoubleVector implements VectorDoubleOperations<DoubleVector> 
 	/**
 	 * Utility method that applies an operation to all values of the array.
 	 * 
-	 * @param length Length of the array
-	 * @param operator Operation to apply
+	 * @param length Length of the array.
+	 * @param operator Operation to apply.
 	 * 
-	 * @return The result of the operation
+	 * @return The result of the operation.
 	 * 
-	 * @throws VectorMathException if the given size is different from the size of this vector
+	 * @throws VectorMathException if the given size is different from the size of this vector.
 	 */
 	private DoubleVector applyOperation(int array, IntToDoubleFunction operator) {
 		return new DoubleVector(this.mapEach(array, operator).toArray());
@@ -127,12 +127,12 @@ public final class DoubleVector implements VectorDoubleOperations<DoubleVector> 
 	/**
 	 * Utility method that maps all values in the vector with a given function.
 	 * 
-	 * @param length Length of the array
-	 * @param operator The mapper function
+	 * @param length Length of the array.
+	 * @param operator The mapper function.
 	 * 
-	 * @return The resulting {@link DoubleStream}
+	 * @return The resulting {@link DoubleStream}.
 	 * 
-	 * @throws VectorMathException if the given size is different from the size of this vector
+	 * @throws VectorMathException if the given size is different from the size of this vector.
 	 */
 	private DoubleStream mapEach(int length, IntToDoubleFunction operator) {
 		if(length == this.size()) {
@@ -145,9 +145,9 @@ public final class DoubleVector implements VectorDoubleOperations<DoubleVector> 
 	/**
 	 * Utility method that applies a unary mapper function to all the values in this vector.
 	 * 
-	 * @param operator Operation to apply
+	 * @param operator Operation to apply.
 	 * 
-	 * @return The result of the operation
+	 * @return The result of the operation.
 	 */
 	private DoubleVector applyOperation(DoubleUnaryOperator operator) {
 		return new DoubleVector(this.mapEach(operator).toArray());
@@ -156,9 +156,9 @@ public final class DoubleVector implements VectorDoubleOperations<DoubleVector> 
 	/**
 	 * Utility method that applies a unary operation to all the values in this vector.
 	 * 
-	 * @param operator The mapper function
+	 * @param operator The mapper function.
 	 * 
-	 * @return The resulting {@link DoubleStream}
+	 * @return The resulting {@link DoubleStream}.
 	 */
 	private DoubleStream mapEach(DoubleUnaryOperator operator) {
 		return Arrays.stream(this.values).map(operator);

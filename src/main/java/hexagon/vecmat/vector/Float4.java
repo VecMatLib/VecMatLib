@@ -28,12 +28,12 @@ public record Float4(float x, float y, float z, float w) implements VectorFloatO
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
-	 * @param w Fourth coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
+	 * @param w Fourth coordinate of the given vector.
 	 * 
-	 * @return The sum of this vector and the given one
+	 * @return The sum of this vector and the given one.
 	 */
 	public Float4 plus(float x, float y, float z, float w) {
 		return new Float4(this.x() + x, this.y() + y, this.z() + z, this.w() + w);
@@ -41,7 +41,7 @@ public record Float4(float x, float y, float z, float w) implements VectorFloatO
 
 	@Override
 	public Float4 plus(Float4 vector) {
-		return vector != null ? this.plus(vector.x(), vector.y(), vector.z(), vector.w()) : this;
+		return this.plus(vector.x(), vector.y(), vector.z(), vector.w());
 	}
 
 	/**
@@ -58,12 +58,12 @@ public record Float4(float x, float y, float z, float w) implements VectorFloatO
 	 * <p> The sum of this vector and a double vector will result
 	 * in a double vector.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
-	 * @param w Fourth coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
+	 * @param w Fourth coordinate of the given vector.
 	 * 
-	 * @return The sum of this vector and the given one
+	 * @return The sum of this vector and the given one.
 	 */
 	public Double4 plus(double x, double y, double z, double w) {
 		return this.asDouble().plus(x, y, z, w);
@@ -85,13 +85,13 @@ public record Float4(float x, float y, float z, float w) implements VectorFloatO
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
-	 * @param w Fourth coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
+	 * @param w Fourth coordinate of the given vector.
 	 * 
 	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one
+	 * 		given one.
 	 */
 	public Float4 minus(float x, float y, float z, float w) {
 		return this.plus(-x, -y, -z, -w);
@@ -111,16 +111,16 @@ public record Float4(float x, float y, float z, float w) implements VectorFloatO
 	 * <p> The subtraction of this vector and a double vector will
 	 * result in a double vector.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
-	 * @param w Fourth coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
+	 * @param w Fourth coordinate of the given vector.
 	 * 
 	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one
+	 * 		given one.
 	 */
 	public Double4 minus(double x, double y, double z, double w) {
-		return this.plus(-x, -y, -z, -w);
+		return this.asDouble().minus(x, y, z, w);
 	}
 
 	@Override
@@ -136,12 +136,12 @@ public record Float4(float x, float y, float z, float w) implements VectorFloatO
 	 * size is a scalar defined as the summation of the products of
 	 * every element vi and wi of the two vectors.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
-	 * @param w Fourth coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
+	 * @param w Fourth coordinate of the given vector.
 	 * 
-	 * @return The result of the dot product between the two vectors
+	 * @return The result of the dot product between the two vectors.
 	 */
 	public float dotProduct(float x, float y, float z, float w) {
 		return this.x() * x + this.y() * y + this.z() * z + this.w() * w;
@@ -149,7 +149,7 @@ public record Float4(float x, float y, float z, float w) implements VectorFloatO
 
 	@Override
 	public float dotProduct(Float4 vector) {
-		return vector != null ? this.dotProduct(vector.x(), vector.y(), vector.z(), vector.w()) : 0.0f;
+		return this.dotProduct(vector.x(), vector.y(), vector.z(), vector.w());
 	}
 
 	/**
@@ -163,12 +163,12 @@ public record Float4(float x, float y, float z, float w) implements VectorFloatO
 	 * <p> The dot product between this vector and a double vector
 	 * will result in a double.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
-	 * @param w Fourth coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
+	 * @param w Fourth coordinate of the given vector.
 	 * 
-	 * @return The result of the dot product between the two vectors
+	 * @return The result of the dot product between the two vectors.
 	 */
 	public double dotProduct(double x, double y, double z, double w) {
 		return this.asDouble().dotProduct(x, y, z, w);
@@ -182,12 +182,12 @@ public record Float4(float x, float y, float z, float w) implements VectorFloatO
 	/**
 	 * Computes the angle in radians between this vector and the given one.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
-	 * @param w Fourth coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
+	 * @param w Fourth coordinate of the given vector.
 	 * 
-	 * @return The angle in radians between this vector and the given one
+	 * @return The angle in radians between this vector and the given one.
 	 */
 	public double angle(double x, double y, double z, double w) {
 		return this.angle(new Double4(x, y, z, w));

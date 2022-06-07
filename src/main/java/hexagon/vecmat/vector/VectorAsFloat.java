@@ -26,18 +26,14 @@ public interface VectorAsFloat<F extends VectorFloatOperations<F>> {
 	 * <p> The sum of this vector and a float vector will result
 	 * in a float vector.
 	 * 
-	 * <p> If the given vector is null, it will be treated as a
-	 * vector where every element is 0. Which means this method
-	 * will return a vector equal to this one.
-	 * 
 	 * @param vector The second operand of the sum, a float vector
 	 * 		of the same size as this one.
 	 * 
-	 * @return The sum of this vector and the given one or the same
-	 * 		vector if the given one is null.
+	 * @return The sum of this vector and the given one.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
 	 * 		have different sizes.
+	 * @throws NullPointerException if the given vector is null.
 	 */
 	default F plus(F vector) {
 		return this.asFloat().plus(vector);
@@ -59,18 +55,15 @@ public interface VectorAsFloat<F extends VectorFloatOperations<F>> {
 	 * <p> The subtraction between this vector and a float vector
 	 * will result in a float vector.
 	 * 
-	 * <p> If the given vector is null, it will be treated as a
-	 * vector where every element is 0. Which means this method
-	 * will return a vector equal to this one.
-	 * 
 	 * @param vector The second operand of the subtraction, a float
 	 * 		vector of the same size as this one.
 	 * 
 	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one or the same vector if the given one is null.
+	 * 		given one.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
 	 * 		have different sizes.
+	 * @throws NullPointerException if the given vector is null.
 	 */
 	default F minus(F vector) {
 		return this.asFloat().minus(vector);
@@ -89,9 +82,9 @@ public interface VectorAsFloat<F extends VectorFloatOperations<F>> {
 	 * <p> Multiplying this vector by a float will result in a
 	 * float vector.
 	 * 
-	 * @param k The scalar to which this vector is multiplied
+	 * @param k The scalar to which this vector is multiplied.
 	 * 
-	 * @return The product between this vector and the given scalar
+	 * @return The product between this vector and the given scalar.
 	 */
 	default F multipliedBy(float k) {
 		return this.asFloat().multipliedBy(k);
@@ -111,10 +104,10 @@ public interface VectorAsFloat<F extends VectorFloatOperations<F>> {
 	 * <p> Dividing this vector by a float will result in a
 	 * float vector.
 	 * 
-	 * @param k The scalar by which this vector is divided
+	 * @param k The scalar by which this vector is divided.
 	 * 
 	 * @return The product between this vector and the multiplicative
-	 * 		inverse of the given scalar
+	 * 		inverse of the given scalar.
 	 */
 	default F dividedBy(float k) {
 		return this.asFloat().dividedBy(k);
@@ -134,18 +127,14 @@ public interface VectorAsFloat<F extends VectorFloatOperations<F>> {
 	 * <p> The dot product between this vector and a float vector
 	 * will result in a float.
 	 * 
-	 * <p> If the given vector is null, it will be treated as a
-	 * vector where every element is 0. Which means this method
-	 * will return 0.
-	 * 
 	 * @param vector The second operand of the product, a float
 	 * 		vector of the same size as this one.
 	 * 
-	 * @return The result of the dot product between the two vectors
-	 * 		or 0 if the given vector is null.
+	 * @return The result of the dot product between the two vectors.
 	 * 
 	 * @throws VectorMathException if this vector and the given one
 	 * 		have different sizes.
+	 * @throws NullPointerException if the given vector is null.
 	 */
 	default float dotProduct(F vector) {
 		return this.asFloat().dotProduct(vector);
@@ -154,7 +143,7 @@ public interface VectorAsFloat<F extends VectorFloatOperations<F>> {
 	/**
 	 * Converts this vector to a float vector without casting.
 	 * 
-	 * @return The float value of this vector
+	 * @return The float value of this vector.
 	 */
 	F asFloat();
 }

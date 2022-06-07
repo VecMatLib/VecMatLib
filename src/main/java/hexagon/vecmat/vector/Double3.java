@@ -39,11 +39,11 @@ public record Double3(double x, double y, double z) implements VectorDoubleOpera
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
 	 * 
-	 * @return The sum of this vector and the given one
+	 * @return The sum of this vector and the given one.
 	 */
 	public Double3 plus(double x, double y, double z) {
 		return new Double3(this.x() + x, this.y() + y, this.z() + z);
@@ -51,7 +51,7 @@ public record Double3(double x, double y, double z) implements VectorDoubleOpera
 
 	@Override
 	public Double3 plus(Double3 vector) {
-		return vector != null ? this.plus(vector.x(), vector.y(), vector.z()) : this;
+		return this.plus(vector.x(), vector.y(), vector.z());
 	}
 
 	@Override
@@ -70,12 +70,12 @@ public record Double3(double x, double y, double z) implements VectorDoubleOpera
 	 * this method does not alter the object on which it is called,
 	 * it returns a new vector instead.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
 	 * 
 	 * @return The sum of this vector and the additive inverse of the
-	 * 		given one
+	 * 		given one.
 	 */
 	public Double3 minus(double x, double y, double z) {
 		return this.plus(-x, -y, -z);
@@ -99,11 +99,11 @@ public record Double3(double x, double y, double z) implements VectorDoubleOpera
 	 * size is a scalar defined as the summation of the products of
 	 * every element vi and wi of the two vectors.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
 	 * 
-	 * @return The result of the dot product between the two vectors
+	 * @return The result of the dot product between the two vectors.
 	 */
 	public double dotProduct(double x, double y, double z) {
 		return this.x() * x + this.y() * y + this.z() * z;
@@ -111,7 +111,7 @@ public record Double3(double x, double y, double z) implements VectorDoubleOpera
 
 	@Override
 	public double dotProduct(Double3 vector) {
-		return vector != null ? this.dotProduct(vector.x(), vector.y(), vector.z()) : 0.0;
+		return this.dotProduct(vector.x(), vector.y(), vector.z());
 	}
 
 	/**
@@ -122,11 +122,11 @@ public record Double3(double x, double y, double z) implements VectorDoubleOpera
 	 * perpendicular to both of them whose magnitude equals the
 	 * area of the parallelogram with the two vectors for sides.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
 	 * 
-	 * @return The result of the cross product between the two vectors
+	 * @return The result of the cross product between the two vectors.
 	 */
 	public Double3 crossProduct(double x, double y, double z) {
 		return new Double3(this.y() * z - this.z() * y, x * this.z() - z * this.x(), this.x() * y - this.y() * x);
@@ -143,12 +143,14 @@ public record Double3(double x, double y, double z) implements VectorDoubleOpera
 	 * <p> If the given vector is null, it will be treated as a
 	 * vector where every element is 0.
 	 * 
-	 * @param vector The second operand of the product
+	 * @param vector The second operand of the product.
 	 * 
-	 * @return The result of the cross product between the two vectors
+	 * @return The result of the cross product between the two vectors.
+	 * 
+	 * @throws NullPointerException If the given vector is null.
 	 */
 	public Double3 crossProduct(Double3 vector) {
-		return vector != null ? this.crossProduct(vector.x(), vector.y(), vector.z()) : Double3.ZERO;
+		return this.crossProduct(vector.x(), vector.y(), vector.z());
 	}
 
 	/**
@@ -163,15 +165,14 @@ public record Double3(double x, double y, double z) implements VectorDoubleOpera
 	 * can be represented as a double vector without casting will
 	 * result in a double vector.
 	 * 
-	 * <p> If the given vector is null, it will be treated as a
-	 * vector where every element is 0.
+	 * @param vector The second operand of the product.
 	 * 
-	 * @param vector The second operand of the product
+	 * @return The result of the cross product between the two vectors.
 	 * 
-	 * @return The result of the cross product between the two vectors
+	 * @throws NullPointerException If the given vector is null.
 	 */
 	public Double3 crossProduct(VectorAsDouble<Double3> vector) {
-		return vector != null ? this.crossProduct(vector.asDouble()) : Double3.ZERO;
+		return this.crossProduct(vector.asDouble());
 	}
 
 	@Override
@@ -182,11 +183,11 @@ public record Double3(double x, double y, double z) implements VectorDoubleOpera
 	/**
 	 * Computes the angle in radians between this vector and the given one.
 	 * 
-	 * @param x First coordinate of the given vector
-	 * @param y Second coordinate of the given vector
-	 * @param z Third coordinate of the given vector
+	 * @param x First coordinate of the given vector.
+	 * @param y Second coordinate of the given vector.
+	 * @param z Third coordinate of the given vector.
 	 * 
-	 * @return The angle in radians between this vector and the given one
+	 * @return The angle in radians between this vector and the given one.
 	 */
 	public double angle(double x, double y, double z) {
 		return this.angle(new Double3(x, y, z));
