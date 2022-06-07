@@ -40,6 +40,14 @@ public class DoubleMatrix implements MatrixDoubleOperations<DoubleMatrix, Double
 		return this.values[0].length;
 	}
 
+	public double element(int row, int column) {
+		if(row < 0 || row >= this.rows())
+			throw new IndexOutOfBoundsException("Row index out of bounds");
+		if(column < 0 || column >= this.columns())
+			throw new IndexOutOfBoundsException("Column index out of bounds");
+		return this.values[row][column];
+	}
+
 	@Override
 	public DoubleMatrix plus(DoubleMatrix matrix) {
 		return this.applyOperation(matrix.rows(), matrix.columns(), (r, c) -> this.values[r][c] + matrix.values[r][c]);

@@ -39,6 +39,14 @@ public class FloatMatrix implements MatrixFloatOperations<FloatMatrix, FloatVect
 		return this.values[0].length;
 	}
 
+	public float element(int row, int column) {
+		if(row < 0 || row >= this.rows())
+			throw new IndexOutOfBoundsException("Row index out of bounds");
+		if(column < 0 || column >= this.columns())
+			throw new IndexOutOfBoundsException("Column index out of bounds");
+		return this.values[row][column];
+	}
+
 	@Override
 	public FloatMatrix plus(FloatMatrix matrix) {
 		return this.applyOperation(matrix.rows(), matrix.columns(), (r, c) -> this.values[r][c] + matrix.values[r][c]);
