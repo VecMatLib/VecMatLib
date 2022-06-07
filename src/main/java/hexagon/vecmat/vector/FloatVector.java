@@ -165,7 +165,7 @@ public final class FloatVector implements VectorFloatOperations<FloatVector>, Ve
 
 	@Override
 	public String toString() {
-		return "FloatVector[values=" + Arrays.toString(this.values) + "]";
+		return "FloatVector" + Arrays.toString(this.values);
 	}
 
 	@Override

@@ -166,7 +166,7 @@ public final class DoubleVector implements VectorDoubleOperations<DoubleVector> 
 
 	@Override
 	public String toString() {
-		return "DoubleVector[values=" + Arrays.toString(this.values) + "]";
+		return "DoubleVector" + Arrays.toString(this.values);
 	}
 
 	@Override

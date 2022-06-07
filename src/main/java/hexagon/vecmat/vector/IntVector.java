@@ -156,7 +156,7 @@ public final class IntVector implements VectorIntOperations<IntVector>, VectorAs
 
 	@Override
 	public String toString() {
-		return "IntVector[values=" + Arrays.toString(this.values) + "]";
+		return "IntVector" + Arrays.toString(this.values);
 	}
 
 	@Override
