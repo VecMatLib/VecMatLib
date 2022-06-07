@@ -124,6 +124,10 @@ public interface MatrixOperations<M extends MatrixOperations<M, V>, V extends Ve
 	 */
 	M transposed();
 
+	default M negativeTransposed() {
+		return this.transposed().negative();
+	}
+
 	/**
 	 * Checks if this matrix is symmetric.
 	 * 
@@ -133,7 +137,9 @@ public interface MatrixOperations<M extends MatrixOperations<M, V>, V extends Ve
 	 * 
 	 * @return True if this matrix is symmetric, false otherwise.
 	 */
-	boolean isSymmetric();
+	default boolean isSymmetric() {
+		return this.equals(this.transposed());
+	}
 
 	/**
 	 * Checks if this matrix is skew-symmetric.
@@ -144,7 +150,9 @@ public interface MatrixOperations<M extends MatrixOperations<M, V>, V extends Ve
 	 * 
 	 * @return True if this matrix is skew-symmetric, false otherwise.
 	 */
-	boolean isSkewSymmetric();
+	default boolean isSkewSymmetric() {
+		return this.equals(this.negativeTransposed());
+	}
 
 	/**
 	 * Multiplies this matrix by the given one.
