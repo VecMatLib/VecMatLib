@@ -41,7 +41,7 @@ public class IntMatrix implements MatrixIntOperations<IntMatrix, IntVector> {
 
 	@Override
 	public IntMatrix plus(IntMatrix matrix) {
-		return matrix != null ? this.applyOperation(matrix.rows(), matrix.columns(), (r, c) -> this.values[r][c] + matrix.values[r][c]) : this;
+		return this.applyOperation(matrix.rows(), matrix.columns(), (r, c) -> this.values[r][c] + matrix.values[r][c]);
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class IntMatrix implements MatrixIntOperations<IntMatrix, IntVector> {
 
 	@Override
 	public IntMatrix minus(IntMatrix matrix) {
-		return matrix != null ? this.applyOperation(matrix.rows(), matrix.columns(), (r, c) -> this.values[r][c] - matrix.values[r][c]) : this;
+		return this.applyOperation(matrix.rows(), matrix.columns(), (r, c) -> this.values[r][c] - matrix.values[r][c]);
 	}
 
 	@Override
@@ -96,7 +96,7 @@ public class IntMatrix implements MatrixIntOperations<IntMatrix, IntVector> {
 
 	@Override
 	public IntMatrix multiply(IntMatrix matrix) {
-		return matrix != null ? this.applyOperation(matrix.rows(), matrix.columns(), (r, c) -> this.row(r).dotProduct(matrix.column(c))) : zero(this.rows(), this.columns());
+		return this.applyOperation(matrix.rows(), matrix.columns(), (r, c) -> this.row(r).dotProduct(matrix.column(c)));
 	}
 
 	@Override

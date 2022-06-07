@@ -41,11 +41,11 @@ public record Int3x3(
 
 	@Override
 	public Int3x3 plus(Int3x3 matrix) {
-		return matrix != null ? new Int3x3(
+		return new Int3x3(
 			this.m11() + matrix.m11(), this.m12() + matrix.m12(), this.m13() + matrix.m13(),
 			this.m21() + matrix.m21(), this.m22() + matrix.m22(), this.m23() + matrix.m23(),
 			this.m31() + matrix.m31(), this.m32() + matrix.m32(), this.m33() + matrix.m33()
-		) : this;
+		);
 	}
 
 	@Override
@@ -150,7 +150,7 @@ public record Int3x3(
 
 	@Override
 	public Int3x3 multiply(Int3x3 matrix) {
-		return matrix != null ? new Int3x3(
+		return new Int3x3(
 			this.row1().dotProduct(matrix.column1()),
 			this.row1().dotProduct(matrix.column2()),
 			this.row1().dotProduct(matrix.column3()),
@@ -160,7 +160,7 @@ public record Int3x3(
 			this.row3().dotProduct(matrix.column1()),
 			this.row3().dotProduct(matrix.column2()),
 			this.row3().dotProduct(matrix.column3())
-		) : ZERO;
+		);
 	}
 
 	@Override

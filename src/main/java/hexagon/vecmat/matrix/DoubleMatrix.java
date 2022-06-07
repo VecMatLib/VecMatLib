@@ -8,7 +8,6 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import hexagon.vecmat.vector.DoubleVector;
-import hexagon.vecmat.vector.VectorAsDouble;
 import hexagon.vecmat.vector.VectorMathException;
 
 public class DoubleMatrix implements MatrixDoubleOperations<DoubleMatrix, DoubleVector> {
@@ -43,7 +42,7 @@ public class DoubleMatrix implements MatrixDoubleOperations<DoubleMatrix, Double
 
 	@Override
 	public DoubleMatrix plus(DoubleMatrix matrix) {
-		return matrix != null ? this.applyOperation(matrix.rows(), matrix.columns(), (r, c) -> this.values[r][c] + matrix.values[r][c]) : this;
+		return this.applyOperation(matrix.rows(), matrix.columns(), (r, c) -> this.values[r][c] + matrix.values[r][c]);
 	}
 
 	@Override
@@ -53,7 +52,7 @@ public class DoubleMatrix implements MatrixDoubleOperations<DoubleMatrix, Double
 
 	@Override
 	public DoubleMatrix minus(DoubleMatrix matrix) {
-		return matrix != null ? this.applyOperation(matrix.rows(), matrix.columns(), (r, c) -> this.values[r][c] - matrix.values[r][c]) : this;
+		return this.applyOperation(matrix.rows(), matrix.columns(), (r, c) -> this.values[r][c] - matrix.values[r][c]);
 	}
 
 	@Override
@@ -87,15 +86,6 @@ public class DoubleMatrix implements MatrixDoubleOperations<DoubleMatrix, Double
 	}
 
 	@Override
-	public DoubleVector multiply(VectorAsDouble<DoubleVector> vector) {
-		try {
-			return new DoubleVector(IntStream.range(0, this.rows()).mapToDouble(i -> this.row(i).dotProduct(vector)).toArray());
-		} catch(VectorMathException e) {
-			throw new MatrixMathException("The given vector's size does not match the matrix's number of columns", e);
-		}
-	}
-
-	@Override
 	public DoubleMatrix transposed() {
 		return this.applyOperation((r, c) -> this.values[c][r]);
 	}
@@ -107,7 +97,7 @@ public class DoubleMatrix implements MatrixDoubleOperations<DoubleMatrix, Double
 
 	@Override
 	public DoubleMatrix multiply(DoubleMatrix matrix) {
-		return matrix != null ? this.applyOperation(matrix.rows(), matrix.columns(), (r, c) -> this.row(r).dotProduct(matrix.column(c))) : zero(this.rows(), this.columns());
+		return this.applyOperation(matrix.rows(), matrix.columns(), (r, c) -> this.row(r).dotProduct(matrix.column(c)));
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package hexagon.vecmat.matrix;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -43,67 +44,51 @@ public class TestDouble4x4 {
 		return Stream.of(
 			//1. Double4x4 + Double4x4
 			Arguments.of(new Double4x4(a11+b11, a12+b12, a13+b13, a14+b14, a21+b21, a22+b22, a23+b23, a24+b24, a31+b31, a32+b32, a33+b33, a34+b34, a41+b41, a42+b42, a43+b43, a44+b44), a.plus(b)),
-			//2. Double4x4 + null (Double4x4)
-			Arguments.of(a, a.plus(n1)),
-			//3. Double4x4 + Float4x4
+			//2. Double4x4 + Float4x4
 			Arguments.of(new Double4x4(a11+c11, a12+c12, a13+c13, a14+c14, a21+c21, a22+c22, a23+c23, a24+c24, a31+c31, a32+c32, a33+c33, a34+c34, a41+c41, a42+c42, a43+c43, a44+c44), a.plus(c)),
-			//4. Double4x4 + null (Float4x4)
-			Arguments.of(a, a.plus(n2)),
-			//5. -Double4x4
+			//3. -Double4x4
 			Arguments.of(new Double4x4(-a11, -a12, -a13, -a14, -a21, -a22, -a23, -a24, -a31, -a32, -a33, -a34, -a41, -a42, -a43, -a44), a.negative()),
-			//6. Double4x4 - Double4x4
+			//4. Double4x4 - Double4x4
 			Arguments.of(new Double4x4(a11-b11, a12-b12, a13-b13, a14-b14, a21-b21, a22-b22, a23-b23, a24-b24, a31-b31, a32-b32, a33-b33, a34-b34, a41-b41, a42-b42, a43-b43, a44-b44), a.minus(b)),
-			//7. Double4x4 - null (Double4x4)
-			Arguments.of(a, a.minus(n1)),
-			//8. Double4x4 - Float4x4
+			//5. Double4x4 - Float4x4
 			Arguments.of(new Double4x4(a11-c11, a12-c12, a13-c13, a14-c14, a21-c21, a22-c22, a23-c23, a24-c24, a31-c31, a32-c32, a33-c33, a34-c34, a41-c41, a42-c42, a43-c43, a44-c44), a.minus(c)),
-			//9. Double4x4 - null (Float4x4)
-			Arguments.of(a, a.minus(n2)),
-			//10. Double4x4 * double
+			//6. Double4x4 * double
 			Arguments.of(new Double4x4(a11*2.0, a12*2.0, a13*2.0, a14*2.0, a21*2.0, a22*2.0, a23*2.0, a24*2.0, a31*2.0, a32*2.0, a33*2.0, a34*2.0, a41*2.0, a42*2.0, a43*2.0, a44*2.0), a.multipliedBy(2.0)),
-			//11. Row1
+			//7. Row1
 			Arguments.of(new Double4(a11, a12, a13, a14), a.row1()),
-			//12. Row2
+			//8. Row2
 			Arguments.of(new Double4(a21, a22, a23, a24), a.row2()),
-			//13. Row3
+			//9. Row3
 			Arguments.of(new Double4(a31, a32, a33, a34), a.row3()),
-			//14. Row4
+			//10. Row4
 			Arguments.of(new Double4(a41, a42, a43, a44), a.row4()),
-			//15. Column1
+			//11. Column1
 			Arguments.of(new Double4(a11, a21, a31, a41), a.column1()),
-			//16. Column2
+			//12. Column2
 			Arguments.of(new Double4(a12, a22, a32, a42), a.column2()),
-			//17. Column3
+			//13. Column3
 			Arguments.of(new Double4(a13, a23, a33, a43), a.column3()),
-			//18. Column4
+			//14. Column4
 			Arguments.of(new Double4(a14, a24, a34, a44), a.column4()),
-			//19. Double4x4 * Double4
+			//15. Double4x4 * Double4
 			Arguments.of(new Double4(a11*1.0+a12*2.0+a13*3.0+a14*4.0, a21*1.0+a22*2.0+a23*3.0+a24*4.0, a31*1.0+a32*2.0+a33*3.0+a34*4.0, a41*1.0+a42*2.0+a43*3.0+a44*4.0), a.multiply(new Double4(1.0, 2.0, 3.0, 4.0))),
-			//20. Double4x4 * null (Double4)
-			Arguments.of(Double4.ZERO, a.multiply(vn1)),
-			//21. Double4x4 * Float4
+			//16. Double4x4 * Float4
 			Arguments.of(new Double4(a11*1.0f+a12*2.0f+a13*3.0f+a14*4.0f, a21*1.0f+a22*2.0f+a23*3.0f+a24*4.0f, a31*1.0f+a32*2.0f+a33*3.0f+a34*4.0f, a41*1.0f+a42*2.0f+a43*3.0f+a44*4.0f), a.multiply(new Float4(1.0f, 2.0f, 3.0f, 4.0f))),
-			//22. Double4x4 * null (Float4)
-			Arguments.of(Double4.ZERO, a.multiply(vn2)),
-			//23. Double4x4 ^ T
+			//17. Double4x4 ^ T
 			Arguments.of(new Double4x4(a11, a21, a31, a41, a12, a22, a32, a42, a13, a23, a33, a43, a14, a24, a34, a44), a.transposed()),
-			//24. Double4x4 == Double4x4 ^ T
+			//18. Double4x4 == Double4x4 ^ T
 			Arguments.of(true, s1.isSymmetric()),
-			//25. Double4x4 != Double4x4 ^ T
+			//19. Double4x4 != Double4x4 ^ T
 			Arguments.of(false, a.isSymmetric()),
-			//26. Double4x4 == -(Double4x4 ^ T)
+			//20. Double4x4 == -(Double4x4 ^ T)
 			Arguments.of(true, s2.isSkewSymmetric()),
-			//27. Double4x4 != -(Double4x4 ^ T)
+			//21. Double4x4 != -(Double4x4 ^ T)
 			Arguments.of(false, a.isSkewSymmetric()),
-			//28. Double4x4 * Double4x4
+			//22. Double4x4 * Double4x4
 			Arguments.of(new Double4x4(a.row1().dotProduct(b.column1()), a.row1().dotProduct(b.column2()), a.row1().dotProduct(b.column3()), a.row1().dotProduct(b.column4()), a.row2().dotProduct(b.column1()), a.row2().dotProduct(b.column2()), a.row2().dotProduct(b.column3()), a.row2().dotProduct(b.column4()), a.row3().dotProduct(b.column1()), a.row3().dotProduct(b.column2()), a.row3().dotProduct(b.column3()), a.row3().dotProduct(b.column4()), a.row4().dotProduct(b.column1()), a.row4().dotProduct(b.column2()), a.row4().dotProduct(b.column3()), a.row4().dotProduct(b.column4())), a.multiply(b)),
-			//29. Double4x4 * null (Double4x4)
-			Arguments.of(Double4x4.ZERO, a.multiply(n1)),
-			//30. Double4x4 * Float4x4
+			//23. Double4x4 * Float4x4
 			Arguments.of(new Double4x4(a.row1().dotProduct(c.column1()), a.row1().dotProduct(c.column2()), a.row1().dotProduct(c.column3()), a.row1().dotProduct(c.column4()), a.row2().dotProduct(c.column1()), a.row2().dotProduct(c.column2()), a.row2().dotProduct(c.column3()), a.row2().dotProduct(c.column4()), a.row3().dotProduct(c.column1()), a.row3().dotProduct(c.column2()), a.row3().dotProduct(c.column3()), a.row3().dotProduct(c.column4()), a.row4().dotProduct(c.column1()), a.row4().dotProduct(c.column2()), a.row4().dotProduct(c.column3()), a.row4().dotProduct(c.column4())), a.multiply(c)),
-			//31. Double4x4 * null (Float4x4)
-			Arguments.of(Double4x4.ZERO, a.multiply(n2)),
-			//32. Double4x4 ^ int
+			//24. Double4x4 ^ int
 			Arguments.of(a.multiply(a).multiply(a), a.power(3))
 		);
 	}
@@ -112,5 +97,32 @@ public class TestDouble4x4 {
 	@MethodSource("testSource")
 	void testEquals(Object expected, Object actual) {
 		Assertions.assertEquals(expected, actual);
+	}
+
+	static Stream<Arguments> testNullValuesSource() {
+		return Stream.of(
+			//1. Double4x4 + null (Double4x4)
+			Arguments.of((Executable) () -> a.plus(n1)),
+			//2. Double4x4 + null (Float4x4)
+			Arguments.of((Executable) () -> a.plus(n2)),
+			//3. Double4x4 - null (Double4x4)
+			Arguments.of((Executable) () -> a.minus(n1)),
+			//4. Double4x4 - null (Float4x4)
+			Arguments.of((Executable) () -> a.minus(n2)),
+			//5. Double4x4 * null (Double4)
+			Arguments.of((Executable) () -> a.multiply(vn1)),
+			//6. Double4x4 * null (Float4)
+			Arguments.of((Executable) () -> a.multiply(vn2)),
+			//7. Double4x4 * null (Double4x4)
+			Arguments.of((Executable) () -> a.multiply(n1)),
+			//8. Double4x4 * null (Float4x4)
+			Arguments.of((Executable) () -> a.multiply(n2))
+		);
+	}
+
+	@ParameterizedTest
+	@MethodSource("testNullValuesSource")
+	void testNullValues(Executable method) {
+		Assertions.assertThrows(NullPointerException.class, method);
 	}
 }

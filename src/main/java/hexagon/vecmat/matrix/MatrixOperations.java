@@ -25,20 +25,13 @@ public interface MatrixOperations<M extends MatrixOperations<M, V>, V extends Ve
 	 * this method does not alter the object on which it is called,
 	 * it returns a new matrix instead.
 	 * 
-	 * <p> If the given matrix is null, in the case of matrices of fixed
-	 * dimensions it will be treated as a matrix where every element is 0.
-	 * In the case of matrices of unknown dimensions, this will throw an
-	 * exception, since it is not possible to check if the two matrices
-	 * have the same dimensions.
-	 * 
 	 * @param matrix The second operand of the sum, a matrix of the
-	 * 		same type as this one
+	 * 		same type as this one.
 	 * 
-	 * @return The sum of this matrix and the given one or the same
-	 * 		matrix if the given one is null and this is a matrix of
-	 * 		fixed dimensions.
+	 * @return The sum of this matrix and the given one.
 	 * 
-	 * TODO - Throws
+	 * @throws MatrixMathException If the matrices have different dimensions.
+	 * @throws NullPointerException if the given matrix is null.
 	 */
 	M plus(M matrix);
 
@@ -63,23 +56,16 @@ public interface MatrixOperations<M extends MatrixOperations<M, V>, V extends Ve
 	 * this method does not alter the object on which it is called,
 	 * it returns a new matrix instead.
 	 * 
-	 * <p> If the given matrix is null, in the case of matrices of fixed
-	 * dimensions it will be treated as a matrix where every element is 0.
-	 * In the case of matrices of unknown dimensions, this will throw an
-	 * exception, since it is not possible to check if the two matrices
-	 * have the same dimensions.
-	 * 
 	 * @param matrix The second operand of the subtraction, a matrix of the
 	 * 		same type as this one.
 	 * 
-	 * @return The subtraction of this matrix and the given one or the same
-	 * 		matrix if the given one is null and this is a matrix of
-	 * 		fixed dimensions.
+	 * @return The subtraction of this matrix and the given one.
 	 * 
-	 * TODO - Throws
+	 * @throws MatrixMathException If the matrices have different dimensions.
+	 * @throws NullPointerException if the given matrix is null.
 	 */
 	default M minus(M matrix) {
-		return this.negative().plus(matrix).negative();
+		return this.plus(matrix.negative());
 	}
 
 	/**
@@ -94,19 +80,14 @@ public interface MatrixOperations<M extends MatrixOperations<M, V>, V extends Ve
 	 * <p> A vector and a matrix can only be multiplied if the matrix has
 	 * the same number of columns as the vector has elements.
 	 * 
-	 * <p> If the given vector is null in the case of matrices of fixed dimensions
-	 * it will be treated as a vector where every element is 0. In the case of
-	 * matrices of unknown dimensions, this will throw an exception, since it
-	 * is not possible to check if the matrix and the vector have the correct size.
-	 * 
 	 * @param vector The second operand of the product, a vector whose size is the
 	 * 		same as the number of columns of this matrix.
 	 * 
-	 * @return The result of the product between this matrix and the given vector
-	 * 		or a vector where every element is 0 if the given vector is null and
-	 * 		this is a matrix of fixed dimensions.
+	 * @return The result of the product between this matrix and the given vector.
 	 * 
-	 * TODO - Throws
+	 * @throws MatrixMathException If the size of the vector does not match the
+	 * 		number of columns of this matrix.
+	 * @throws NullPointerException if the given vector is null.
 	 */
 	V multiply(V vector);
 
@@ -124,6 +105,17 @@ public interface MatrixOperations<M extends MatrixOperations<M, V>, V extends Ve
 	 */
 	M transposed();
 
+	/**
+	 * Computes the negative transposed of this matrix.
+	 * 
+	 * <p> A transposed matrix is a matrix where every row i is the column i
+	 * of the first matrix and every column j is the row j of the first matrix.
+	 * 
+	 * <p> The additive inverse of a matrix m is a matrix -m such
+	 * that m + (-m) is a matrix where every element m-ij is 0.
+	 * 
+	 * @return The negative transposed of this matrix.
+	 */
 	default M negativeTransposed() {
 		return this.transposed().negative();
 	}
@@ -134,6 +126,9 @@ public interface MatrixOperations<M extends MatrixOperations<M, V>, V extends Ve
 	 * <p> A matrix is symmetric if it is equal to its transposed.
 	 * In other words, if every element m-ij of this matrix is equal to
 	 * the element m-ji of this matrix.
+	 * 
+	 * <p> In other words, a matrix is symmetric if it is equal to its
+	 * transposed.
 	 * 
 	 * @return True if this matrix is symmetric, false otherwise.
 	 */
@@ -147,6 +142,9 @@ public interface MatrixOperations<M extends MatrixOperations<M, V>, V extends Ve
 	 * <p> A matrix is skew-symmetric if it is equal to its negative transposed.
 	 * In other words, if every element m-ij of this matrix is equal to
 	 * the element -(m-ji) of this matrix.
+	 * 
+	 * <p> In other words, a matrix is skew-symmetric if it is equal to its
+	 * negative transposed.
 	 * 
 	 * @return True if this matrix is skew-symmetric, false otherwise.
 	 */
@@ -168,18 +166,13 @@ public interface MatrixOperations<M extends MatrixOperations<M, V>, V extends Ve
 	 * does not alter the object on which it is called, it returns a new matrix
 	 * instead.
 	 * 
-	 * <p> If the given matrix is null, in the case of matrices of fixed dimensions
-	 * it will be treated as a matrix where every element is 0. In the case of
-	 * matrices of unknown dimensions, this will throw an exception, since it
-	 * is not possible to check the dimension of the two matrices.
-	 * 
 	 * @param matrix The second operand of the product
 	 * 
-	 * @return The product of this matrix and the given one or a matrix where
-	 * 		every element is 0 if the given matrix is null and this is a matrix
-	 * 		of fixed dimensions.
+	 * @return The product of this matrix and the given one.
 	 * 
-	 * TODO - Throws
+	 * @throws MatrixMathException If the number of rows of this matrix does not
+	 * 		match the number of columns of the given matrix.
+	 * @throws NullPointerException if the given matrix is null.
 	 */
 	M multiply(M matrix);
 
@@ -188,6 +181,8 @@ public interface MatrixOperations<M extends MatrixOperations<M, V>, V extends Ve
 	 * 
 	 * <p> The n-th power of a matrix is the product of itself n times.
 	 * 
+	 * <p> Only square matrices can be raised to a power.
+	 * 
 	 * <p> Matrices are supposed to be immutable. This means that this method
 	 * does not alter the object on which it is called, it returns a new matrix
 	 * instead.
@@ -195,6 +190,8 @@ public interface MatrixOperations<M extends MatrixOperations<M, V>, V extends Ve
 	 * @param exponent Exponent of the power.
 	 * 
 	 * @return The n-th power of this matrix.
+	 * 
+	 * @throws MatrixMathException If this matrix is not square.
 	 */
 	M power(int exponent);
 }

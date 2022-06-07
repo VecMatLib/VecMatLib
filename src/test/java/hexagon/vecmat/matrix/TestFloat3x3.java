@@ -3,6 +3,7 @@ package hexagon.vecmat.matrix;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -48,81 +49,57 @@ public class TestFloat3x3 {
 		return Stream.of(
 			//1. Float3x3 + Float3x3
 			Arguments.of(new Float3x3(a11+b11, a12+b12, a13+b13, a21+b21, a22+b22, a23+b23, a31+b31, a32+b32, a33+b33), a.plus(b)),
-			//2. Float3x3 + null (Float3x3)
-			Arguments.of(a, a.plus(n1)),
-			//3. Float3x3 + Int3x3
+			//2. Float3x3 + Int3x3
 			Arguments.of(new Float3x3(a11+c11, a12+c12, a13+c13, a21+c21, a22+c22, a23+c23, a31+c31, a32+c32, a33+c33), a.plus(c)),
-			//4. Float3x3 + null (Int3x3)
-			Arguments.of(a, a.plus(n2)),
-			//5. Float3x3 + Double3x3
+			//3. Float3x3 + Double3x3
 			Arguments.of(new Double3x3(a11+d11, a12+d12, a13+d13, a21+d21, a22+d22, a23+d23, a31+d31, a32+d32, a33+d33), a.plus(d)),
-			//6. Float3x3 + null (Double3x3)
-			Arguments.of(a.asDouble(), a.plus(n3)),
-			//7. -Float3x3
+			//4. -Float3x3
 			Arguments.of(new Float3x3(-a11, -a12, -a13, -a21, -a22, -a23, -a31, -a32, -a33), a.negative()),
-			//8. Float3x3 - Float3x3
+			//5. Float3x3 - Float3x3
 			Arguments.of(new Float3x3(a11-b11, a12-b12, a13-b13, a21-b21, a22-b22, a23-b23, a31-b31, a32-b32, a33-b33), a.minus(b)),
-			//9. Float3x3 - null (Float3x3)
-			Arguments.of(a, a.minus(n1)),
-			//10. Float3x3 - Int3x3
+			//6. Float3x3 - Int3x3
 			Arguments.of(new Float3x3(a11-c11, a12-c12, a13-c13, a21-c21, a22-c22, a23-c23, a31-c31, a32-c32, a33-c33), a.minus(c)),
-			//11. Float3x3 - null (Int3x3)
-			Arguments.of(a, a.minus(n2)),
-			//12. Float3x3 - Double3x3
+			//7. Float3x3 - Double3x3
 			Arguments.of(new Double3x3(a11-d11, a12-d12, a13-d13, a21-d21, a22-d22, a23-d23, a31-d31, a32-d32, a33-d33), a.minus(d)),
-			//13. Float3x3 - null (Double3x3)
-			Arguments.of(a.asDouble(), a.minus(n3)),
-			//14. Float3x3 * float
+			//8. Float3x3 * float
 			Arguments.of(new Float3x3(a11*2.0f, a12*2.0f, a13*2.0f, a21*2.0f, a22*2.0f, a23*2.0f, a31*2.0f, a32*2.0f, a33*2.0f), a.multipliedBy(2.0f)),
-			//15. Float3x3 * double
+			//9. Float3x3 * double
 			Arguments.of(new Double3x3(a11*2.0, a12*2.0, a13*2.0, a21*2.0, a22*2.0, a23*2.0, a31*2.0, a32*2.0, a33*2.0), a.multipliedBy(2.0)),
-			//16. Row1
+			//10. Row1
 			Arguments.of(new Float3(a11, a12, a13), a.row1()),
-			//17. Row2
+			//11. Row2
 			Arguments.of(new Float3(a21, a22, a23), a.row2()),
-			//18. Row3
+			//12. Row3
 			Arguments.of(new Float3(a31, a32, a33), a.row3()),
-			//19. Column1
+			//13. Column1
 			Arguments.of(new Float3(a11, a21, a31), a.column1()),
-			//20. Column2
+			//14. Column2
 			Arguments.of(new Float3(a12, a22, a32), a.column2()),
-			//21. Column3
+			//15. Column3
 			Arguments.of(new Float3(a13, a23, a33), a.column3()),
-			//22. Float3x3 * Float3
+			//16. Float3x3 * Float3
 			Arguments.of(new Float3(a11*1.0f+a12*2.0f+a13*3.0f, a21*1.0f+a22*2.0f+a23*3.0f, a31*1.0f+a32*2.0f+a33*3.0f), a.multiply(new Float3(1.0f, 2.0f, 3.0f))),
-			//23. Float3x3 * null (Float3)
-			Arguments.of(Float3.ZERO, a.multiply(vn1)),
-			//24. Float3x3 * Int3
+			//17. Float3x3 * Int3
 			Arguments.of(new Float3(a11*1+a12*2+a13*3, a21*1+a22*2+a23*3, a31*1+a32*2+a33*3), a.multiply(new Int3(1, 2, 3))),
-			//25. Float3x3 * null (Int3)
-			Arguments.of(Float3.ZERO, a.multiply(vn2)),
-			//26. Float3x3 * Double3
+			//18. Float3x3 * Double3
 			Arguments.of(new Double3(a11*1.0+a12*2.0+a13*3.0, a21*1.0+a22*2.0+a23*3.0, a31*1.0+a32*2.0+a33*3.0), a.multiply(new Double3(1.0, 2.0, 3.0))),
-			//27. Float3x3 * null (Double3)
-			Arguments.of(Double3.ZERO, a.multiply(vn3)),
-			//28. Float3x3 ^ T
+			//19. Float3x3 ^ T
 			Arguments.of(new Float3x3(a11, a21, a31, a12, a22, a32, a13, a23, a33), a.transposed()),
-			//29. Float3x3 == Float3x3 ^ T
+			//20. Float3x3 == Float3x3 ^ T
 			Arguments.of(true, s1.isSymmetric()),
-			//30. Float3x3 != Float3x3 ^ T
+			//21. Float3x3 != Float3x3 ^ T
 			Arguments.of(false, a.isSymmetric()),
-			//31. Float3x3 == -(Float3x3 ^ T)
+			//22. Float3x3 == -(Float3x3 ^ T)
 			Arguments.of(true, s2.isSkewSymmetric()),
-			//32. Float3x3 != -(Float3x3 ^ T)
+			//23. Float3x3 != -(Float3x3 ^ T)
 			Arguments.of(false, a.isSkewSymmetric()),
-			//33. Float3x3 * Float3x3
+			//24. Float3x3 * Float3x3
 			Arguments.of(new Float3x3(a.row1().dotProduct(b.column1()), a.row1().dotProduct(b.column2()), a.row1().dotProduct(b.column3()), a.row2().dotProduct(b.column1()), a.row2().dotProduct(b.column2()), a.row2().dotProduct(b.column3()), a.row3().dotProduct(b.column1()), a.row3().dotProduct(b.column2()), a.row3().dotProduct(b.column3())), a.multiply(b)),
-			//34. Float3x3 * null (Float3x3)
-			Arguments.of(Float3x3.ZERO, a.multiply(n1)),
-			//35. Float3x3 * Int3x3
+			//25. Float3x3 * Int3x3
 			Arguments.of(new Float3x3(a.row1().dotProduct(c.column1()), a.row1().dotProduct(c.column2()), a.row1().dotProduct(c.column3()), a.row2().dotProduct(c.column1()), a.row2().dotProduct(c.column2()), a.row2().dotProduct(c.column3()), a.row3().dotProduct(c.column1()), a.row3().dotProduct(c.column2()), a.row3().dotProduct(c.column3())), a.multiply(c)),
-			//36. Float3x3 * null (Int3x3)
-			Arguments.of(Float3x3.ZERO, a.multiply(n2)),
-			//37. Float3x3 * Double3x3
+			//26. Float3x3 * Double3x3
 			Arguments.of(new Double3x3(a.row1().dotProduct(d.column1()), a.row1().dotProduct(d.column2()), a.row1().dotProduct(d.column3()), a.row2().dotProduct(d.column1()), a.row2().dotProduct(d.column2()), a.row2().dotProduct(d.column3()), a.row3().dotProduct(d.column1()), a.row3().dotProduct(d.column2()), a.row3().dotProduct(d.column3())), a.multiply(d)),
-			//38. Float3x3 * null (Double3x3)
-			Arguments.of(Double3x3.ZERO, a.multiply(n3)),
-			//39. Float3x3 ^ int
+			//27. Float3x3 ^ int
 			Arguments.of(a.multiply(a).multiply(a), a.power(3))
 		);
 	}
@@ -131,5 +108,40 @@ public class TestFloat3x3 {
 	@MethodSource("testSource")
 	void testEquals(Object expected, Object actual) {
 		Assertions.assertEquals(expected, actual);
+	}
+
+	static Stream<Arguments> testNullValuesSource() {
+		return Stream.of(
+			//1. Float3x3 + null (Float3x3)
+			Arguments.of((Executable) () -> a.plus(n1)),
+			//2. Float3x3 + null (Int3x3)
+			Arguments.of((Executable) () -> a.plus(n2)),
+			//3. Float3x3 + null (Double3x3)
+			Arguments.of((Executable) () -> a.plus(n3)),
+			//4. Float3x3 - null (Float3x3)
+			Arguments.of((Executable) () -> a.minus(n1)),
+			//5. Float3x3 - null (Int3x3)
+			Arguments.of((Executable) () -> a.minus(n2)),
+			//6. Float3x3 - null (Double3x3)
+			Arguments.of((Executable) () -> a.minus(n3)),
+			//7. Float3x3 * null (Float4)
+			Arguments.of((Executable) () -> a.multiply(vn1)),
+			//8. Float3x3 * null (Int4)
+			Arguments.of((Executable) () -> a.multiply(vn2)),
+			//9. Float3x3 * null (Double4)
+			Arguments.of((Executable) () -> a.multiply(vn3)),
+			//10. Float3x3 * null (Float3x3)
+			Arguments.of((Executable) () -> a.multiply(n1)),
+			//11. Float3x3 * null (Int3x3)
+			Arguments.of((Executable) () -> a.multiply(n2)),
+			//12. Float3x3 * null (Double3x3)
+			Arguments.of((Executable) () -> a.multiply(n3))
+		);
+	}
+
+	@ParameterizedTest
+	@MethodSource("testNullValuesSource")
+	void testNullValues(Executable method) {
+		Assertions.assertThrows(NullPointerException.class, method);
 	}
 }

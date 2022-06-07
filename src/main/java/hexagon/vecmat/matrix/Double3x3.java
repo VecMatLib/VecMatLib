@@ -1,7 +1,6 @@
 package hexagon.vecmat.matrix;
 
 import hexagon.vecmat.vector.Double3;
-import hexagon.vecmat.vector.VectorAsDouble;
 
 /**
  * Record that represents a 3x3 double matrix.
@@ -40,11 +39,11 @@ public record Double3x3(
 
 	@Override
 	public Double3x3 plus(Double3x3 matrix) {
-		return matrix != null ? new Double3x3(
+		return new Double3x3(
 			this.m11() + matrix.m11(), this.m12() + matrix.m12(), this.m13() + matrix.m13(),
 			this.m21() + matrix.m21(), this.m22() + matrix.m22(), this.m23() + matrix.m23(),
 			this.m31() + matrix.m31(), this.m32() + matrix.m32(), this.m33() + matrix.m33()
-		) : this;
+		);
 	}
 
 	@Override
@@ -58,11 +57,11 @@ public record Double3x3(
 
 	@Override
 	public Double3x3 minus(Double3x3 matrix) {
-		return matrix != null ? new Double3x3(
+		return new Double3x3(
 			this.m11() - matrix.m11(), this.m12() - matrix.m12(), this.m13() - matrix.m13(),
 			this.m21() - matrix.m21(), this.m22() - matrix.m22(), this.m23() - matrix.m23(),
 			this.m31() - matrix.m31(), this.m32() - matrix.m32(), this.m33() - matrix.m33()
-		) : this;
+		);
 	}
 
 	@Override
@@ -138,11 +137,6 @@ public record Double3x3(
 	}
 
 	@Override
-	public Double3 multiply(VectorAsDouble<Double3> vector) {
-		return vector != null ? this.multiply(vector.asDouble()) : Double3.ZERO;
-	}
-
-	@Override
 	public Double3x3 transposed() {
 		return new Double3x3(
 			this.m11(), this.m21(), this.m31(),
@@ -163,7 +157,7 @@ public record Double3x3(
 
 	@Override
 	public Double3x3 multiply(Double3x3 matrix) {
-		return matrix != null ? new Double3x3(
+		return new Double3x3(
 			this.row1().dotProduct(matrix.column1()),
 			this.row1().dotProduct(matrix.column2()),
 			this.row1().dotProduct(matrix.column3()),
@@ -173,7 +167,7 @@ public record Double3x3(
 			this.row3().dotProduct(matrix.column1()),
 			this.row3().dotProduct(matrix.column2()),
 			this.row3().dotProduct(matrix.column3())
-		) : ZERO;
+		);
 	}
 
 	@Override

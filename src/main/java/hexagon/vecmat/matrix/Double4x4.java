@@ -1,7 +1,6 @@
 package hexagon.vecmat.matrix;
 
 import hexagon.vecmat.vector.Double4;
-import hexagon.vecmat.vector.VectorAsDouble;
 
 /**
  * Record that represents a 4x4 double matrix.
@@ -50,12 +49,12 @@ public record Double4x4(
 
 	@Override
 	public Double4x4 plus(Double4x4 matrix) {
-		return matrix != null ? new Double4x4(
+		return new Double4x4(
 			this.m11() + matrix.m11(), this.m12() + matrix.m12(), this.m13() + matrix.m13(), this.m14() + matrix.m14(),
 			this.m21() + matrix.m21(), this.m22() + matrix.m22(), this.m23() + matrix.m23(), this.m24() + matrix.m24(),
 			this.m31() + matrix.m31(), this.m32() + matrix.m32(), this.m33() + matrix.m33(), this.m34() + matrix.m34(),
 			this.m41() + matrix.m41(), this.m42() + matrix.m42(), this.m43() + matrix.m43(), this.m44() + matrix.m44()
-		) : this;
+		);
 	}
 
 	@Override
@@ -70,12 +69,12 @@ public record Double4x4(
 
 	@Override
 	public Double4x4 minus(Double4x4 matrix) {
-		return matrix != null ? new Double4x4(
+		return new Double4x4(
 			this.m11() - matrix.m11(), this.m12() - matrix.m12(), this.m13() - matrix.m13(), this.m14() - matrix.m14(),
 			this.m21() - matrix.m21(), this.m22() - matrix.m22(), this.m23() - matrix.m23(), this.m24() - matrix.m24(),
 			this.m31() - matrix.m31(), this.m32() - matrix.m32(), this.m33() - matrix.m33(), this.m34() - matrix.m34(),
 			this.m41() - matrix.m41(), this.m42() - matrix.m42(), this.m43() - matrix.m43(), this.m44() - matrix.m44()
-		) : this;
+		);
 	}
 
 	@Override
@@ -171,11 +170,6 @@ public record Double4x4(
 	}
 
 	@Override
-	public Double4 multiply(VectorAsDouble<Double4> vector) {
-		return vector != null ? this.multiply(vector.asDouble()) : Double4.ZERO;
-	}
-
-	@Override
 	public Double4x4 transposed() {
 		return new Double4x4(
 			this.m11(), this.m21(), this.m31(), this.m41(),
@@ -201,7 +195,7 @@ public record Double4x4(
 
 	@Override
 	public Double4x4 multiply(Double4x4 matrix) {
-		return matrix != null ? new Double4x4(
+		return new Double4x4(
 			this.row1().dotProduct(matrix.column1()),
 			this.row1().dotProduct(matrix.column2()),
 			this.row1().dotProduct(matrix.column3()),
@@ -218,7 +212,7 @@ public record Double4x4(
 			this.row4().dotProduct(matrix.column2()),
 			this.row4().dotProduct(matrix.column3()),
 			this.row4().dotProduct(matrix.column4())
-		) : ZERO;
+		);
 	}
 
 	@Override

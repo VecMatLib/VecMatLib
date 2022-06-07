@@ -51,12 +51,12 @@ public record Int4x4(
 
 	@Override
 	public Int4x4 plus(Int4x4 matrix) {
-		return matrix != null ? new Int4x4(
+		return new Int4x4(
 			this.m11() + matrix.m11(), this.m12() + matrix.m12(), this.m13() + matrix.m13(), this.m14() + matrix.m14(),
 			this.m21() + matrix.m21(), this.m22() + matrix.m22(), this.m23() + matrix.m23(), this.m24() + matrix.m24(),
 			this.m31() + matrix.m31(), this.m32() + matrix.m32(), this.m33() + matrix.m33(), this.m34() + matrix.m34(),
 			this.m41() + matrix.m41(), this.m42() + matrix.m42(), this.m43() + matrix.m43(), this.m44() + matrix.m44()
-		) : this;
+		);
 	}
 
 	@Override
@@ -187,7 +187,7 @@ public record Int4x4(
 
 	@Override
 	public Int4x4 multiply(Int4x4 matrix) {
-		return matrix != null ? new Int4x4(
+		return new Int4x4(
 			this.row1().dotProduct(matrix.column1()),
 			this.row1().dotProduct(matrix.column2()),
 			this.row1().dotProduct(matrix.column3()),
@@ -204,7 +204,7 @@ public record Int4x4(
 			this.row4().dotProduct(matrix.column2()),
 			this.row4().dotProduct(matrix.column3()),
 			this.row4().dotProduct(matrix.column4())
-		) : ZERO;
+		);
 	}
 
 	@Override

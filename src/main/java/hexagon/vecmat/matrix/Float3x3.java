@@ -2,7 +2,6 @@ package hexagon.vecmat.matrix;
 
 import hexagon.vecmat.vector.Double3;
 import hexagon.vecmat.vector.Float3;
-import hexagon.vecmat.vector.VectorAsFloat;
 
 /**
  * Record that represents a 3x3 float matrix.
@@ -41,11 +40,11 @@ public record Float3x3(
 
 	@Override
 	public Float3x3 plus(Float3x3 matrix) {
-		return matrix != null ? new Float3x3(
+		return new Float3x3(
 			this.m11() + matrix.m11(), this.m12() + matrix.m12(), this.m13() + matrix.m13(),
 			this.m21() + matrix.m21(), this.m22() + matrix.m22(), this.m23() + matrix.m23(),
 			this.m31() + matrix.m31(), this.m32() + matrix.m32(), this.m33() + matrix.m33()
-		) : this;
+		);
 	}
 
 	@Override
@@ -59,11 +58,11 @@ public record Float3x3(
 
 	@Override
 	public Float3x3 minus(Float3x3 matrix) {
-		return matrix != null ? new Float3x3(
+		return new Float3x3(
 			this.m11() - matrix.m11(), this.m12() - matrix.m12(), this.m13() - matrix.m13(),
 			this.m21() - matrix.m21(), this.m22() - matrix.m22(), this.m23() - matrix.m23(),
 			this.m31() - matrix.m31(), this.m32() - matrix.m32(), this.m33() - matrix.m33()
-		) : this;
+		);
 	}
 
 	@Override
@@ -139,11 +138,6 @@ public record Float3x3(
 	}
 
 	@Override
-	public Float3 multiply(VectorAsFloat<Float3> vector) {
-		return vector != null ? this.multiply(vector.asFloat()) : Float3.ZERO;
-	}
-
-	@Override
 	public Float3x3 transposed() {
 		return new Float3x3(
 			this.m11(), this.m21(), this.m31(),
@@ -164,7 +158,7 @@ public record Float3x3(
 
 	@Override
 	public Float3x3 multiply(Float3x3 matrix) {
-		return matrix != null ? new Float3x3(
+		return new Float3x3(
 			this.row1().dotProduct(matrix.column1()),
 			this.row1().dotProduct(matrix.column2()),
 			this.row1().dotProduct(matrix.column3()),
@@ -174,7 +168,7 @@ public record Float3x3(
 			this.row3().dotProduct(matrix.column1()),
 			this.row3().dotProduct(matrix.column2()),
 			this.row3().dotProduct(matrix.column3())
-		) : ZERO;
+		);
 	}
 
 	@Override

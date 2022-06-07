@@ -26,19 +26,12 @@ public interface MatrixAsDouble<M extends MatrixDoubleOperations<M, V>, V extend
 	 * 
 	 * <p> The sum of this matrix and a double matrix is a double matrix.
 	 * 
-	 * <p> If the given matrix is null, in the case of matrices of fixed
-	 * dimensions it will be treated as a matrix where every element is 0.
-	 * In the case of matrices of unknown dimensions, this will throw an
-	 * exception, since it is not possible to check if the two matrices
-	 * have the same dimensions.
-	 * 
 	 * @param matrix The second operand of the sum, a double matrix.
 	 * 
-	 * @return The sum of this matrix and the given one or the same
-	 * 		matrix if the given one is null and this is a matrix of
-	 * 		fixed dimensions.
+	 * @return The sum of this matrix and the given one or.
 	 * 
-	 * TODO - Throws
+	 * @throws MatrixMathException If the matrices have different dimensions.
+	 * @throws NullPointerException if the given matrix is null.
 	 */
 	default M plus(M matrix) {
 		return this.asDouble().plus(matrix);
@@ -57,19 +50,12 @@ public interface MatrixAsDouble<M extends MatrixDoubleOperations<M, V>, V extend
 	 * 
 	 * <p> The subtraction of this matrix and a double matrix is a double matrix.
 	 * 
-	 * <p> If the given matrix is null, in the case of matrices of fixed
-	 * dimensions it will be treated as a matrix where every element is 0.
-	 * In the case of matrices of unknown dimensions, this will throw an
-	 * exception, since it is not possible to check if the two matrices
-	 * have the same dimensions.
-	 * 
 	 * @param matrix The second operand of the subtraction, a double matrix.
 	 * 
-	 * @return The subtraction of this matrix and the given one or the same
-	 * 		matrix if the given one is null and this is a matrix of
-	 * 		fixed dimensions.
+	 * @return The subtraction of this matrix and the given one.
 	 * 
-	 * TODO - Throws
+	 * @throws MatrixMathException If the matrices have different dimensions.
+	 * @throws NullPointerException if the given matrix is null.
 	 */
 	default M minus(M matrix) {
 		return this.asDouble().minus(matrix);
@@ -109,18 +95,13 @@ public interface MatrixAsDouble<M extends MatrixDoubleOperations<M, V>, V extend
 	 * 
 	 * <p> The product of this matrix and a double vector is a double vector.
 	 * 
-	 * <p> If the given vector is null in the case of matrices of fixed dimensions
-	 * it will be treated as a vector where every element is 0. In the case of
-	 * matrices of unknown dimensions, this will throw an exception, since it
-	 * is not possible to check if the matrix and the vector have the correct size.
-	 * 
 	 * @param vector The second operand of the product, a double vector.
 	 * 
-	 * @return The result of the product between this matrix and the given vector
-	 * 		or a vector where every element is 0 if the given vector is null and
-	 * 		this is a matrix of fixed dimensions.
+	 * @return The result of the product between this matrix and the given vector.
 	 * 
-	 * TODO - Throws
+	 * @throws MatrixMathException If the size of the vector does not match the
+	 * 		number of columns of this matrix.
+	 * @throws NullPointerException if the given vector is null.
 	 */
 	default V multiply(V vector) {
 		return this.asDouble().multiply(vector);
@@ -142,18 +123,13 @@ public interface MatrixAsDouble<M extends MatrixDoubleOperations<M, V>, V extend
 	 * 
 	 * <p> The product of this matrix and a double matrix is a double matrix.
 	 * 
-	 * <p> If the given matrix is null, in the case of matrices of fixed dimensions
-	 * it will be treated as a matrix where every element is 0. In the case of
-	 * matrices of unknown dimensions, this will throw an exception, since it
-	 * is not possible to check the dimension of the two matrices.
-	 * 
 	 * @param matrix The second operand of the product, a double matrix.
 	 * 
-	 * @return The product of this matrix and the given one or a matrix where
-	 * 		every element is 0 if the given matrix is null and this is a matrix
-	 * 		of fixed dimensions.
+	 * @return The product of this matrix and the given one.
 	 * 
-	 * TODO - Throws
+	 * @throws MatrixMathException If the number of rows of this matrix does not
+	 * 		match the number of columns of the given matrix.
+	 * @throws NullPointerException if the given matrix is null.
 	 */
 	default M multiply(M matrix) {
 		return this.asDouble().multiply(matrix);

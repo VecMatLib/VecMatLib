@@ -24,23 +24,16 @@ public interface MatrixFloatOperations<M extends MatrixFloatOperations<M, V>, V 
 	 * this method does not alter the object on which it is called,
 	 * it returns a new matrix instead.
 	 * 
-	 * <p> If the given matrix is null, in the case of matrices of fixed
-	 * dimensions it will be treated as a matrix where every element is 0.
-	 * In the case of matrices of unknown dimensions, this will throw an
-	 * exception, since it is not possible to check if the two matrices
-	 * have the same dimensions.
-	 * 
 	 * @param matrix The second operand of the sum, a matrix that can be
 	 * 		represented as a float matrix without casting.
 	 * 
-	 * @return The sum of this matrix and the given one or the same
-	 * 		matrix if the given one is null and this is a matrix of
-	 * 		fixed dimensions.
+	 * @return The sum of this matrix and the given one.
 	 * 
-	 * TODO - Throws
+	 * @throws MatrixMathException If the matrices have different dimensions.
+	 * @throws NullPointerException if the given matrix is null.
 	 */
 	default M plus(MatrixAsFloat<M, V> matrix) {
-		return matrix != null ? this.plus(matrix.asFloat()) : this.multipliedBy(1.0f);
+		return this.plus(matrix.asFloat());
 	}
 
 	/**
@@ -54,23 +47,16 @@ public interface MatrixFloatOperations<M extends MatrixFloatOperations<M, V>, V 
 	 * this method does not alter the object on which it is called,
 	 * it returns a new matrix instead.
 	 * 
-	 * <p> If the given matrix is null, in the case of matrices of fixed
-	 * dimensions it will be treated as a matrix where every element is 0.
-	 * In the case of matrices of unknown dimensions, this will throw an
-	 * exception, since it is not possible to check if the two matrices
-	 * have the same dimensions.
-	 * 
 	 * @param matrix The second operand of the subtraction, a matrix that can be
 	 * 		represented as a float matrix without casting.
 	 * 
-	 * @return The subtraction of this matrix and the given one or the same
-	 * 		matrix if the given one is null and this is a matrix of
-	 * 		fixed dimensions.
+	 * @return The subtraction of this matrix and the given one.
 	 * 
-	 * TODO - Throws
+	 * @throws MatrixMathException If the matrices have different dimensions.
+	 * @throws NullPointerException if the given matrix is null.
 	 */
 	default M minus(MatrixAsFloat<M, V> matrix) {
-		return matrix != null ? this.minus(matrix.asFloat()) : this.multipliedBy(1.0f);
+		return this.minus(matrix.asFloat());
 	}
 
 	/**
@@ -101,22 +87,19 @@ public interface MatrixFloatOperations<M extends MatrixFloatOperations<M, V>, V 
 	 * <p> A vector and a matrix can only be multiplied if the matrix has
 	 * the same number of columns as the vector has elements.
 	 * 
-	 * <p> If the given vector is null in the case of matrices of fixed dimensions
-	 * it will be treated as a vector where every element is 0. In the case of
-	 * matrices of unknown dimensions, this will throw an exception, since it
-	 * is not possible to check if the matrix and the vector have the correct size.
-	 * 
 	 * @param vector The second operand of the product, a vector whose size is the
 	 * 		same as the number of columns of this matrix that can be represented as
 	 * 		a float vector without casting.
 	 * 
-	 * @return The result of the product between this matrix and the given vector
-	 * 		or a vector where every element is 0 if the given vector is null and
-	 * 		this is a matrix of fixed dimensions.
+	 * @return The result of the product between this matrix and the given vector.
 	 * 
-	 * TODO - Throws
+	 * @throws MatrixMathException If the size of the vector does not match the
+	 * 		number of columns of this matrix.
+	 * @throws NullPointerException if the given vector is null.
 	 */
-	V multiply(VectorAsFloat<V> vector);
+	default V multiply(VectorAsFloat<V> vector) {
+		return this.multiply(vector.asFloat());
+	}
 
 	/**
 	 * Multiplies this matrix by the given one.
@@ -132,21 +115,16 @@ public interface MatrixFloatOperations<M extends MatrixFloatOperations<M, V>, V 
 	 * does not alter the object on which it is called, it returns a new matrix
 	 * instead.
 	 * 
-	 * <p> If the given matrix is null, in the case of matrices of fixed dimensions
-	 * it will be treated as a matrix where every element is 0. In the case of
-	 * matrices of unknown dimensions, this will throw an exception, since it
-	 * is not possible to check the dimension of the two matrices.
-	 * 
 	 * @param matrix The second operand of the product, a matrix that can be
 	 * 		represented as a float matrix without casting.
 	 * 
-	 * @return The product of this matrix and the given one or a matrix where
-	 * 		every element is 0 if the given matrix is null and this is a matrix
-	 * 		of fixed dimensions.
+	 * @return The product of this matrix and the given one.
 	 * 
-	 * TODO - Throws
+	 * @throws MatrixMathException If the number of rows of this matrix does not
+	 * 		match the number of columns of the given matrix.
+	 * @throws NullPointerException if the given matrix is null.
 	 */
 	default M multiply(MatrixAsFloat<M, V> matrix) {
-		return matrix != null ? this.multiply(matrix.asFloat()) : this.multipliedBy(0.0f);
+		return this.multiply(matrix.asFloat());
 	}
 }
