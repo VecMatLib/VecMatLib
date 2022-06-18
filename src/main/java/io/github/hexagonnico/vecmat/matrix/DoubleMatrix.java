@@ -25,7 +25,9 @@ public class DoubleMatrix implements MatrixDoubleOperations<DoubleMatrix, Double
 	 * 
 	 * @return An NxM matrix where every element is 0.0
 	 * 
-	 * TODO: Throws? 
+	 * @throws NegativeArraySizeException if the given number of rows or columns
+	 * 		is smaller than zero.
+	 * @throws MatrixMathException if the given number of rows or columns is zero.
 	 */
 	public static DoubleMatrix zero(int rows, int columns) {
 		return new DoubleMatrix(new double[rows][columns]);
@@ -38,9 +40,11 @@ public class DoubleMatrix implements MatrixDoubleOperations<DoubleMatrix, Double
 	 * @param size Size of the matrix.
 	 * 
 	 * @return An identity matrix of the given size.
+	 * 
+	 * @throws MatrixMathException if the given size is not greater than zero.
 	 */
 	public static DoubleMatrix identity(int size) {
-		return new DoubleMatrix(IntStream.range(0, size).mapToObj(i -> IntStream.range(0, size).mapToDouble(j -> j == i ? 1.0 : 0.0)).toArray(double[][]::new));
+		return new DoubleMatrix(IntStream.range(0, size).mapToObj(i -> IntStream.range(0, size).mapToDouble(j -> j == i ? 1.0 : 0.0).toArray()).toArray(double[][]::new));
 	}
 
 	/**Elements of the matrix */
