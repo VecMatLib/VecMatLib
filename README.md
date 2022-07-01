@@ -22,4 +22,16 @@ Official documentation is hosted with Github Pages at [hexagonnico.github.io/Vec
 
 ## Include VecMatLib in your project
 
-...
+VecMatLib is uploaded as a Github Package.
+
+Add the following dependency to your `pom.xml` file to include VecMatLib in your project:
+
+```
+	<dependency>
+		<groupId>io.github.hexagonnico</groupId>
+		<artifactId>vecmatlib<artifactId>
+		<version>2.0</version>
+	</dependency>
+```
+
+Then run the command `mvn clean install` to install the package to your local repository.
