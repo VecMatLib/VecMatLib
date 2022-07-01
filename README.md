@@ -32,7 +32,7 @@ Add the following dependency to your `pom.xml` file to include VecMatLib in your
 ```
 	<dependency>
 		<groupId>io.github.hexagonnico</groupId>
-		<artifactId>vecmatlib<artifactId>
+		<artifactId>vecmatlib</artifactId>
 		<version>2.0</version>
 	</dependency>
 ```
