@@ -21,7 +21,7 @@ If you wish to contribute to the project, bug fixes, code improvements and unit 
 
 ## Official documentation
 
-Official documentation is hosted with Github Pages at [hexagonnico.github.io/VecMatLib](https://hexagonnico.github.io/VecMatLib)
+Official documentation is hosted with Github Pages at [vecmatlib.github.io](https://vecmatlib.github.io/)
 
 ## Include VecMatLib in your project
 
