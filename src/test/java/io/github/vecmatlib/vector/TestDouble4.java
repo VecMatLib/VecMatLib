@@ -8,9 +8,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import io.github.vecmatlib.vector.Double4;
-import io.github.vecmatlib.vector.Float4;
-
 public class TestDouble4 {
 
 	static double x1 = 1.12, y1 = 0.57, z1 = 0.04, w1 = 2.31;

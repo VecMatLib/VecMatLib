@@ -8,10 +8,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import io.github.vecmatlib.vector.DoubleVector;
-import io.github.vecmatlib.vector.FloatVector;
-import io.github.vecmatlib.vector.VectorMathException;
-
 public class TestDoubleVector {
 
 	static DoubleVector v1 = new DoubleVector(1.12, 2.34, 3.56, 0.01, 0.52, 1.97, 1.43);

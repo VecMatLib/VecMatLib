@@ -8,9 +8,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import io.github.vecmatlib.matrix.Double4x4;
-import io.github.vecmatlib.matrix.Float4x4;
-import io.github.vecmatlib.matrix.Int4x4;
 import io.github.vecmatlib.vector.Double4;
 import io.github.vecmatlib.vector.Float4;
 import io.github.vecmatlib.vector.Int4;

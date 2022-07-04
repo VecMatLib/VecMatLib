@@ -8,10 +8,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import io.github.vecmatlib.vector.Double2;
-import io.github.vecmatlib.vector.Float2;
-import io.github.vecmatlib.vector.Int2;
-
 public class TestInt2 {
 
 	static int x1 = 1, y1 = 3;
